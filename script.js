@@ -1,10 +1,13 @@
 function toggleExpand(card) {
     const activeCard = document.querySelector('.product-card.active');
     
-    // 1. Double-Click Logic: එකක් ඇරිලා තියෙද්දී වෙන එකක් එබුවොත් කලින් එක වහනවා.
     if (activeCard && activeCard !== card) {
         activeCard.classList.remove('active');
-        return; 
+        // පොඩි delay එකක් තියමු transition එක ලස්සනට ඉවර වෙන්න
+        setTimeout(() => {
+            card.classList.add('active');
+        }, 300);
+        return;
     }
 
     if (activeCard === card) {
@@ -14,7 +17,7 @@ function toggleExpand(card) {
     }
 }
 
-// 2. Scroll කරද්දී Auto Close වන Logic එක
+// Scroll කරද්දී පාවී යන එක නවත්වන්න සහ smoothව close කරන්න
 window.onscroll = function() {
     const activeCard = document.querySelector('.product-card.active');
     if (activeCard) {
@@ -22,7 +25,6 @@ window.onscroll = function() {
     }
 };
 
-// 3. පිටත Click කළොත් වැසීමට
 window.onclick = function(event) {
     if (!event.target.closest('.product-card')) {
         const activeCard = document.querySelector('.product-card.active');
@@ -30,7 +32,6 @@ window.onclick = function(event) {
     }
 }
 
-// Button එක Click කළාම Card එක වැසීම වැළැක්වීමට
 document.querySelectorAll('.more-btn').forEach(btn => {
     btn.onclick = (e) => e.stopPropagation();
 });

@@ -42,14 +42,10 @@ header {
 
 /* --- THE CARD --- */
 .product-card {
-    /* Tap Highlight Fix */
     -webkit-tap-highlight-color: transparent !important;
-    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
     user-select: none;
-    -webkit-touch-callout: none;
     outline: none !important;
     
-    will-change: transform, width, left, z-index, right;
     background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
@@ -57,67 +53,50 @@ header {
     display: flex;
     flex-direction: column;
     height: 100%;
-    position: absolute;
     width: 100%;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 10;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    /* transition එක CSS transform වලට විතරක් සීමා කළා smooth වෙන්න */
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.3s ease;
     cursor: pointer;
 }
 
-/* Active State */
+/* --- SMART SCALE LOGIC (No width change, only scale) --- */
+
+/* වම් පැත්තේ items දකුණට ලොකු වේ */
+.card-wrapper:nth-child(odd) .product-card {
+    transform-origin: left top;
+}
+
+/* දකුණු පැත්තේ items වමට ලොකු වේ */
+.card-wrapper:nth-child(even) .product-card {
+    transform-origin: right top;
+}
+
 .product-card.active {
     z-index: 500;
-    width: calc(150% - 20px); 
-    height: auto;
-    min-height: 105%;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    /* පළල වෙනස් කරන්නේ නැතුව scale එකෙන් 1.5x කරනවා (ගැස්සෙන්නේ නැහැ) */
+    transform: scale(1.45); 
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
     border-color: var(--primary);
-    transform: scale(1.02);
-}
-
-/* Smart Alignment - Border එකෙන් පැනීම වැළැක්වීමට */
-.card-wrapper:nth-child(odd) .product-card.active {
-    left: 0;
-    right: auto;
-}
-
-@media (max-width: 767px) {
-    .card-wrapper:nth-child(even) .product-card.active {
-        left: auto;
-        right: 0;
-    }
-}
-
-@media (min-width: 768px) {
-    .product-container { grid-template-columns: repeat(4, 1fr); }
-    .card-wrapper { height: 300px; }
-    
-    .card-wrapper:nth-child(2n) .product-card.active {
-        left: auto;
-        right: 0;
-    }
 }
 
 .card-image img {
     width: 100%;
     height: 140px;
     object-fit: cover;
-    backface-visibility: hidden;
 }
 
 .card-details {
-    padding: 15px;
+    padding: 12px;
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .card-details h3 {
-    font-size: 0.9rem;
-    margin: 0 0 8px 0;
+    font-size: 0.85rem;
+    margin: 0 0 5px 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -127,26 +106,29 @@ header {
 .price {
     color: #22c55e;
     font-weight: 700;
+    font-size: 0.9rem;
 }
 
+/* Info Section */
 .expanded-info {
     max-height: 0;
     opacity: 0;
-    overflow: hidden;
+    visibility: hidden;
     transition: all 0.3s ease;
-    padding: 0 15px;
+    padding: 0 12px;
 }
 
 .product-card.active .expanded-info {
-    max-height: 400px;
+    max-height: 200px;
     opacity: 1;
-    padding-bottom: 25px;
+    visibility: visible;
+    padding-bottom: 20px;
 }
 
 .description {
-    font-size: 0.85rem;
+    font-size: 0.7rem; /* Scale වන නිසා size එක පොඩි කළා */
     color: var(--muted);
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .more-btn {
@@ -155,12 +137,11 @@ header {
     color: white;
     text-align: center;
     text-decoration: none;
-    padding: 12px;
-    border-radius: 14px;
+    padding: 8px;
+    border-radius: 10px;
     font-weight: 700;
+    font-size: 0.75rem;
 }
 
-/* --- Universal Highlight Kill --- */
-* {
-    -webkit-tap-highlight-color: transparent !important;
-}
+/* Global Fix */
+* { -webkit-tap-highlight-color: transparent !important; }
