@@ -40,7 +40,7 @@ header {
     height: 280px; 
 }
 
-/* --- THE CARD --- */
+/* --- THE CARD (Hardware Accelerated) --- */
 .product-card {
     -webkit-tap-highlight-color: transparent !important;
     user-select: none;
@@ -58,36 +58,45 @@ header {
     top: 0;
     left: 0;
     z-index: 10;
-    /* transform විතරක් transition කරන්න, එතකොට shutter වෙන්නේ නැහැ */
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+
+    /* Optimization: GPU Power */
+    will-change: transform;
+    transform: translateZ(0); 
+    backface-visibility: hidden;
+    
+    /* Smooth Animation */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.5s ease, 
+                border-color 0.3s ease;
     cursor: pointer;
-    /* ලොකු වෙන්න පටන් ගන්න තැන Default (Left) */
-    transform-origin: left top;
+    transform-origin: left top; /* Default for left column */
 }
 
-/* --- SMART ALIGNMENT (Shutter-Free) --- */
+/* --- SMART ALIGNMENT (No-Shutter) --- */
 
-/* Mobile: දකුණු පැත්තේ Items (2, 4, 6) වමට Scale වේ */
+/* Mobile: Right Column (Even) items scale to Left */
 @media (max-width: 767px) {
     .card-wrapper:nth-child(even) .product-card {
         transform-origin: right top;
     }
 }
 
-/* PC: Columns 2 සහ 4 දකුණු පැත්තට බර නිසා ඒවා වමට Scale වේ */
+/* PC: Columns 2, 4, 6 items scale to Left */
 @media (min-width: 768px) {
     .product-container { grid-template-columns: repeat(4, 1fr); }
     .card-wrapper { height: 300px; }
     
-    .card-wrapper:nth-child(2n) .product-card {
+    /* 4-column grid එකේ දකුණු පැත්තේ තියෙන items (2nd and 4th columns) */
+    .card-wrapper:nth-child(4n-2) .product-card,
+    .card-wrapper:nth-child(4n) .product-card {
         transform-origin: right top;
     }
 }
 
 .product-card.active {
     z-index: 500;
-    transform: scale(1.45); /* 1.5x වලට ආසන්නව */
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
+    transform: scale(1.45) translateZ(0);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
     border-color: var(--primary);
 }
 
@@ -95,41 +104,45 @@ header {
     width: 100%;
     height: 140px;
     object-fit: cover;
+    display: block;
 }
 
 .card-details {
-    padding: 10px;
+    padding: 12px;
 }
 
 .card-details h3 {
-    font-size: 0.8rem;
-    margin: 0;
+    font-size: 0.85rem;
+    margin: 0 0 5px 0;
     color: var(--text);
 }
 
 .price {
     color: #22c55e;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
 
-/* Info Section (Scaled Down to match) */
+/* Expanded Info with Smooth Fade */
 .expanded-info {
     max-height: 0;
     opacity: 0;
-    transition: 0.3s ease;
-    padding: 0 10px;
+    visibility: hidden;
+    transition: opacity 0.3s ease, max-height 0.4s ease;
+    padding: 0 12px;
 }
 
 .product-card.active .expanded-info {
-    max-height: 200px;
+    max-height: 250px;
     opacity: 1;
-    padding-bottom: 15px;
+    visibility: visible;
+    padding-bottom: 20px;
 }
 
 .description {
-    font-size: 0.65rem; /* Scale නිසා අකුරු ලොකු වෙන නිසා මෙතන කුඩා කළා */
+    font-size: 0.7rem;
     color: var(--muted);
+    margin: 10px 0;
 }
 
 .more-btn {
@@ -138,10 +151,11 @@ header {
     color: white;
     text-align: center;
     text-decoration: none;
-    padding: 6px;
-    border-radius: 8px;
+    padding: 8px;
+    border-radius: 12px;
     font-weight: 700;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
+/* Global Fix for Blue Highlight */
 * { -webkit-tap-highlight-color: transparent !important; }
