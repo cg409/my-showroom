@@ -14,7 +14,7 @@ body {
     color: var(--text);
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* අයිනෙන් එළියට පැනීම නවත්වයි */
+    overflow-x: hidden;
 }
 
 header {
@@ -34,18 +34,14 @@ header {
     margin: 0 auto;
 }
 
-/* Wrapper එක Grid එකේ ඉඩ වෙන් කරලා තියෙනවා */
 .card-wrapper {
     position: relative;
     width: 100%;
     height: 280px; 
 }
 
-/* --- THE CARD --- */
 .product-card {
-    /* Lag එක අයින් කරන්න GPU එකට කලින්ම කියනවා */
     will-change: transform, width, left, z-index;
-    
     background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
@@ -58,17 +54,15 @@ header {
     top: 0;
     left: 0;
     z-index: 10;
-    /* ඉතාමත් Smooth Animation එකක් */
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     cursor: pointer;
 }
 
-/* --- ACTIVE STATE (1.5x with Border Gap) --- */
+/* Active State - Screen අයිනට නොයන ලෙස සකසා ඇත */
 .product-card.active {
     z-index: 500;
-    /* Phone එකේ අයිනටම ගිහින් ඇලෙන එක නවත්වන්න calc පාවිච්චි කළා */
-    width: calc(150% - 20px); 
-    left: -22%; 
+    width: calc(150% - 30px); 
+    left: -25%; 
     height: auto;
     min-height: 105%;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
@@ -80,7 +74,6 @@ header {
     width: 100%;
     height: 140px;
     object-fit: cover;
-    /* Rendering Smooth කරයි */
     backface-visibility: hidden;
 }
 
@@ -106,7 +99,6 @@ header {
     font-weight: 700;
 }
 
-/* Info Animation */
 .expanded-info {
     max-height: 0;
     opacity: 0;
