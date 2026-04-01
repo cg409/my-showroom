@@ -35,9 +35,46 @@ header {
 }
 
 .card-wrapper {
+  /* 1. Card Wrapper එකේ උස පොඩ්ඩක් වැඩි කරන්න (Mobile) */
+.card-wrapper {
     position: relative;
     width: 100%;
-    height: 320px; /* Description පේන නිසා උස පොඩ්ඩක් වැඩි කළා */
+    height: 350px; /* කලින් 330 තිබුණේ, දැන් 350 කළා */
+}
+
+/* 2. PC එකේ උස Adjust කිරීම */
+@media (min-width: 768px) {
+    .card-wrapper { height: 380px; } /* PC එකටත් පොඩ්ඩක් වැඩි කළා */
+}
+
+/* 3. Expanded Info එකේ උස සීමාව වැඩි කරන්න */
+.product-card.active .expanded-info {
+    max-height: 500px; /* කලින් 250 තිබුණේ, ඒක මදි වෙන්න ඇති */
+    opacity: 1;
+    visibility: visible;
+    padding-bottom: 25px; /* පහළින් තව ඉඩක් තැබීමට */
+}
+
+/* 4. More Button එක Description එකට තවත් ලං කරන්න */
+.more-btn {
+    display: block;
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px; /* Padding පොඩ්ඩක් වැඩි කළා එබීම ලේසි වෙන්න */
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin-top: 5px; /* Margin එක අඩු කළා ලං වෙන්න */
+}
+
+/* 5. Extra Text එකත් ලං කරන්න */
+.extra-text {
+    font-size: 0.65rem;
+    color: var(--primary);
+    margin: 5px 0; /* Margin එක අඩු කළා */
+}
 }
 
 .product-card {
