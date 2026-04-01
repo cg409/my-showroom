@@ -1,0 +1,82 @@
+/* සම්පූර්ණ වෙබ් එකටම පොදු settings */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0f172a; /* Dark Blue Background */
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header එක ලස්සන කරමු */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #38bdf8; /* Sky Blue Color */
+    margin-bottom: 10px;
+}
+
+/* Product Cards තියෙන කොටස */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* තනි Product Card එකක design එක */
+.card {
+    background-color: #1e293b;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #334155;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+    border-color: #38bdf8;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: #10b981; /* Green color for price */
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* WhatsApp Button එක */
+button {
+    background-color: #25d366; /* WhatsApp Green */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #128c7e;
+}
