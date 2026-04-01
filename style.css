@@ -201,3 +201,55 @@ header h1 {
     width: 100%;
     border-radius: 10px;
 }
+
+.product-card {
+    background-color: #1e293b;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* ලස්සනට Smooth වෙන්න */
+    border: 1px solid #334155;
+    position: relative;
+    height: 280px; /* සාමාන්‍ය උස */
+}
+
+/* Card එක expand වුණාම වෙනස් වෙන හැටි */
+.product-card.active {
+    height: 420px; /* Expand වුණාම උස වැඩි වෙනවා */
+    transform: scale(1.02);
+    border-color: #38bdf8;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.expanded-info {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    padding: 0 15px;
+}
+
+/* Active වුණාම විස්තර පේන්න ගන්නවා */
+.product-card.active .expanded-info {
+    max-height: 200px;
+    opacity: 1;
+    padding-bottom: 20px;
+}
+
+.more-btn {
+    display: inline-block;
+    background-color: #38bdf8;
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin: 10px 0;
+}

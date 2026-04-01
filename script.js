@@ -30,3 +30,13 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+function toggleExpand(card) {
+    // වෙනත් active cards තියෙනවා නම් ඒවා අයින් කරනවා
+    document.querySelectorAll('.product-card').forEach(c => {
+        if (c !== card) c.classList.remove('active');
+    });
+
+    // දැනට click කරපු එක active කරනවා/අයින් කරනවා
+    card.classList.toggle('active');
+}
