@@ -95,6 +95,28 @@
 
     </main>
 
+    <main class="product-container">
+    <div class="product-card" onclick="openModal('Intel i7 4790K', 'High-end 4th gen processor for gaming.', 'Rs. 25,000', 'images/i7.jpg', 'product-i7.html')">
+        <img src="https://via.placeholder.com/300x200" alt="Product Image">
+        <div class="card-info">
+            <h3>Intel i7 4790K</h3>
+            <p>Rs. 25,000</p>
+            <p class="short-desc">Powerful quad-core processor for 1150 socket.</p>
+        </div>
+    </div>
+    </main>
+
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImg" src="" alt="Product">
+        <h2 id="modalName"></h2>
+        <p id="modalDesc"></p>
+        <p id="modalPrice" class="modal-price"></p>
+        <a id="moreBtn" href="#" class="more-btn">More Details</a>
+    </div>
+</div>
+
     <script src="script.js"></script>
 </body>
 </html>

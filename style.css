@@ -151,3 +151,53 @@ header h1 {
 .view-btn:hover {
     background-color: #128c7e;
 }
+/* Modal (Pop-up) Styling */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: #1e293b;
+    margin: 10% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px; /* ලස්සන පොඩි pop-up එකක් */
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px; top: 10px;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+.more-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #38bdf8;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.modal-price {
+    font-size: 1.5rem;
+    color: #25d366;
+    font-weight: bold;
+}
+
+.modal-content img {
+    width: 100%;
+    border-radius: 10px;
+}

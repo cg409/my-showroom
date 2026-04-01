@@ -10,3 +10,23 @@ function openWhatsApp(itemName) {
     let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
     window.open(url, "_blank");
 }
+function openModal(name, desc, price, img, pageLink) {
+    document.getElementById('modalName').innerText = name;
+    document.getElementById('modalDesc').innerText = desc;
+    document.getElementById('modalPrice').innerText = price;
+    document.getElementById('modalImg').src = img;
+    document.getElementById('moreBtn').href = pageLink;
+    document.getElementById('productModal').style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById('productModal').style.display = "none";
+}
+
+// පිටත click කළොත් වැහෙන්න
+window.onclick = function(event) {
+    let modal = document.getElementById('productModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
