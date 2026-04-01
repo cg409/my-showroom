@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Med Hub | Premium</title>
+    <title>Med Hub | Premium Store</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
         <h1>MED HUB</h1>
+        <nav class="navbar">
+            <a href="#" class="nav-link active">Home</a>
+            <a href="#" class="nav-link">Social</a>
+            <a href="#" class="nav-link">About Us</a>
+        </nav>
     </header>
 
     <main class="product-container">
-        
+
         <div class="card-wrapper">
             <div class="product-card" onclick="toggleExpand(this)">
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400" alt="GPU">
+                    <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400" alt="GPU">
                 </div>
                 <div class="card-details">
-                    <h3>NVIDIA GTX 970</h3>
+                    <h3>NVIDIA GTX 970 - 4GB Gaming Edition</h3>
                     <p class="price">Rs. 35,000</p>
                 </div>
                 <div class="expanded-info">
-                    <p class="description">Best in class 1080p gaming performance.</p>
+                    <p class="description">Premium condition graphics card. Ideal for gaming at 1080p high settings and creative work.</p>
                     <a href="#" class="more-btn">More Details</a>
                 </div>
             </div>
@@ -33,14 +39,46 @@
         <div class="card-wrapper">
             <div class="product-card" onclick="toggleExpand(this)">
                 <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400" alt="CPU">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=400" alt="CPU">
                 </div>
                 <div class="card-details">
                     <h3>Intel i7 4790K</h3>
                     <p class="price">Rs. 25,000</p>
                 </div>
                 <div class="expanded-info">
-                    <p class="description">Legendary 4.4GHz Turbo CPU.</p>
+                    <p class="description">4.4GHz Turbo boost speed. Legendary gaming performance for the LGA 1150 socket.</p>
+                    <a href="#" class="more-btn">More Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="product-card" onclick="toggleExpand(this)">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400" alt="Motherboard">
+                </div>
+                <div class="card-details">
+                    <h3>ASUS Z97 Motherboard with Wireless Support</h3>
+                    <p class="price">Rs. 18,000</p>
+                </div>
+                <div class="expanded-info">
+                    <p class="description">Supports 4th and 5th gen Intel CPUs. High quality caps and reliable performance.</p>
+                    <a href="#" class="more-btn">More Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="product-card" onclick="toggleExpand(this)">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&q=80&w=400" alt="RAM">
+                </div>
+                <div class="card-details">
+                    <h3>HyperX 16GB RAM</h3>
+                    <p class="price">Rs. 10,000</p>
+                </div>
+                <div class="expanded-info">
+                    <p class="description">High speed DDR3 memory kit. Essential for multitasking and modern PC gaming.</p>
                     <a href="#" class="more-btn">More Details</a>
                 </div>
             </div>
