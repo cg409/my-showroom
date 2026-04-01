@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Med Hub - PC Showroom</title>
+    <title>Med Hub | Premium Tech Store</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <h1>Med Hub</h1>
+        <h1>MED HUB</h1>
         <nav class="navbar">
             <a href="#" class="nav-link active">Home</a>
             <a href="#" class="nav-link">Social</a>
@@ -19,73 +19,63 @@
     </header>
 
     <main class="product-container">
+
         <div class="product-card" onclick="toggleExpand(this)">
-            <div class="card-content">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x200?text=i7-4790K" alt="i7 4790K">
-                </div>
-                <div class="card-details">
-                    <h3>Intel i7 4790K</h3>
-                    <p class="price">Rs. 25,000</p>
-                </div>
-                
-                <div class="expanded-info">
-                    <p class="description">මෙම processor එක 4th Gen වල තියෙන හොඳම එකක්. Gaming සහ Editing වලට සුපිරි.</p>
-                    <a href="product-details.html" class="more-btn">More Details</a>
-                </div>
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400" alt="Intel i7">
+            </div>
+            <div class="card-details">
+                <h3>Intel Core i7 4790K</h3>
+                <p class="price">Rs. 25,000</p>
+            </div>
+            <div class="expanded-info">
+                <p class="description">4 Cores, 8 Threads. Gaming සහ Editing වලට ඉතාමත් සුදුසු Budget Friendly ප්‍රොසෙසරයකි.</p>
+                <a href="product-details.html" class="more-btn">View Details</a>
             </div>
         </div>
 
         <div class="product-card" onclick="toggleExpand(this)">
-            <div class="card-content">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x200?text=GTX-970" alt="GTX 970">
-                </div>
-                <div class="card-details">
-                    <h3>NVIDIA GTX 970</h3>
-                    <p class="price">Rs. 35,000</p>
-                </div>
-                
-                <div class="expanded-info">
-                    <p class="description">4GB GDDR5. 1080p gaming වලට අදටත් ගැළපෙන සුපිරි VGA එකක්.</p>
-                    <a href="product-details.html" class="more-btn">More Details</a>
-                </div>
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1555617766-c94804975da3?auto=format&fit=crop&q=80&w=400" alt="GTX 970">
+            </div>
+            <div class="card-details">
+                <h3>NVIDIA GTX 970</h3>
+                <p class="price">Rs. 35,000</p>
+            </div>
+            <div class="expanded-info">
+                <p class="description">4GB GDDR5 Graphics Card. 1080p High settings වල Gaming කිරීමට කදිමයි.</p>
+                <a href="product-details.html" class="more-btn">View Details</a>
             </div>
         </div>
 
         <div class="product-card" onclick="toggleExpand(this)">
-            <div class="card-content">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x200?text=ASUS-Z97" alt="Motherboard">
-                </div>
-                <div class="card-details">
-                    <h3>ASUS Z97 Motherboard</h3>
-                    <p class="price">Rs. 18,000</p>
-                </div>
-                
-                <div class="expanded-info">
-                    <p class="description">LGA 1150 Socket, ATX Form Factor. Overclocking වලට සුදුසුයි.</p>
-                    <a href="product-details.html" class="more-btn">More Details</a>
-                </div>
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400" alt="Motherboard">
+            </div>
+            <div class="card-details">
+                <h3>ASUS Z97 Motherboard</h3>
+                <p class="price">Rs. 18,000</p>
+            </div>
+            <div class="expanded-info">
+                <p class="description">LGA 1150 Socket. USB 3.0 සහ Fast SATA support සහිත ප්‍රබල මදර්බෝඩ් එකකි.</p>
+                <a href="product-details.html" class="more-btn">View Details</a>
             </div>
         </div>
 
         <div class="product-card" onclick="toggleExpand(this)">
-            <div class="card-content">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x200?text=16GB-RAM" alt="RAM Kit">
-                </div>
-                <div class="card-details">
-                    <h3>HyperX 16GB RAM</h3>
-                    <p class="price">Rs. 10,000</p>
-                </div>
-                
-                <div class="expanded-info">
-                    <p class="description">2x8GB DDR3 1600MHz. High-performance gaming RAM kit.</p>
-                    <a href="product-details.html" class="more-btn">More Details</a>
-                </div>
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&q=80&w=400" alt="RAM">
+            </div>
+            <div class="card-details">
+                <h3>HyperX 16GB RAM</h3>
+                <p class="price">Rs. 10,000</p>
+            </div>
+            <div class="expanded-info">
+                <p class="description">DDR3 1600MHz Speed. Gaming PC එකක performance වැඩි කරගැනීමට හොඳම විසඳුමකි.</p>
+                <a href="product-details.html" class="more-btn">View Details</a>
             </div>
         </div>
+
     </main>
 
     <script src="script.js"></script>

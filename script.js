@@ -1,24 +1,19 @@
-// Card එක Expand කරන සහ අනිත් ඒවා Close කරන function එක
 function toggleExpand(card) {
-    // වෙනත් active cards තියෙනවා නම් ඒවා අයින් කරනවා
+    // Check if current card is already active
+    const isActive = card.classList.contains('active');
+    
+    // Close all cards
     document.querySelectorAll('.product-card').forEach(c => {
-        if (c !== card) c.classList.remove('active');
+        c.classList.remove('active');
     });
 
-    // දැනට click කරපු එක active කරනවා/අයින් කරනවා
-    card.classList.toggle('active');
+    // If it wasn't active, open it
+    if (!isActive) {
+        card.classList.add('active');
+    }
 }
 
-// WhatsApp එකට message එක යවන function එක
-// (මේක අපි පාවිච්චි කරන්නේ More Details පේජ් එක ඇතුළේ තියෙන button එකටයි)
-function openWhatsApp(itemName) {
-    let phone = "94727060167"; 
-    let message = "Hello Med Hub! මට මේ " + itemName + " එක ගැන විස්තර දැනගන්න ඕනේ. මේක තවම තියෙනවද?";
-    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-    window.open(url, "_blank");
-}
-
-// පිටත click කළොත් active වෙලා තියෙන card එක වැහෙන්න (Optional - Cool effect)
+// Close when clicking outside
 window.onclick = function(event) {
     if (!event.target.closest('.product-card')) {
         document.querySelectorAll('.product-card').forEach(c => {
