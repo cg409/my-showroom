@@ -43,6 +43,12 @@ header {
 
 /* --- THE CARD --- */
 .product-card {
+    .product-card {
+    /* කලින් තිබුණ code ටික... */
+    
+    -webkit-tap-highlight-color: transparent; /* මේකෙන් තමයි අර නිල් පාට කොටුව අයින් කරන්නේ */
+    outline: none; /* සමහර Browser වල එන border එක අයින් කිරීමට */
+}
     will-change: transform, width, left, z-index, right;
     
     background: var(--card-bg);
