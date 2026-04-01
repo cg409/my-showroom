@@ -14,13 +14,12 @@ body {
     color: var(--text);
     margin: 0;
     padding: 0;
-    transition: background 0.5s ease;
+    overflow-x: hidden;
 }
 
-/* Header Styling */
 header {
     background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -38,65 +37,57 @@ header {
     margin: 0 auto;
 }
 
-/* Card Wrapper - Grid එක එහෙ මෙහෙ වීම වැළැක්වීමට */
 .card-wrapper {
     position: relative;
-    height: 260px;
+    height: 250px;
 }
 
-/* Main Card Style */
+/* --- THE CARD (LAG-FREE) --- */
 .product-card {
     background: var(--card-bg);
-    border-radius: 24px; /* More rounded like Apple */
+    border-radius: 24px;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1); /* Smooth Apple Curve */
+    /* Transform විතරක් animate කිරීමෙන් lag එක නැතිවේ */
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), 
+                box-shadow 0.5s ease, 
+                border-color 0.3s ease;
     position: absolute;
     width: 100%;
     z-index: 10;
     cursor: pointer;
+    will-change: transform; /* GPU Acceleration */
 }
 
-/* --- ACTIVE STATE (APPLE DYNAMIC EXPAND) --- */
+/* --- ACTIVE STATE --- */
 .product-card.active {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 85vw; /* Screen එකෙන් 85% ක් */
-    max-width: 400px;
+    top: 15%; 
+    left: 7.5%;
+    width: 85%;
     z-index: 2000;
-    background: rgba(30, 41, 59, 0.9);
-    backdrop-filter: blur(30px); /* Premium Blur */
+    transform: scale(1.02); /* Layout එක වෙනස් නොකර scale කිරීම */
+    background: rgba(30, 41, 59, 0.98);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
     border-color: var(--primary);
-    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
 }
 
-/* Background Overlay when active */
+/* Overlay Backdrop */
 body.modal-open::after {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
     z-index: 1500;
-    animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; } to { opacity: 1; }
 }
 
 .card-image img {
     width: 100%;
-    height: 160px;
+    height: 150px;
     object-fit: cover;
-    transition: height 0.6s ease;
-}
-
-.product-card.active .card-image img {
-    height: 220px;
 }
 
 .card-details {
@@ -106,29 +97,27 @@ body.modal-open::after {
 .price {
     color: #22c55e;
     font-weight: 700;
-    font-size: 1.1rem;
 }
 
-/* Expanded Info */
+/* Smooth Info Fade-in */
 .expanded-info {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: all 0.5s ease;
-    padding: 0 20px;
+    transition: opacity 0.3s ease;
 }
 
 .product-card.active .expanded-info {
-    max-height: 400px;
+    max-height: 500px;
     opacity: 1;
-    padding-bottom: 30px;
+    padding: 0 15px 25px 15px;
 }
 
 .description {
     font-size: 0.9rem;
     color: var(--muted);
-    line-height: 1.6;
-    margin: 15px 0;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 .more-btn {
@@ -140,11 +129,9 @@ body.modal-open::after {
     padding: 14px;
     border-radius: 16px;
     font-weight: 700;
-    transition: 0.3s;
 }
 
-/* Desktop View */
 @media (min-width: 768px) {
     .product-container { grid-template-columns: repeat(4, 1fr); }
-    .product-card.active { width: 400px; }
+    .product-card.active { width: 380px; left: calc(50% - 190px); }
 }
