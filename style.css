@@ -1,82 +1,153 @@
-/* සම්පූර්ණ වෙබ් එකටම පොදු settings */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #0f172a; /* Dark Blue Background */
-    color: white;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* CSS Variables for Colors */
+:root {
+    --bg-main: #0a0e17; /* Darker Blue/Black BG */
+    --bg-header: #111827; /* Dark Header BG */
+    --accent-blue: #38bdf8; /* Sky Blue accent */
+    --accent-green: #25d366; /* WhatsApp Green */
+    --text-main: #f3f4f6; /* White text */
+    --text-muted: #9ca3af; /* Grayer text */
 }
 
-/* Header එක ලස්සන කරමු */
+/* Base Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+}
+
+/* Header & Navbar Styling */
 header {
+    background-color: var(--bg-header);
     text-align: center;
-    padding: 50px 20px;
-    background: linear-gradient(135deg, #1e293b, #334155);
-    width: 100%;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    position: sticky; /* Helps keep it visible */
+    top: 0;
+    z-index: 100;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    color: #38bdf8; /* Sky Blue Color */
-    margin-bottom: 10px;
+    font-size: 2rem;
+    color: var(--accent-blue);
+    margin: 0 0 15px 0;
 }
 
-/* Product Cards තියෙන කොටස */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--text-main);
+}
+
+.nav-link.active {
+    color: var(--accent-blue);
+    border-bottom: 2px solid var(--accent-blue);
+}
+
+/* Product Container (The Main Area) */
 .product-container {
+    padding: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 40px;
-    width: 90%;
-    max-width: 1200px;
+    /* --- MOBILE-RESPONSIVE --- */
+    /* Mobile: 2 columns (based on your sketch) */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* තනි Product Card එකක design එක */
-.card {
-    background-color: #1e293b;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
+/* --- PC RESPONSIVE --- */
+@media (min-width: 768px) {
+    /* PC/Tablet: 4 columns (based on your sketch) */
+    .product-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+}
+
+/* Product Card Styling */
+.product-card {
+    background-color: #1e293b; /* Card BG */
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #334155;
 }
 
-.card:hover {
-    transform: translateY(-10px);
+/* Hover Effect - Clickable feeling */
+.product-card:hover {
+    transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
-    border-color: #38bdf8;
+    border-color: var(--accent-blue);
 }
 
-.card img {
+/* Image container styling */
+.card-image img {
     width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    height: 150px;
+    object-fit: cover; /* Keeps aspect ratio */
+    border-radius: 10px 10px 0 0;
+}
+
+/* Text details inside the card */
+.card-details {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-details h3 {
+    font-size: 1rem;
+    color: var(--text-main);
+    margin: 0 0 5px 0;
+}
+
+.specs {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
 }
 
 .price {
-    font-size: 1.5rem;
-    color: #10b981; /* Green color for price */
+    font-size: 1.2rem;
+    color: var(--accent-green);
     font-weight: bold;
-    margin: 10px 0;
+    margin: 0;
 }
 
-/* WhatsApp Button එක */
-button {
-    background-color: #25d366; /* WhatsApp Green */
+/* WhatsApp Button (Styling) */
+.view-btn {
+    display: block;
+    background-color: var(--accent-green);
     color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 10px;
     transition: background 0.3s;
 }
 
-button:hover {
+.view-btn:hover {
     background-color: #128c7e;
 }
