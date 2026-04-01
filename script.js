@@ -1,19 +1,19 @@
 function toggleExpand(card) {
     const isActive = card.classList.contains('active');
     
-    // හැම Card එකක්ම Reset කරනවා
+    // සියලුම cards reset කරන්න
     document.querySelectorAll('.product-card').forEach(c => {
         c.classList.remove('active');
     });
 
+    // දැනට click කළ එක active නොවී තිබුණේ නම් එය active කරන්න
     if (!isActive) {
         card.classList.add('active');
     }
 }
 
-// පිටත Click කළොත් Close වීමට
+// Card එකෙන් පිටත click කළොත් close කරන්න
 window.onclick = function(event) {
-    // Card එකක් ඇතුළේ Click කළොත් Close කරන්න එපා
     if (!event.target.closest('.product-card')) {
         document.querySelectorAll('.product-card').forEach(c => {
             c.classList.remove('active');
@@ -23,5 +23,7 @@ window.onclick = function(event) {
 
 // "More Details" Button එක Click කළාම Card එක Close වීම වැළැක්වීමට
 document.querySelectorAll('.more-btn').forEach(btn => {
-    btn.onclick = (e) => e.stopPropagation();
+    btn.onclick = (e) => {
+        e.stopPropagation();
+    };
 });
