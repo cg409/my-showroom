@@ -24,22 +24,20 @@ header {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Grid එක එකම සයිස් එකට තියන්න මේක උදව් වෙනවා */
 .product-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Mobile 2 columns */
-    grid-auto-rows: 1fr; /* හැම Row එකකම උස එක සමාන කරයි */
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Card Wrapper - උස එකම ගානට තියාගන්න */
+/* Wrapper එක Grid එකේ ඉඩ වෙන් කරලා තියාගන්නවා */
 .card-wrapper {
     position: relative;
+    height: 260px; /* සාමාන්‍ය උස */
     width: 100%;
-    height: 100%; /* Row එකේ උසටම stretch වෙනවා */
 }
 
 /* --- THE CARD --- */
@@ -49,21 +47,22 @@ header {
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
     width: 100%;
-    height: 100%; /* Wrapper එකේ උසටම stretch වෙනවා */
-    display: flex;
-    flex-direction: column; /* Content එක පල්ලෙහාට පිළිවෙළට තියන්න */
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: absolute; /* Wrapper එක ඇතුළේ නිදහස් වෙනවා */
+    top: 0;
+    left: 0;
     z-index: 10;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
 }
 
-/* Active State (Scale) */
+/* --- ACTIVE STATE (OVERLAY) --- */
 .product-card.active {
-    z-index: 100;
-    transform: scale(1.08);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    z-index: 500; /* අනිත් හැම එකටම වඩා උඩින් */
+    width: 110%; /* පළල පොඩ්ඩක් වැඩි කරනවා */
+    left: -5%; /* මැදට ලස්සනට පේන්න */
+    transform: scale(1.05);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
     border-color: var(--primary);
-    height: auto; /* Expand වෙද්දී උස සීමා නොකරන්න */
 }
 
 .card-image img {
@@ -74,46 +73,33 @@ header {
 
 .card-details {
     padding: 12px;
-    flex-grow: 1; /* මේකෙන් තමයි හිස් ඉඩ පුරවලා card එකේ උස සමාන කරන්නේ */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-details h3 {
-    font-size: 0.9rem;
-    margin: 0 0 8px 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* පේළි 2කට වඩා තිබුණොත් ... දමයි */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .price {
     color: #22c55e;
     font-weight: 700;
-    margin: 0;
 }
 
-/* Expanded Info */
+/* Info Expand */
 .expanded-info {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: all 0.4s ease;
-    padding: 0 12px;
+    padding: 0 15px;
 }
 
 .product-card.active .expanded-info {
-    max-height: 250px;
+    max-height: 300px;
     opacity: 1;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
 }
 
 .description {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--muted);
-    margin: 10px 0;
+    line-height: 1.5;
+    margin: 15px 0;
 }
 
 .more-btn {
@@ -122,14 +108,11 @@ header {
     color: white;
     text-align: center;
     text-decoration: none;
-    padding: 10px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.8rem;
+    padding: 12px;
+    border-radius: 14px;
+    font-weight: 700;
 }
 
 @media (min-width: 768px) {
-    .product-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
+    .product-container { grid-template-columns: repeat(4, 1fr); }
 }
