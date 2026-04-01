@@ -1,11 +1,12 @@
 function toggleExpand(card) {
     const isActive = card.classList.contains('active');
     
-    // Reset all cards
+    // සියලුම cards reset කරන්න
     document.querySelectorAll('.product-card').forEach(c => {
         c.classList.remove('active');
     });
 
+    // දැනට click කළ එක active නොවී තිබුණේ නම් එය active කරන්න
     if (!isActive) {
         card.classList.add('active');
     }
