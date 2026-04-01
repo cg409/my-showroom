@@ -1,14 +1,13 @@
-/* CSS Variables for Colors */
+/* CSS Variables */
 :root {
-    --bg-main: #0a0e17; /* Darker Blue/Black BG */
-    --bg-header: #111827; /* Dark Header BG */
-    --accent-blue: #38bdf8; /* Sky Blue accent */
-    --accent-green: #25d366; /* WhatsApp Green */
-    --text-main: #f3f4f6; /* White text */
-    --text-muted: #9ca3af; /* Grayer text */
+    --bg-main: #0a0e17;
+    --bg-header: #111827;
+    --accent-blue: #38bdf8;
+    --accent-green: #25d366;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
 }
 
-/* Base Styles */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-main);
@@ -17,13 +16,13 @@ body {
     padding: 0;
 }
 
-/* Header & Navbar Styling */
+/* Header & Navbar */
 header {
     background-color: var(--bg-header);
     text-align: center;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    position: sticky; /* Helps keep it visible */
+    position: sticky;
     top: 0;
     z-index: 100;
 }
@@ -44,14 +43,9 @@ header h1 {
     text-decoration: none;
     color: var(--text-muted);
     font-weight: 500;
-    font-size: 0.9rem;
     padding: 5px 10px;
     border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.nav-link:hover {
-    color: var(--text-main);
+    transition: 0.3s;
 }
 
 .nav-link.active {
@@ -59,197 +53,96 @@ header h1 {
     border-bottom: 2px solid var(--accent-blue);
 }
 
-/* Product Container (The Main Area) */
+/* Product Grid */
 .product-container {
     padding: 30px;
     display: grid;
-    /* --- MOBILE-RESPONSIVE --- */
-    /* Mobile: 2 columns (based on your sketch) */
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Mobile: 2 Columns */
     gap: 20px;
     max-width: 1400px;
     margin: 0 auto;
 }
 
-/* --- PC RESPONSIVE --- */
 @media (min-width: 768px) {
-    /* PC/Tablet: 4 columns (based on your sketch) */
     .product-container {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 25px;
+        grid-template-columns: repeat(4, 1fr); /* PC: 4 Columns */
     }
 }
 
-/* Product Card Styling */
-.product-card {
-    background-color: #1e293b; /* Card BG */
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #334155;
-}
-
-/* Hover Effect - Clickable feeling */
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
-    border-color: var(--accent-blue);
-}
-
-/* Image container styling */
-.card-image img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover; /* Keeps aspect ratio */
-    border-radius: 10px 10px 0 0;
-}
-
-/* Text details inside the card */
-.card-details {
-    padding: 15px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-details h3 {
-    font-size: 1rem;
-    color: var(--text-main);
-    margin: 0 0 5px 0;
-}
-
-.specs {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-}
-
-.price {
-    font-size: 1.2rem;
-    color: var(--accent-green);
-    font-weight: bold;
-    margin: 0;
-}
-
-/* WhatsApp Button (Styling) */
-.view-btn {
-    display: block;
-    background-color: var(--accent-green);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    border-radius: 6px;
-    font-weight: 600;
-    margin-top: 10px;
-    transition: background 0.3s;
-}
-
-.view-btn:hover {
-    background-color: #128c7e;
-}
-/* Modal (Pop-up) Styling */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.8);
-}
-
-.modal-content {
-    background-color: #1e293b;
-    margin: 10% auto;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px; /* ලස්සන පොඩි pop-up එකක් */
-    border-radius: 15px;
-    text-align: center;
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    right: 20px; top: 10px;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-}
-
-.more-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #38bdf8;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.modal-price {
-    font-size: 1.5rem;
-    color: #25d366;
-    font-weight: bold;
-}
-
-.modal-content img {
-    width: 100%;
-    border-radius: 10px;
-}
-
+/* --- The HyperOS/Dynamic Island Style Card --- */
 .product-card {
     background-color: #1e293b;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* ලස්සනට Smooth වෙන්න */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid #334155;
     position: relative;
-    height: 280px; /* සාමාන්‍ය උස */
+    height: 300px; /* Normal height */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Card එක expand වුණාම වෙනස් වෙන හැටි */
+/* Active State (Expanded) */
 .product-card.active {
-    height: 420px; /* Expand වුණාම උස වැඩි වෙනවා */
+    height: 450px; /* Expanded height */
     transform: scale(1.02);
-    border-color: #38bdf8;
+    border-color: var(--accent-blue);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     z-index: 10;
 }
 
+.card-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-details h3 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.price {
+    font-size: 1.1rem;
+    color: var(--accent-green);
+    font-weight: bold;
+}
+
+/* Hidden Details inside the card */
 .expanded-info {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: all 0.4s ease;
     padding: 0 15px;
+    text-align: center;
 }
 
-/* Active වුණාම විස්තර පේන්න ගන්නවා */
 .product-card.active .expanded-info {
     max-height: 200px;
     opacity: 1;
     padding-bottom: 20px;
 }
 
+.description {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 10px 0;
+}
+
 .more-btn {
     display: inline-block;
-    background-color: #38bdf8;
+    background-color: var(--accent-blue);
     color: white;
     text-decoration: none;
     padding: 8px 20px;
     border-radius: 50px;
     font-weight: bold;
-    margin-top: 10px;
-}
-
-.description {
-    font-size: 0.9rem;
-    color: #9ca3af;
-    margin: 10px 0;
+    font-size: 0.8rem;
 }
