@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
     --primary: #38bdf8;
@@ -14,6 +14,7 @@ body {
     color: var(--text);
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* පළල වැඩි වෙද්දී scroll bar එන එක නවත්වන්න */
 }
 
 header {
@@ -36,30 +37,33 @@ header {
     margin: 0 auto;
 }
 
-/* Card Container - මේක වැදගත් අනිත් ඒවා තල්ලු නොවී තියාගන්න */
+/* Card Wrapper */
 .card-wrapper {
     position: relative;
     height: 250px; /* සාමාන්‍ය උස */
 }
 
+/* Product Card */
 .product-card {
     background: var(--card-bg);
     border-radius: 18px;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: absolute; /* මේක තමයි Overlay වෙන්න හේතුව */
+    position: absolute;
     width: 100%;
+    left: 0;
     z-index: 10;
     cursor: pointer;
 }
 
-/* Active State - Card එක ලොකු වුණාම */
+/* --- ACTIVE STATE (EXPANDED) --- */
 .product-card.active {
-    z-index: 100;
-    width: 110%; /* පොඩ්ඩක් පළල වැඩි වෙනවා */
-    left: -5%; /* මැදට වෙන්න */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    width: 120%; /* පළල 20% කින් වැඩි වෙනවා */
+    left: 50%; /* මැදට ගන්න මුල් පියවර */
+    transform: translateX(-50%) scale(1.05); /* හරියටම මැදට කරන magic එක */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
     border-color: var(--primary);
 }
 
@@ -76,6 +80,7 @@ header {
 .card-details h3 {
     font-size: 0.9rem;
     margin: 0;
+    color: var(--text);
 }
 
 .price {
@@ -84,25 +89,26 @@ header {
     margin: 5px 0;
 }
 
-/* Expand වන කොටස */
+/* Content inside expansion */
 .expanded-info {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: all 0.3s ease;
-    padding: 0 12px;
+    transition: all 0.4s ease;
+    padding: 0 15px;
 }
 
 .product-card.active .expanded-info {
-    max-height: 250px; /* ඕන තරම් විස්තර දාන්න පුළුවන් */
+    max-height: 300px;
     opacity: 1;
     padding-bottom: 20px;
 }
 
 .description {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--muted);
-    margin: 10px 0;
+    line-height: 1.4;
+    margin: 15px 0;
 }
 
 .more-btn {
@@ -111,14 +117,20 @@ header {
     color: white;
     text-align: center;
     text-decoration: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 12px;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    transition: 0.3s;
 }
 
+/* PC Desktop view */
 @media (min-width: 768px) {
     .product-container {
         grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+    .product-card.active {
+        width: 150%; /* PC එකේදී තවත් ලොකුවට පේන්න */
     }
 }
