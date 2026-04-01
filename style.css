@@ -14,7 +14,7 @@ body {
     color: var(--text);
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* අයිනෙන් එළියට පනින එක නවත්වයි */
+    overflow-x: hidden; /* අයිනෙන් එළියට පැනීම නවත්වයි */
 }
 
 header {
@@ -25,87 +25,76 @@ header {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Navbar Styling */
-.navbar {
-    margin-top: 10px;
-}
-.nav-link {
-    color: var(--muted);
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-.nav-link.active, .nav-link:hover {
-    color: var(--primary);
-}
-
-/* Product Grid */
 .product-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 25px;
+    gap: 15px;
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* --- THE FIX: Wrapper with height --- */
+/* Wrapper එක Grid එකේ ඉඩ වෙන් කරලා තියෙනවා */
 .card-wrapper {
     position: relative;
     width: 100%;
-    height: 280px; /* මේ උස ඔයාගේ card එකේ පෙනුම අනුව වෙනස් කරගන්න */
+    height: 280px; 
 }
 
 /* --- THE CARD --- */
 .product-card {
+    /* Lag එක අයින් කරන්න GPU එකට කලින්ම කියනවා */
+    will-change: transform, width, left, z-index;
+    
     background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
-    
     display: flex;
     flex-direction: column;
-    height: 100%; /* Wrapper එකේ උසටම සමාන වේ */
-    
-    position: absolute; /* Scale වෙද්දී අනිත් ඒවට බාධා නොකිරීමට */
+    height: 100%;
+    position: absolute;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 10;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* ඉතාමත් Smooth Animation එකක් */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     cursor: pointer;
 }
 
-/* --- ACTIVE STATE (1.5x Scale) --- */
+/* --- ACTIVE STATE (1.5x with Border Gap) --- */
 .product-card.active {
     z-index: 500;
-    width: 150%; /* 1.5 ගුණයක් පළල */
-    left: -25%; /* දෙපැත්තටම සමබරව බෙදී යයි */
-    height: auto; /* Expand වෙද්දී උස සීමා නොකරයි */
-    min-height: 100%;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
+    /* Phone එකේ අයිනටම ගිහින් ඇලෙන එක නවත්වන්න calc පාවිච්චි කළා */
+    width: calc(150% - 20px); 
+    left: -22%; 
+    height: auto;
+    min-height: 105%;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
     border-color: var(--primary);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .card-image img {
     width: 100%;
     height: 140px;
     object-fit: cover;
+    /* Rendering Smooth කරයි */
+    backface-visibility: hidden;
 }
 
 .card-details {
     padding: 15px;
-    flex-grow: 1; /* හිස් ඉඩ පුරවා bottom level කරයි */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .card-details h3 {
-    font-size: 0.95rem;
-    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    margin: 0 0 8px 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -115,7 +104,6 @@ header {
 .price {
     color: #22c55e;
     font-weight: 700;
-    margin: 0;
 }
 
 /* Info Animation */
@@ -123,7 +111,7 @@ header {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     padding: 0 15px;
 }
 
@@ -136,7 +124,6 @@ header {
 .description {
     font-size: 0.85rem;
     color: var(--muted);
-    line-height: 1.5;
     margin: 15px 0;
 }
 
@@ -151,7 +138,6 @@ header {
     font-weight: 700;
 }
 
-/* PC Tablet */
 @media (min-width: 768px) {
     .product-container { grid-template-columns: repeat(4, 1fr); }
     .card-wrapper { height: 300px; }
