@@ -14,7 +14,7 @@ body {
     color: var(--text);
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow-x: hidden; /* අයිනෙන් එළියට පැනීම නවත්වයි */
 }
 
 header {
@@ -27,21 +27,24 @@ header {
 
 .product-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Mobile 2 columns */
     gap: 15px;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Wrapper එකේ උස card එකේ උසට අනුව වෙනස් කරගන්න */
 .card-wrapper {
     position: relative;
     width: 100%;
     height: 280px; 
 }
 
+/* --- THE CARD --- */
 .product-card {
-    will-change: transform, width, left, z-index;
+    will-change: transform, width, left, z-index, right;
+    
     background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
@@ -58,16 +61,42 @@ header {
     cursor: pointer;
 }
 
-/* Active State - Screen අයිනට නොයන ලෙස සකසා ඇත */
+/* --- ACTIVE STATE (Smart Alignment) --- */
 .product-card.active {
     z-index: 500;
-    width: calc(150% - 30px); 
-    left: -25%; 
+    width: calc(150% - 20px); /* 1.5x width with a gap */
     height: auto;
     min-height: 105%;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
     border-color: var(--primary);
     transform: scale(1.02);
+}
+
+/* --- THE FIX: Smart Centering (Grid Positions) --- */
+
+/* 1. Mobile & PC - වම් පැත්තේ තියෙන Items (odd) දකුණට scale වේ */
+.card-wrapper:nth-child(odd) .product-card.active {
+    left: 0; /* වම් පැත්ත screen border එකේම තියේ */
+}
+
+/* 2. Mobile - දකුණු පැත්තේ තියෙන Items (even) වමට scale වේ */
+@media (max-width: 767px) {
+    .card-wrapper:nth-child(even) .product-card.active {
+        left: unset; /* Left position cancel කරයි */
+        right: 0; /* දකුණු පැත්ත screen border එකේම තියේ */
+    }
+}
+
+/* 3. PC Tablet - දකුණු පැත්තේ Items (even columns in 4-column grid) */
+@media (min-width: 768px) {
+    .product-container { grid-template-columns: repeat(4, 1fr); }
+    .card-wrapper { height: 300px; }
+    
+    /* PC එකේ Columns 2, 4 (even) වමට scale වේ */
+    .card-wrapper:nth-child(2n) .product-card.active {
+        left: unset;
+        right: 0;
+    }
 }
 
 .card-image img {
@@ -99,6 +128,7 @@ header {
     font-weight: 700;
 }
 
+/* Info Animation */
 .expanded-info {
     max-height: 0;
     opacity: 0;
@@ -128,9 +158,4 @@ header {
     padding: 12px;
     border-radius: 14px;
     font-weight: 700;
-}
-
-@media (min-width: 768px) {
-    .product-container { grid-template-columns: repeat(4, 1fr); }
-    .card-wrapper { height: 300px; }
 }
