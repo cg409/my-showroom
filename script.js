@@ -1,40 +1,31 @@
-/**
- * Card එක Expand කිරීමට හෝ Collapse කිරීමට පාවිච්චි වේ.
- */
 function toggleExpand(card) {
-    // දැනට එම Card එක Active ද කියා පරීක්ෂා කරයි
     const isActive = card.classList.contains('active');
     
-    // සියලුම Cards වල තියෙන Active පන්තිය ඉවත් කරයි (Reset all)
+    // සියලුම active cards ඉවත් කිරීම
     document.querySelectorAll('.product-card').forEach(c => {
         c.classList.remove('active');
     });
 
-    // දැනට Click කළ Card එක කලින් Active වී නොතිබුණේ නම් පමණක් එය Active කරයි
     if (!isActive) {
         card.classList.add('active');
+        document.body.classList.add('modal-open'); // Background blur එකට
+        document.body.style.overflow = 'hidden'; // Scroll නතර කිරීමට
+    } else {
+        closeAll();
     }
 }
 
-/**
- * Card එකෙන් පිටත Click කරන විට එය Close කිරීමට පාවිච්චි වේ.
- */
+function closeAll() {
+    document.querySelectorAll('.product-card').forEach(c => {
+        c.classList.remove('active');
+    });
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = 'auto';
+}
+
+// පිටත click කළොත් වැසීමට
 window.onclick = function(event) {
-    // Click කළ ස්ථානය Product Card එකක් ඇතුළත නොවේ නම්
-    if (!event.target.closest('.product-card')) {
-        document.querySelectorAll('.product-card').forEach(c => {
-            c.classList.remove('active');
-        });
+    if (event.target.classList.contains('modal-open') || !event.target.closest('.product-card')) {
+        closeAll();
     }
-}
-
-/**
- * WhatsApp සම්බන්ධ කිරීමේ Function එක 
- * (මෙය පසුව Details Page එකේදී පාවිච්චි කළ හැක)
- */
-function openWhatsApp(itemName) {
-    let phone = "94727060167"; 
-    let message = "Hello Med Hub! මට මේ " + itemName + " එක ගැන විස්තර දැනගන්න ඕනේ.";
-    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-    window.open(url, "_blank");
 }
