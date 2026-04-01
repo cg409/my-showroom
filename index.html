@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tech Showroom</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>CloudGamer Tech Store</h1>
+        <p>හොඳම PC Components අඩුම මිලට</p>
+    </header>
+
+    <section class="product-container">
+        <div class="card">
+            <img src="https://via.placeholder.com/200" alt="Product">
+            <h3>RTX 3060 Graphics Card</h3>
+            <p class="price">Rs. 120,000</p>
+            <button onclick="orderNow('RTX 3060')">Order via WhatsApp</button>
+        </div>
+    </section>
+
+    <script>
+        function orderNow(productName) {
+            let phone = "947XXXXXXXX"; // ඔයාගේ WhatsApp නම්බර් එක මෙතනට දාන්න
+            let message = "Hello, මට මේ " + productName + " එක ගැන විස්තර දැනගන්න ඕනේ.";
+            window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(message));
+        }
+    </script>
+</body>
+</html>
