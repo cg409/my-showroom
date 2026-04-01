@@ -164,3 +164,30 @@ header {
 .extra-text { display: none; }
 
 * { -webkit-tap-highlight-color: transparent !important; }
+
+/* --- FOOTER / BOTTOM SPACE FIX --- */
+.page-footer {
+    text-align: center;
+    padding: 60px 20px 80px 20px; /* යටින් 80px ක ලොකු ඉඩක් තිබ්බා scale වෙන්න */
+    background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.05));
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 40px;
+}
+
+.page-footer p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.page-footer span {
+    font-size: 0.65rem;
+    color: var(--muted);
+}
+
+/* Container එකේ අන්තිම item එකට පස්සෙත් පොඩි ඉඩක් තැබීම */
+.product-container {
+    padding-bottom: 50px; 
+}
