@@ -1,23 +1,23 @@
 function toggleExpand(card) {
     const activeCard = document.querySelector('.product-card.active');
     
+    // 1. එකක් ඇරිලා තියෙද්දී වෙනත් එකක් එබුවොත් (2-Click Logic):
+    // මුලින්ම ඇරිලා තියෙන එක විතරක් වහනවා.
     if (activeCard && activeCard !== card) {
         activeCard.classList.remove('active');
-        // පොඩි delay එකක් තියමු transition එක ලස්සනට ඉවර වෙන්න
-        setTimeout(() => {
-            card.classList.add('active');
-        }, 300);
-        return;
+        return; // මේක නිසා තමයි දෙවෙනි පාර ඔබන්න වෙන්නේ
     }
 
+    // 2. දැනට ඇරිලා තියෙන එකම එබුවොත් වහන්න
     if (activeCard === card) {
         card.classList.remove('active');
     } else {
+        // 3. අලුතින්ම අරින්න
         card.classList.add('active');
     }
 }
 
-// Scroll කරද්දී පාවී යන එක නවත්වන්න සහ smoothව close කරන්න
+// Scroll කරද්දී පැන පැන යන්නේ නැති වෙන්න smoothව close කිරීම
 window.onscroll = function() {
     const activeCard = document.querySelector('.product-card.active');
     if (activeCard) {
@@ -25,6 +25,7 @@ window.onscroll = function() {
     }
 };
 
+// පිටත Click කළොත් වැසීමට
 window.onclick = function(event) {
     if (!event.target.closest('.product-card')) {
         const activeCard = document.querySelector('.product-card.active');
