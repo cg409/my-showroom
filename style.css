@@ -4,8 +4,12 @@
     --card-bg: #141416;
 }
 
-/* NO BLUE HIGHLIGHT & RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent !important; outline: none !important; }
+/* ❌ සුදු පාට කොටුව (Tap Highlight) අයින් කිරීම */
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent !important; 
+    outline: none !important; 
+}
 
 body {
     background-color: var(--bg-black);
@@ -15,7 +19,7 @@ body {
     overflow-x: hidden;
 }
 
-/* HEADER & TABS (1mm GAP FIXED) */
+/* HEADER & TABS (GAP FIXED) */
 header.main-header {
     background: #0a0a0b; height: 65px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     position: sticky; top: 0; z-index: 2000; display: flex; align-items: center;
@@ -28,18 +32,16 @@ header.main-header {
 .search-bar button { background: var(--primary); border: none; padding: 0 10px; color: black; }
 
 .beauty-nav { 
-    background: #0f0f11; position: sticky; 
-    top: 64px; /* Gap එක සම්පූර්ණයෙන් වැහුවා */
+    background: #0f0f11; position: sticky; top: 64px; 
     z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
 }
 .beauty-nav ul { display: flex; justify-content: center; gap: 10px; padding: 12px; list-style: none; }
 .beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
-.beauty-nav a:hover { color: var(--primary); background: rgba(212, 175, 55, 0.05); }
 
-/* CONTENT & CATEGORY GAPS */
+/* CONTENT WRAPPER */
 .content-wrapper { padding-top: 10px; }
 .category-section { padding: 5px 0; max-width: 1350px; margin: 0 auto; }
-.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 20px 20px 10px 20px; }
+.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 20px; }
 
 /* HORIZONTAL SCROLL & SMART ARROWS */
 .scroll-wrapper { position: relative; }
@@ -57,23 +59,21 @@ header.main-header {
     scrollbar-width: none; scroll-behavior: smooth;
 }
 
-/* --- THE NEW ROUNDED GOLDEN CARDS --- */
+/* ✨ ROUNDED GOLDEN CARDS ✨ */
 .card-wrapper { flex: 0 0 180px; height: 250px; position: relative; overflow: visible; }
 
 .product-card {
     background: var(--card-bg); 
-    border-radius: 25px; /* කොන් 4ම ලස්සනට Round කළා */
-    border: 1px solid rgba(212, 175, 55, 0.4); /* සැමවිටම පෙනෙන Golden Frame එක */
+    border-radius: 25px; /* කොන් 4ම Round කිරීම */
+    border: 1px solid rgba(212, 175, 55, 0.3); /* සැමවිටම පෙනෙන Golden Border */
     width: 100%; height: 100%; position: absolute; 
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border 0.3s ease;
-    overflow: hidden; /* උඩ කොන් වල රූපයත් එක්කම round වෙන්න */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden; 
 }
 
-/* Active Animation */
 .product-card.active { 
-    transform: scale(1.18); 
-    z-index: 100; 
-    border: 2px solid var(--primary); /* Active වුණාම Frame එක තද වෙනවා */
+    transform: scale(1.18); z-index: 100; 
+    border: 2px solid var(--primary); /* Active වුණාම Frame එක තද වීම */
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
     overflow: visible; 
 }
