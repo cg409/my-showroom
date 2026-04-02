@@ -12,33 +12,17 @@ const allProducts = [
     { id: "kb-container", name: "Rice Glow Toner", long: "• Softens skin texture<br>• Brightening", price: "Rs. 3,200", img: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400" },
     { id: "kb-container", name: "Mugwort Calming", long: "• Anti-inflammatory<br>• Great for acne", price: "Rs. 4,400", img: "https://images.unsplash.com/photo-1601049541289-9b1b7abc74a9?w=400" },
     { id: "kb-container", name: "Korean BB Cream", long: "• Natural coverage<br>• SPF 30+", price: "Rs. 3,500", img: "https://images.unsplash.com/photo-1599733594230-6b823276abcc?w=400" },
-
-    // BODY CARE
-    { id: "bc-container", name: "Cocoa Butter", long: "• 48h hydration<br>• Rich scent", price: "Rs. 2,900", img: "https://images.unsplash.com/photo-1608247764146-d73833f2c9b6?w=400" },
-    { id: "bc-container", name: "Body Scrub Gold", long: "• Exfoliates dead skin<br>• Gold minerals", price: "Rs. 3,800", img: "https://images.unsplash.com/photo-1556229167-7319113946d8?w=400" },
-    { id: "bc-container", name: "Argan Body Oil", long: "• Luxurious argan oil<br>• Satin glow", price: "Rs. 4,500", img: "https://images.unsplash.com/photo-1601612620453-9da62cc829b5?w=400" },
-    { id: "bc-container", name: "Hand Repair", long: "• Shea butter formula<br>• Soft hands", price: "Rs. 1,200", img: "https://images.unsplash.com/photo-1515377666359-24b5dd936720?w=400" },
-    { id: "bc-container", name: "Foot Balm Mint", long: "• Peppermint cooling<br>• Heals heels", price: "Rs. 1,500", img: "https://images.unsplash.com/photo-1559567551-4424f7f54941?w=400" },
-
-    // HAIR CARE
-    { id: "hc-container", name: "Keratin Shampoo", long: "• Strengthening hair<br>• Shine booster", price: "Rs. 2,400", img: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=400" },
-    { id: "hc-container", name: "Argan Hair Mask", long: "• Weekly deep care<br>• Intense repair", price: "Rs. 3,900", img: "https://images.unsplash.com/photo-1527799881357-0296b063117b?w=400" },
-    { id: "hc-container", name: "Growth Serum", long: "• Stimulates follicles<br>• Rosemary base", price: "Rs. 2,700", img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=400" },
-    { id: "hc-container", name: "Silk Conditioner", long: "• Instant detangle<br>• Easy styling", price: "Rs. 2,100", img: "https://images.unsplash.com/photo-1552046122-03184de85e08?w=400" },
-    { id: "hc-container", name: "Scalp Tonic", long: "• Cooling sensation<br>• Healthy scalp", price: "Rs. 1,900", img: "https://images.unsplash.com/photo-1519735815433-899aa06c3fb6?w=400" },
-
-    // FACE MASKS
-    { id: "fm-container", name: "Blueberry Mask", long: "• Antioxidant sheet<br>• Radiant glow", price: "Rs. 450", img: "https://images.unsplash.com/photo-1512496011931-d21d8b532299?w=400" },
-    { id: "fm-container", name: "Charcoal Peel", long: "• Detoxifies pores<br>• Removes blackheads", price: "Rs. 1,750", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400" },
-    { id: "fm-container", name: "Aloe Vera Gel", long: "• 99% pure aloe<br>• Soothes burns", price: "Rs. 950", img: "https://images.unsplash.com/photo-1560934168-819612973b33?w=400" },
-    { id: "fm-container", name: "Clay Mud Mask", long: "• Dead Sea minerals<br>• Deep cleaning", price: "Rs. 2,200", img: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400" },
-    { id: "fm-container", name: "Night Sleep Mask", long: "• Intense hydration<br>• Lavender scent", price: "Rs. 3,100", img: "https://images.unsplash.com/photo-1599305090598-fe179d501227?w=400" }
+    
+    // (මේ විදිහට අනිත් Items 25 සම්පූර්ණ කරගන්න...)
 ];
 
 const MY_NUMBER = "94727060167";
 
 window.onload = () => { 
-    loadProducts(); setupNav(); setInterval(autoSlide, 5000); setupSearch(); 
+    loadProducts(); 
+    setupNav(); 
+    setInterval(autoSlide, 5000); 
+    setupSearch(); 
 };
 
 function loadProducts() {
@@ -53,8 +37,8 @@ function loadProducts() {
                         <h3 class="item-name">${p.name}</h3>
                         <div class="long-desc">${p.long}</div>
                         <p class="price">${p.price}</p>
-                        <a href="https://wa.me/${MY_NUMBER}?text=Order: ${p.name}" target="_blank" class="wa-btn" onclick="event.stopPropagation()">
-                            <i class="fab fa-whatsapp"></i> Order
+                        <a href="https://wa.me/${MY_NUMBER}?text=I want to order: ${p.name}" target="_blank" class="wa-btn" onclick="event.stopPropagation()">
+                            <i class="fab fa-whatsapp"></i> Order Now
                         </a>
                     </div>
                 </div>
@@ -65,12 +49,15 @@ function loadProducts() {
 function toggleExpand(e, card) {
     e.stopPropagation();
     const isActive = card.classList.contains('active');
+    
+    // Reset all cards and sections
     document.querySelectorAll('.product-card').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.category-section').forEach(s => s.style.zIndex = "10");
+    document.querySelectorAll('.category-section').forEach(s => s.style.zIndex = "100");
 
     if(!isActive) {
         card.classList.add('active');
-        card.closest('.category-section').style.zIndex = "999";
+        // වැදගත්: Active කරන Card එක තියෙන Section එකේ z-index එක තවත් වැඩි කරන්න
+        card.closest('.category-section').style.zIndex = "1000";
     }
 }
 
@@ -119,7 +106,6 @@ function autoSlide() {
 window.onclick = (e) => {
     if(!e.target.closest('.product-card')) {
         document.querySelectorAll('.product-card').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll('.category-section').forEach(s => s.style.zIndex = "10");
+        document.querySelectorAll('.category-section').forEach(s => s.style.zIndex = "100");
     }
-    if(!e.target.closest('.search-wrapper')) document.getElementById('search-suggestions').style.display = 'none';
 };

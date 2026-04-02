@@ -17,7 +17,7 @@ body { background-color: var(--bg-black); color: #e2e8f0; overflow-x: hidden; }
 /* --- HEADER --- */
 header.main-header {
     background: var(--bg-black); height: 65px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    position: sticky; top: 0; z-index: 9000; display: flex; align-items: center;
+    position: sticky; top: 0; z-index: 9999; display: flex; align-items: center;
 }
 .header-container { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; max-width: 1400px; margin: 0 auto; }
 .logo { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.2rem; cursor: pointer; font-weight: bold; }
@@ -36,15 +36,14 @@ header.main-header {
 .slide { width: 100%; height: 100%; flex-shrink: 0; }
 .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
 
-/* --- NAVIGATION (PC වලදී මැදට එනවා) --- */
+/* --- NAVIGATION --- */
 .beauty-nav { 
-    background: #0f0f11; position: sticky; top: 64px; z-index: 8000; 
+    background: #0f0f11; position: sticky; top: 64px; z-index: 9000; 
     border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
 }
 .beauty-nav ul { 
     display: flex; gap: 10px; padding: 12px 15px; list-style: none; 
     overflow-x: auto; scrollbar-width: none; 
-    justify-content: center; /* PC එකේදී මැදට */
 }
 .nav-link { 
     color: var(--text-dim); text-decoration: none; font-size: 0.7rem; 
@@ -53,30 +52,40 @@ header.main-header {
 }
 .nav-link.active-tab { background: rgba(212, 175, 55, 0.1); color: var(--primary); border: 1px solid var(--primary); }
 
-/* --- SECTIONS --- */
-.category-section { padding: 15px 0; position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; }
-.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 0 20px 5px 20px; font-size: 1.1rem; }
+/* --- SECTIONS (FIXED: NO INTERNAL SCROLL) --- */
+.category-section { 
+    padding: 20px 0; 
+    position: relative; 
+    z-index: 100; /* Section එකට base z-index එකක් දුන්නා */
+    max-width: 1400px; 
+    margin: 0 auto;
+}
+.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 0 20px 15px 20px; font-size: 1.1rem; }
 
-/* Mobile වලට Horizontal Scroll */
+/* මෙතන තමයි වැදගත්ම වෙනස - overflow: visible දාන්න ඕනේ */
 .product-container { 
-    display: flex; overflow-x: auto; gap: 15px; padding: 35px 20px; 
-    scrollbar-width: none; scroll-behavior: smooth; overflow-y: visible !important; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+    gap: 20px; 
+    padding: 10px 20px; 
+    overflow: visible !important; /* මේකෙන් අර පැත්තට scroll වෙන එක නවතිනවා */
 }
 
 /* --- CARD --- */
-.card-wrapper { flex: 0 0 160px; height: 210px; position: relative; overflow: visible !important; }
+.card-wrapper { height: 220px; position: relative; overflow: visible !important; }
 
 .product-card {
-    background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.12); 
+    background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.15); 
     width: 100%; height: 100%; position: absolute; top: 0; left: 0;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     display: flex; flex-direction: column; cursor: pointer; z-index: 5;
 }
 
 .product-card.active { 
-    transform: scale(1.1) translateY(-15px); z-index: 9999 !important; 
+    transform: scale(1.1) translateY(-15px); 
+    z-index: 99999 !important; /* අනිත් හැම එකටම උඩින් */
     height: auto; min-height: 280px; padding-bottom: 15px; 
-    border: 2px solid var(--primary); box-shadow: 0 25px 50px rgba(0,0,0,1); background: #1a1a1c;
+    border: 2px solid var(--primary); box-shadow: 0 30px 60px rgba(0,0,0,1); background: #1a1a1c;
 }
 
 .card-image { width: 100%; height: 110px; border-radius: 15px 15px 0 0; overflow: hidden; }
@@ -84,41 +93,28 @@ header.main-header {
 .product-card.active .card-image { height: 0; opacity: 0; }
 
 .card-details { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; text-align: center; }
-.item-name { font-size: 0.8rem; font-weight: 800; color: white; }
-.long-desc { display: none; font-size: 0.7rem; color: #e2e8f0; text-align: left; padding: 8px; background: rgba(255,255,255,0.04); border-radius: 8px; margin: 10px 0; line-height: 1.4; }
+.item-name { font-size: 0.85rem; font-weight: 800; color: white; }
+.long-desc { display: none; font-size: 0.75rem; color: #e2e8f0; text-align: left; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; margin: 10px 0; line-height: 1.5; }
 .product-card.active .long-desc { display: block; animation: fadeIn 0.4s; }
 
-.price { color: var(--primary); font-weight: bold; font-size: 0.85rem; margin-top: auto; }
+.price { color: var(--primary); font-weight: bold; font-size: 0.9rem; margin-top: auto; }
 
 .wa-btn {
     display: none; background: var(--whatsapp); color: white; text-decoration: none;
-    font-size: 0.75rem; font-weight: bold; padding: 10px; border-radius: 10px;
-    align-items: center; justify-content: center; gap: 6px; margin-top: 12px;
+    font-size: 0.8rem; font-weight: bold; padding: 12px; border-radius: 10px;
+    align-items: center; justify-content: center; gap: 8px; margin-top: 15px;
 }
 .product-card.active .wa-btn { display: flex; animation: fadeInUp 0.4s; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* --- PC RESPONSIVE FIX --- */
-@media (min-width: 900px) {
-    .product-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        overflow-x: hidden;
-    }
-    .card-wrapper { flex: none; width: 100%; height: 230px; }
-    .beauty-nav ul { justify-content: center; } /* PC වල Tab Bar එක මැදට */
-}
-
+/* Mobile Responsive Adjustments */
 @media (max-width: 600px) {
-    .beauty-nav ul { justify-content: flex-start; } /* Mobile වල පටන් ගැන්මේ සිට */
+    .product-container { grid-template-columns: repeat(2, 1fr); } /* එක පේළියට දෙකයි */
+    .beauty-nav ul { justify-content: flex-start; }
 }
 
-/* Suggestions Box */
-#search-suggestions {
-    position: absolute; top: 110%; left: 0; width: 100%; background: #1c1c1e;
-    border: 1px solid var(--primary); border-radius: 10px; z-index: 10000;
-    max-height: 200px; overflow-y: auto; display: none;
+@media (min-width: 900px) {
+    .beauty-nav ul { justify-content: center; }
 }
-.suggestion-item { padding: 10px; font-size: 0.8rem; cursor: pointer; color: white; border-bottom: 1px solid #333; }
