@@ -4,38 +4,36 @@ function updateArrows(containerId, leftBtnId, rightBtnId) {
     const leftBtn = document.getElementById(leftBtnId);
     const rightBtn = document.getElementById(rightBtnId);
 
-    // Scroll වෙන්න පුළුවන් ප්‍රමාණයක් තියේද කියලා බලනවා
+    if (!container) return;
+
     const hasScroll = container.scrollWidth > container.clientWidth;
 
     if (hasScroll) {
-        // Right button එක පෙන්වනවා (මුලින්ම)
-        rightBtn.style.display = (container.scrollLeft + container.clientWidth < container.scrollWidth - 5) ? 'flex' : 'none';
+        // Right button: පේන්නේ තව දකුණට යන්න තියේනම් විතරයි
+        rightBtn.style.display = (container.scrollLeft + container.clientWidth < container.scrollWidth - 10) ? 'flex' : 'none';
         
-        // Left button එක පෙන්වන්නේ එක පාරක් හරි දකුණට ගියොත් විතරයි
+        // Left button: පේන්නේ 5px ට වඩා දකුණට ගියොත් විතරයි
         leftBtn.style.display = (container.scrollLeft > 5) ? 'flex' : 'none';
     } else {
-        // Scroll කරන්න දෙයක් නැත්නම් Arrows දෙකම හංගනවා
         leftBtn.style.display = 'none';
         rightBtn.style.display = 'none';
     }
 }
 
-// Page එක load වෙද්දී arrows චෙක් කරන්න
+// Initial Check & Resize Check
 window.addEventListener('load', () => {
     updateArrows('skin-container', 'left-btn-skin', 'right-btn-skin');
     updateArrows('k-container', 'left-btn-k', 'right-btn-k');
 });
-
-// Window resize වෙද්දීත් arrows චෙක් කරන්න (PC wide screen fix)
 window.addEventListener('resize', () => {
     updateArrows('skin-container', 'left-btn-skin', 'right-btn-skin');
     updateArrows('k-container', 'left-btn-k', 'right-btn-k');
 });
 
-// 2. SIDE SCROLL FUNCTION
+// 2. SIDE SCROLL
 function sideScroll(containerId, direction) {
     const container = document.getElementById(containerId);
-    const scrollAmount = 300;
+    const scrollAmount = 250;
     if (direction === 'left') {
         container.scrollLeft -= scrollAmount;
     } else {
@@ -43,7 +41,7 @@ function sideScroll(containerId, direction) {
     }
 }
 
-// 3. TOGGLE EXPAND (No Jump)
+// 3. TOGGLE EXPAND (Fix Jump)
 function toggleExpand(event, card) {
     event.preventDefault();
     event.stopPropagation();
@@ -57,7 +55,7 @@ function smoothScroll(event, targetId) {
     event.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-        const offset = 140;
+        const offset = 120;
         const targetPos = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
         window.scrollTo({ top: targetPos, behavior: "smooth" });
     }
