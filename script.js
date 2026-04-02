@@ -1,34 +1,32 @@
+// 1. TOGGLE EXPAND (FIXED)
 function toggleExpand(event, card) {
-    // 1. පේජ් එක උඩට පැනීම වළක්වයි
+    // සයිට් එක උඩට පනින එක නවත්වන්න
     if (event) {
         event.preventDefault();
         event.stopPropagation();
     }
 
     const activeCard = document.querySelector('.product-card.active');
-
-    // 2. වෙනත් active card එකක් ඇත්නම් එය වසා දමයි
+    
     if (activeCard && activeCard !== card) {
         activeCard.classList.remove('active');
     }
 
-    // 3. දැනට ක්ලික් කළ card එක toggle කරයි
     card.classList.toggle('active');
 }
 
-// 4. Smooth scroll for navigation
+// 2. SMOOTH SCROLL FOR NAV
 function smoothScroll(event, targetId) {
     event.preventDefault();
-    const target = document.getElementById(targetId);
-    if (target) {
-        window.scrollTo({
-            top: target.offsetTop - 120,
-            behavior: 'smooth'
-        });
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+        const offset = 130;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: targetPosition, behavior: "smooth" });
     }
 }
 
-// 5. Card එකෙන් පිටත ක්ලික් කළොත් එය වසා දමයි
+// 3. CLOSE ON BACKGROUND CLICK
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.product-card')) {
         const activeCard = document.querySelector('.product-card.active');

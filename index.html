@@ -16,6 +16,10 @@
                 <input type="text" placeholder="Search premium products...">
                 <button><i class="fas fa-search"></i></button>
             </div>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-user-circle"></i></a>
+                <a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
+            </div>
         </div>
     </header>
 
@@ -29,23 +33,46 @@
     </nav>
 
     <div class="content-wrapper">
+        
         <section id="skin-care" class="category-section">
             <h2 class="category-title">SKIN CARE</h2>
             <div class="horizontal-scroll-container">
                 <div class="card-wrapper">
                     <div class="product-card" onclick="toggleExpand(event, this)">
                         <div class="card-image"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400"></div>
-                        <div class="card-details">
-                            <h3>Hyaluronic Acid</h3>
-                            <p class="price">Rs. 5,200</p>
-                            <div class="expanded-info">
-                                <p class="description">Premium hydrating serum for deep skin moisture and glow.</p>
-                                <a href="#" class="more-btn">Details</a>
-                            </div>
-                        </div>
+                        <div class="card-details"><h3>Centella Moisturizer</h3><p class="price">Rs. 4,500</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
                     </div>
                 </div>
+                <div class="card-wrapper">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400"></div>
+                        <div class="card-details"><h3>Rose Toner</h3><p class="price">Rs. 2,800</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
+                    </div>
                 </div>
+                <div class="card-wrapper">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400"></div>
+                        <div class="card-details"><h3>Hyaluronic Acid</h3><p class="price">Rs. 5,200</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
+                    </div>
+                </div>
+                <div class="card-wrapper">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1598454441315-9989b5c2dfbf?w=400"></div>
+                        <div class="card-details"><h3>Clay Detox Mask</h3><p class="price">Rs. 3,400</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
+                    </div>
+                </div>
+                <div class="card-wrapper">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=400"></div>
+                        <div class="card-details"><h3>Night Repair Oil</h3><p class="price">Rs. 7,500</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="k-beauty" class="category-section">
@@ -54,17 +81,39 @@
                 <div class="card-wrapper">
                     <div class="product-card" onclick="toggleExpand(event, this)">
                         <div class="card-image"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400"></div>
-                        <div class="card-details">
-                            <h3>Glow Serum (K)</h3>
-                            <p class="price">Rs. 6,800</p>
-                            <div class="expanded-info">
-                                <p class="description">Authentic Korean formula for instant skin brightening.</p>
-                                <a href="#" class="more-btn">Details</a>
-                            </div>
-                        </div>
+                        <div class="card-details"><h3>Glow Serum (K)</h3><p class="price">Rs. 6,800</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
                     </div>
                 </div>
+                <div class="card-wrapper">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"></div>
+                        <div class="card-details"><h3>Rice Essence</h3><p class="price">Rs. 4,200</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
+                    </div>
                 </div>
+                <div class="card-wrapper">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1622791269389-98ff2a0d7f55?w=400"></div>
+                        <div class="card-details"><h3>SPF 50 Sun Milk</h3><p class="price">Rs. 3,900</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
+                    </div>
+                </div>
+                <div class="card-wrapper">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1631730486572-c045155f6e80?w=400"></div>
+                        <div class="card-details"><h3>Velvet Lip Tint</h3><p class="price">Rs. 2,100</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
+                    </div>
+                </div>
+                <div class="card-wrapper">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400"></div>
+                        <div class="card-details"><h3>Collagen Eye Mask</h3><p class="price">Rs. 1,500</p></div>
+                        <div class="expanded-info"><a href="#" class="more-btn" onclick="event.stopPropagation()">Details</a></div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 

@@ -1,111 +1,88 @@
 :root {
     --primary: #d4af37;
-    --bg-dark: #0a0a0b;
+    --bg-black: #0a0a0b;
     --card-bg: #141416;
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: #fff;
-    margin: 0;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-black);
+    color: #e2e8f0;
+    margin: 0; font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
 }
 
-/* NAVIGATION */
-.beauty-nav {
-    background: #0f0f11;
-    position: sticky;
-    top: 60px;
-    z-index: 100;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+/* HEADER & NAV */
+header.main-header {
+    background: rgba(10, 10, 11, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    position: sticky; top: 0; z-index: 1000;
 }
 
-.beauty-nav ul {
-    display: flex;
-    overflow-x: auto;
-    padding: 15px;
-    gap: 20px;
-    list-style: none;
-    justify-content: center;
-}
+.header-container { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+.logo { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.5rem; }
 
-.beauty-nav a {
-    color: #94a3b8;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.7rem;
-}
+.beauty-nav { background: #0f0f11; position: sticky; top: 65px; z-index: 999; }
+.beauty-nav ul { display: flex; justify-content: center; gap: 20px; padding: 12px; list-style: none; }
+.beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.7rem; font-weight: bold; }
 
-/* SCROLL CONTAINER FIX */
+/* HORIZONTAL SCROLL FIX */
+.category-section { padding: 40px 0 20px 0; }
+.category-title { color: var(--primary); padding-left: 20px; font-family: 'Cinzel', serif; }
+
 .horizontal-scroll-container {
     display: flex;
     overflow-x: auto;
-    overflow-y: visible; /* වැදගත්: උඩට/යටට කැපෙන්නේ නැති වෙන්න */
+    overflow-y: visible; /* SCALE එක පේන්න මේක ඕනේ */
     gap: 20px;
-    padding: 40px 20px; /* Scale වෙන්න ඉඩ ලබා දෙයි */
+    padding: 40px 20px; /* උඩටයි යටටයි ඉඩ දුන්නා scale වෙන්න */
     scrollbar-width: none;
 }
-
 .horizontal-scroll-container::-webkit-scrollbar { display: none; }
 
 .card-wrapper {
-    flex: 0 0 180px;
+    flex: 0 0 190px;
     height: 260px;
     position: relative;
-    overflow: visible; /* වැදගත්: දෙපැත්ත කැපෙන්නේ නැති වෙන්න */
+    overflow: visible; /* කෑලි කැපෙන එක නවත්වන්නේ මේකෙන් */
 }
 
-/* PRODUCT CARD */
+/* PRODUCT CARD ANIMATION */
 .product-card {
     background: var(--card-bg);
-    border-radius: 15px;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    width: 100%;
-    height: 100%;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    width: 100%; height: 100%;
     position: absolute;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: hidden; /* මුලින් content එක හංගන්න */
 }
 
+/* Active වෙද්දී විතරක් overflow visible කරමු */
 .product-card.active {
-    transform: scale(1.15); /* ඕනෑවට වඩා විශාල නොවන සේ */
+    transform: scale(1.2); /* මෙතන scale වෙද්දී දැන් කෑලි කැපෙන්නේ නැහැ */
     z-index: 100;
     border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    overflow: visible; 
 }
 
-.card-image {
-    width: 100%;
-    height: 140px;
-    border-radius: 15px 15px 0 0;
-    overflow: hidden;
-}
-
+.card-image { width: 100%; height: 140px; transition: 0.4s; }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
 
-.product-card.active .card-image {
-    display: none; /* පින්තූරය අයින් වී විස්තර පෙන්වීමට */
-}
+.product-card.active .card-image { height: 0; opacity: 0; }
 
-.card-details { padding: 15px; text-align: center; }
+.card-details { padding: 12px; text-align: center; }
+.price { color: var(--primary); font-weight: bold; font-size: 1rem; }
 
-.expanded-info {
-    display: none;
-    margin-top: 10px;
-}
+.expanded-info { opacity: 0; max-height: 0; transition: 0.3s; }
+.product-card.active .expanded-info { opacity: 1; max-height: 100px; padding-top: 10px; }
 
-.product-card.active .expanded-info {
-    display: block;
-}
-
-.price { color: var(--primary); font-weight: bold; }
 .more-btn {
     display: block;
-    background: var(--primary);
-    color: #000;
-    padding: 10px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 10px;
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    color: black; padding: 10px; border-radius: 12px;
+    text-decoration: none; font-weight: bold; font-size: 0.7rem;
 }
