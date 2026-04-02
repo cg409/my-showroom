@@ -14,7 +14,7 @@
             <div class="logo" onclick="resetSearch()">MED MART</div>
             <div class="search-wrapper">
                 <div class="search-bar">
-                    <input type="text" id="main-search" placeholder="Search..." autocomplete="off">
+                    <input type="text" id="main-search" placeholder="Search product..." autocomplete="off">
                     <i class="fas fa-times" id="clear-search" onclick="resetSearch()"></i>
                     <button id="search-trigger"><i class="fas fa-search"></i></button>
                 </div>
@@ -27,45 +27,55 @@
     <div class="hero-slider">
         <div class="slides" id="hero-slides">
             <div class="slide">
-                <img src="images/banner1.jpg" alt="Slide 1">
-                <div class="slide-text"><h2>Glow Like Gold</h2><p>Premium Skin Care Collection</p></div>
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?w=1200" alt="Banner 1">
+                <div class="slide-text"><h2>Premium Skin Care</h2><p>Experience the luxury of nature.</p></div>
             </div>
             <div class="slide">
-                <img src="images/banner2.jpg" alt="Slide 2">
-                <div class="slide-text"><h2>K-Beauty Secrets</h2><p>Direct from Seoul</p></div>
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200" alt="Banner 2">
+                <div class="slide-text"><h2>K-Beauty Secrets</h2><p>Imported directly from Korea.</p></div>
             </div>
             <div class="slide">
-                <img src="images/banner3.jpg" alt="Slide 3">
-                <div class="slide-text"><h2>Pure Radiance</h2><p>Natural & Organic Items</p></div>
+                <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1200" alt="Banner 3">
+                <div class="slide-text"><h2>Full Body Glow</h2><p>Nourish your skin everyday.</p></div>
             </div>
         </div>
     </div>
 
     <nav class="beauty-nav">
         <ul>
-            <li><a href="#skin-care-sec" class="nav-link" data-target="skin-care-sec">SKIN CARE</a></li>
-            <li><a href="#k-beauty-sec" class="nav-link" data-target="k-beauty-sec">K-BEAUTY</a></li>
+            <li><a href="#sc-sec" class="nav-link" data-target="sc-sec">SKIN CARE</a></li>
+            <li><a href="#kb-sec" class="nav-link" data-target="kb-sec">K-BEAUTY</a></li>
+            <li><a href="#bc-sec" class="nav-link" data-target="bc-sec">BODY CARE</a></li>
         </ul>
     </nav>
 
-    <div id="no-results">Nothing found! Try a different keyword.</div>
+    <div id="no-results">Product not found. Try another keyword!</div>
 
     <div class="content-wrapper">
-        <section id="skin-care-sec" class="category-section" data-cat-name="SKIN CARE">
+        <section id="sc-sec" class="category-section" data-cat-name="SKIN CARE">
             <h2 class="category-title">SKIN CARE</h2>
             <div class="scroll-wrapper">
-                <button class="scroll-btn left" onclick="sideScroll('sc-1', 'left')"><i class="fas fa-chevron-left"></i></button>
-                <div id="sc-1" class="horizontal-scroll-container"></div>
-                <button class="scroll-btn right" onclick="sideScroll('sc-1', 'right')"><i class="fas fa-chevron-right"></i></button>
+                <button class="scroll-btn left" onclick="sideScroll('sc-container', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="sc-container" class="horizontal-scroll-container"></div>
+                <button class="scroll-btn right" onclick="sideScroll('sc-container', 'right')"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
-        <section id="k-beauty-sec" class="category-section" data-cat-name="K-BEAUTY">
+        <section id="kb-sec" class="category-section" data-cat-name="K-BEAUTY">
             <h2 class="category-title">K-BEAUTY</h2>
             <div class="scroll-wrapper">
-                <button class="scroll-btn left" onclick="sideScroll('sc-2', 'left')"><i class="fas fa-chevron-left"></i></button>
-                <div id="sc-2" class="horizontal-scroll-container"></div>
-                <button class="scroll-btn right" onclick="sideScroll('sc-2', 'right')"><i class="fas fa-chevron-right"></i></button>
+                <button class="scroll-btn left" onclick="sideScroll('kb-container', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="kb-container" class="horizontal-scroll-container"></div>
+                <button class="scroll-btn right" onclick="sideScroll('kb-container', 'right')"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section id="bc-sec" class="category-section" data-cat-name="BODY CARE">
+            <h2 class="category-title">BODY CARE</h2>
+            <div class="scroll-wrapper">
+                <button class="scroll-btn left" onclick="sideScroll('bc-container', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="bc-container" class="horizontal-scroll-container"></div>
+                <button class="scroll-btn right" onclick="sideScroll('bc-container', 'right')"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
     </div>
