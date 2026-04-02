@@ -4,12 +4,8 @@
     --card-bg: #141416;
 }
 
-/* ❌ සුදු පාට කොටුව (Tap Highlight) අයින් කිරීම */
-* { 
-    margin: 0; padding: 0; box-sizing: border-box; 
-    -webkit-tap-highlight-color: transparent !important; 
-    outline: none !important; 
-}
+/* NO BLUE HIGHLIGHT */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent !important; outline: none !important; }
 
 body {
     background-color: var(--bg-black);
@@ -31,10 +27,7 @@ header.main-header {
 .search-bar input { background: none; border: none; color: white; padding: 6px 12px; font-size: 0.8rem; width: 140px; }
 .search-bar button { background: var(--primary); border: none; padding: 0 10px; color: black; }
 
-.beauty-nav { 
-    background: #0f0f11; position: sticky; top: 64px; 
-    z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
-}
+.beauty-nav { background: #0f0f11; position: sticky; top: 64px; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
 .beauty-nav ul { display: flex; justify-content: center; gap: 10px; padding: 12px; list-style: none; }
 .beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
 
@@ -55,33 +48,47 @@ header.main-header {
 .scroll-btn.right { right: 10px; }
 
 .horizontal-scroll-container {
-    display: flex; overflow-x: auto; gap: 20px; padding: 40px 25px; 
-    scrollbar-width: none; scroll-behavior: smooth;
+    display: flex; overflow-x: auto; gap: 20px; padding: 45px 25px; 
+    scrollbar-width: none; scroll-behavior: smooth; overflow-y: visible;
 }
 
-/* ✨ ROUNDED GOLDEN CARDS ✨ */
+/* 🖼️ THE CARD & SHARP CORNER FIX 🖼️ */
 .card-wrapper { flex: 0 0 180px; height: 250px; position: relative; overflow: visible; }
 
 .product-card {
     background: var(--card-bg); 
-    border-radius: 25px; /* කොන් 4ම Round කිරීම */
+    border-radius: 25px; /* කොන් හතරම Round කිරීම */
     border: 1px solid rgba(212, 175, 55, 0.3); /* සැමවිටම පෙනෙන Golden Border */
     width: 100%; height: 100%; position: absolute; 
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    overflow: hidden; 
+    overflow: hidden; /* මේක වැදගත්, රූපයේ කොන් hide වෙන්න */
+    transform-origin: center top; /* Animation එක උඩ සිට පහලට වෙන්න */
 }
 
+/* Active Animation */
 .product-card.active { 
     transform: scale(1.18); z-index: 100; 
     border: 2px solid var(--primary); /* Active වුණාම Frame එක තද වීම */
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-    overflow: visible; 
 }
 
-.card-image { width: 100%; height: 130px; overflow: hidden; transition: 0.4s; }
+/* Image section */
+.card-image { 
+    width: 100%; 
+    height: 140px; /* Default height */
+    overflow: hidden; 
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease; /* Smooth height change */
+    max-height: 140px;
+}
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
-.product-card.active .card-image { height: 0; opacity: 0; }
 
+/* ✅ THE FIX: Image එක අයින් වෙද්දී Sharp Corners නැති කිරීම */
+.product-card.active .card-image { 
+    max-height: 0; /* height: 0 වෙනුවට max-height පාවිච්චි කළා, එතකොට කොන් smooth වෙනවා */
+    opacity: 0; 
+}
+
+/* Details section */
 .card-details { padding: 10px; text-align: center; }
 .price { color: var(--primary); font-weight: bold; margin-top: 5px; }
 
