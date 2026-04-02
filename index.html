@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MED HUB | Midnight Luxury Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>MED HUB | Premium Store</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -17,126 +16,57 @@
                 <input type="text" placeholder="Search premium products...">
                 <button><i class="fas fa-search"></i></button>
             </div>
-            <div class="header-icons">
-                <a href="#"><i class="fas fa-user-circle"></i></a>
-                <a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
-            </div>
         </div>
     </header>
 
-    <section class="main-banner">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1617897903246-719242758050?w=1600');">
-            <div class="slide-content">
-                <h2>Midnight Radiance</h2>
-                <p>Luxury Skincare for Eternal Glow</p>
-            </div>
-        </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600');">
-            <div class="slide-content">
-                <h2>K-Beauty Secret</h2>
-                <p>Premium Korean Essence & Serums</p>
-            </div>
-        </div>
-    </section>
-
     <nav class="beauty-nav">
         <ul>
-            <li><a href="#skin-care" onclick="smoothScroll(event, 'skin-care')">Skin Care</a></li>
-            <li><a href="#k-beauty" onclick="smoothScroll(event, 'k-beauty')">K-Beauty</a></li>
-            <li><a href="#">Makeup</a></li>
-            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#skin-care" onclick="smoothScroll(event, 'skin-care')">SKIN CARE</a></li>
+            <li><a href="#k-beauty" onclick="smoothScroll(event, 'k-beauty')">K-BEAUTY</a></li>
+            <li><a href="#">MAKEUP</a></li>
+            <li><a href="#">NEW ARRIVALS</a></li>
         </ul>
     </nav>
 
     <div class="content-wrapper">
-        
         <section id="skin-care" class="category-section">
-            <h2 class="category-title">Skin Care</h2>
+            <h2 class="category-title">SKIN CARE</h2>
             <div class="horizontal-scroll-container">
                 <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
                         <div class="card-image"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400"></div>
-                        <div class="card-details"><h3>Centella Moisturizer</h3><p class="price">Rs. 4,500</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
+                        <div class="card-details">
+                            <h3>Hyaluronic Acid</h3>
+                            <p class="price">Rs. 5,200</p>
+                            <div class="expanded-info">
+                                <p class="description">Premium hydrating serum for deep skin moisture and glow.</p>
+                                <a href="#" class="more-btn">Details</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400"></div>
-                        <div class="card-details"><h3>Rose Toner</h3><p class="price">Rs. 2,800</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
-                    </div>
                 </div>
-                <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400"></div>
-                        <div class="card-details"><h3>Hyaluronic Acid</h3><p class="price">Rs. 5,200</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
-                    </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1598454441315-9989b5c2dfbf?w=400"></div>
-                        <div class="card-details"><h3>Clay Mask</h3><p class="price">Rs. 3,400</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
-                    </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=400"></div>
-                        <div class="card-details"><h3>Night Repair Oil</h3><p class="price">Rs. 7,500</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section id="k-beauty" class="category-section">
-            <h2 class="category-title">K-Beauty</h2>
+            <h2 class="category-title">K-BEAUTY</h2>
             <div class="horizontal-scroll-container">
                 <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
+                    <div class="product-card" onclick="toggleExpand(event, this)">
                         <div class="card-image"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400"></div>
-                        <div class="card-details"><h3>Glow Serum (K)</h3><p class="price">Rs. 6,800</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
+                        <div class="card-details">
+                            <h3>Glow Serum (K)</h3>
+                            <p class="price">Rs. 6,800</p>
+                            <div class="expanded-info">
+                                <p class="description">Authentic Korean formula for instant skin brightening.</p>
+                                <a href="#" class="more-btn">Details</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"></div>
-                        <div class="card-details"><h3>Rice Essence</h3><p class="price">Rs. 4,200</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
-                    </div>
                 </div>
-                <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1622791269389-98ff2a0d7f55?w=400"></div>
-                        <div class="card-details"><h3>SPF 50 Milk</h3><p class="price">Rs. 3,900</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
-                    </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1631730486572-c045155f6e80?w=400"></div>
-                        <div class="card-details"><h3>Velvet Lip Tint</h3><p class="price">Rs. 2,100</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
-                    </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="product-card" onclick="toggleExpand(this)">
-                        <div class="card-image"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400"></div>
-                        <div class="card-details"><h3>Collagen Eye</h3><p class="price">Rs. 1,500</p></div>
-                        <div class="expanded-info"><a href="#" class="more-btn">Details</a></div>
-                    </div>
-                </div>
-            </div>
         </section>
     </div>
-
-    <footer class="page-footer">
-        <p>Explore Your Glow</p>
-        <span>© 2026 TechKey Crew</span>
-    </footer>
 
     <script src="script.js"></script>
 </body>
