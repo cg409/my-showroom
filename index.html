@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MED HUB | Premium Store</title>
+    <title>MED HUB | Luxury Store</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -13,10 +13,10 @@
         <div class="header-container">
             <div class="logo">MED HUB</div>
             <div class="search-bar">
-                <input type="text" placeholder="Search premium products...">
+                <input type="text" placeholder="Search products...">
                 <button><i class="fas fa-search"></i></button>
             </div>
-            <div class="header-icons"><a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i></a></div>
+            <div class="header-icons"><i class="fas fa-shopping-bag" style="color:var(--primary)"></i></div>
         </div>
     </header>
 
@@ -24,7 +24,6 @@
         <ul>
             <li><a href="#skin-care" onclick="smoothScroll(event, 'skin-care')">SKIN CARE</a></li>
             <li><a href="#k-beauty" onclick="smoothScroll(event, 'k-beauty')">K-BEAUTY</a></li>
-            <li><a href="#">NEW ARRIVALS</a></li>
         </ul>
     </nav>
 
@@ -32,45 +31,94 @@
         <section id="skin-care" class="category-section">
             <h2 class="category-title">SKIN CARE</h2>
             <div class="scroll-wrapper">
-                <button id="left-btn-skin" class="scroll-btn left" onclick="sideScroll('skin-container', 'left')"><i class="fas fa-chevron-left"></i></button>
-                <div id="skin-container" class="horizontal-scroll-container" onscroll="updateArrows('skin-container', 'left-btn-skin', 'right-btn-skin')">
+                <button id="left-btn-1" class="scroll-btn left" onclick="sideScroll('sc-1', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="sc-1" class="horizontal-scroll-container" onscroll="updateArrows('sc-1', 'left-btn-1', 'right-btn-1')">
                     
                     <div class="card-wrapper">
                         <div class="product-card" onclick="toggleExpand(event, this)">
                             <div class="card-image"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400"></div>
                             <div class="card-details">
-                                <h3 class="item-name">Centella Moisturizer</h3>
-                                <p class="short-desc">Daily hydration for sensitive skin.</p>
+                                <h3 class="item-name">Centella Cream</h3>
+                                <p class="short-desc">Pure herbal hydration.</p>
                                 <div class="long-desc">
-                                    • Deep hydration formula<br>
-                                    • Soothes irritated skin<br>
-                                    • 100% Vegan & Natural<br>
-                                    • Recommended by doctors
+                                    • Deep soothing effect<br>• Repairs skin barrier<br>• Non-greasy formula
                                 </div>
                                 <p class="price">Rs. 4,500</p>
                             </div>
                         </div>
                     </div>
-
                     <div class="card-wrapper">
                         <div class="product-card" onclick="toggleExpand(event, this)">
                             <div class="card-image"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400"></div>
                             <div class="card-details">
                                 <h3 class="item-name">Rose Toner</h3>
-                                <p class="short-desc">Ph balanced flower extract.</p>
+                                <p class="short-desc">Natural petal extract.</p>
                                 <div class="long-desc">
-                                    • Refreshing rose water<br>
-                                    • Minimizes skin pores<br>
-                                    • Instant glow effect<br>
-                                    • Alcohol-free formula
+                                    • Tightens skin pores<br>• Refreshing aroma<br>• Ph balancing
                                 </div>
                                 <p class="price">Rs. 2,800</p>
                             </div>
                         </div>
                     </div>
+                    <div class="card-wrapper">
+                        <div class="product-card" onclick="toggleExpand(event, this)">
+                            <div class="card-image"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400"></div>
+                            <div class="card-details">
+                                <h3 class="item-name">Hyaluronic Acid</h3>
+                                <p class="short-desc">Intense moisture boost.</p>
+                                <div class="long-desc">
+                                    • Plumps dry skin<br>• Anti-aging properties<br>• 24h hydration
+                                </div>
+                                <p class="price">Rs. 5,200</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-wrapper">
+                        <div class="product-card" onclick="toggleExpand(event, this)">
+                            <div class="card-image"><img src="https://images.unsplash.com/photo-1598454441315-9989b5c2dfbf?w=400"></div>
+                            <div class="card-details">
+                                <h3 class="item-name">Clay Detox Mask</h3>
+                                <p class="short-desc">Pore deep cleaning.</p>
+                                <div class="long-desc">
+                                    • Removes impurities<br>• Oil control formula<br>• Smooth texture
+                                </div>
+                                <p class="price">Rs. 3,400</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-wrapper">
+                        <div class="product-card" onclick="toggleExpand(event, this)">
+                            <div class="card-image"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=400"></div>
+                            <div class="card-details">
+                                <h3 class="item-name">Night Oil</h3>
+                                <p class="short-desc">Overnight repair.</p>
+                                <div class="long-desc">
+                                    • Rich nutrients<br>• Glow by morning<br>• Calming scent
+                                </div>
+                                <p class="price">Rs. 7,500</p>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-                <button id="right-btn-skin" class="scroll-btn right" onclick="sideScroll('skin-container', 'right')"><i class="fas fa-chevron-right"></i></button>
+                <button id="right-btn-1" class="scroll-btn right" onclick="sideScroll('sc-1', 'right')"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section id="k-beauty" class="category-section">
+            <h2 class="category-title">K-BEAUTY</h2>
+            <div class="scroll-wrapper">
+                <button id="left-btn-2" class="scroll-btn left" onclick="sideScroll('sc-2', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="sc-2" class="horizontal-scroll-container" onscroll="updateArrows('sc-2', 'left-btn-2', 'right-btn-2')">
+                    
+                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400"></div><div class="card-details"><h3 class="item-name">Glow Serum</h3><p class="short-desc">Glass skin effect.</p><div class="long-desc">• Vitamin C rich<br>• Brightens dark spots</div><p class="price">Rs. 6,800</p></div></div></div>
+                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"></div><div class="card-details"><h3 class="item-name">Rice Essence</h3><p class="short-desc">Traditional whitening.</p><div class="long-desc">• Fermented rice water<br>• Softens texture</div><p class="price">Rs. 4,200</p></div></div></div>
+                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1622791269389-98ff2a0d7f55?w=400"></div><div class="card-details"><h3 class="item-name">SPF 50 Milk</h3><p class="short-desc">Sun shield pro.</p><div class="long-desc">• No white cast<br>• Lightweight feel</div><p class="price">Rs. 3,900</p></div></div></div>
+                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1631730486572-c045155f6e80?w=400"></div><div class="card-details"><h3 class="item-name">Lip Tint</h3><p class="short-desc">Berry velvet finish.</p><div class="long-desc">• Long lasting<br>• Moist lips</div><p class="price">Rs. 2,100</p></div></div></div>
+                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400"></div><div class="card-details"><h3 class="item-name">Collagen Mask</h3><p class="short-desc">Firming sheet mask.</p><div class="long-desc">• Instant firming<br>• Deep essence</div><p class="price">Rs. 1,500</p></div></div></div>
+
+                </div>
+                <button id="right-btn-2" class="scroll-btn right" onclick="sideScroll('sc-2', 'right')"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
     </div>

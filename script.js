@@ -1,3 +1,4 @@
+// SMART ARROWS
 function updateArrows(containerId, leftBtnId, rightBtnId) {
     const container = document.getElementById(containerId);
     const leftBtn = document.getElementById(leftBtnId);
@@ -15,16 +16,17 @@ function updateArrows(containerId, leftBtnId, rightBtnId) {
 }
 
 window.addEventListener('load', () => {
-    updateArrows('skin-container', 'left-btn-skin', 'right-btn-skin');
+    updateArrows('sc-1', 'left-btn-1', 'right-btn-1');
+    updateArrows('sc-2', 'left-btn-2', 'right-btn-2');
 });
 
 function sideScroll(containerId, direction) {
     const container = document.getElementById(containerId);
-    const scrollAmount = 280;
-    if (direction === 'left') { container.scrollLeft -= scrollAmount; }
-    else { container.scrollLeft += scrollAmount; }
+    if (direction === 'left') { container.scrollLeft -= 280; }
+    else { container.scrollLeft += 280; }
 }
 
+// TOGGLE CARD
 function toggleExpand(event, card) {
     event.stopPropagation();
     const activeCard = document.querySelector('.product-card.active');
@@ -34,20 +36,19 @@ function toggleExpand(event, card) {
     card.classList.toggle('active');
 }
 
-// Click anywhere else to close
-window.addEventListener('click', function(event) {
+// CLICK OUTSIDE TO CLOSE
+window.addEventListener('click', (e) => {
     const activeCard = document.querySelector('.product-card.active');
-    if (activeCard && !activeCard.contains(event.target)) {
+    if (activeCard && !activeCard.contains(e.target)) {
         activeCard.classList.remove('active');
     }
 });
 
+// NAV SCROLL
 function smoothScroll(event, targetId) {
     event.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-        const offset = 125; 
-        const targetPos = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({ top: targetPos, behavior: "smooth" });
+        window.scrollTo({ top: targetElement.offsetTop - 120, behavior: "smooth" });
     }
 }

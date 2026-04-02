@@ -4,7 +4,6 @@
     --card-bg: #141416;
 }
 
-/* NO BLUE HIGHLIGHT */
 * { 
     margin: 0; padding: 0; box-sizing: border-box; 
     -webkit-tap-highlight-color: transparent !important; 
@@ -13,12 +12,11 @@
 
 body {
     background-color: var(--bg-black);
-    background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.05) 1px, transparent 0);
-    background-size: 24px 24px;
     color: #e2e8f0; font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
 }
 
-/* HEADER & TABS */
+/* HEADER & NAV */
 header.main-header {
     background: #0a0a0b; height: 65px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     position: sticky; top: 0; z-index: 2000; display: flex; align-items: center;
@@ -34,11 +32,11 @@ header.main-header {
 .beauty-nav ul { display: flex; justify-content: center; gap: 10px; padding: 12px; list-style: none; }
 .beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
 
-/* SPACING */
+/* SECTION SPACING */
 .category-section { padding: 25px 0; max-width: 1350px; margin: 0 auto; }
 .category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 20px 20px 5px 20px; }
 
-/* HORIZONTAL SCROLL */
+/* SCROLLING */
 .scroll-wrapper { position: relative; }
 .scroll-btn {
     position: absolute; width: 35px; height: 35px; border-radius: 50%;
@@ -50,64 +48,68 @@ header.main-header {
 .scroll-btn.right { right: 10px; }
 .horizontal-scroll-container { display: flex; overflow-x: auto; gap: 20px; padding: 35px 25px; scrollbar-width: none; scroll-behavior: smooth; }
 
-/* ✨ THE CARD DESIGN (AS PER SKETCH) ✨ */
-.card-wrapper { flex: 0 0 180px; height: 260px; position: relative; overflow: visible; }
+/* ✨ UPDATED CARD DESIGN (NO GLOW, SMOOTH ANIMATION) ✨ */
+.card-wrapper { flex: 0 0 180px; height: 260px; position: relative; }
 
 .product-card {
     background: var(--card-bg); 
     border-radius: 25px; 
     border: 1px solid rgba(212, 175, 55, 0.3); 
     width: 100%; height: 100%; position: absolute; 
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Ultra Smooth Transition */
     overflow: hidden; 
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
 }
 
 .product-card.active { 
-    transform: scale(1.18); z-index: 100; 
+    transform: scale(1.15); z-index: 100; 
     border: 2px solid var(--primary); 
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+    box-shadow: none; /* GOLDEN GLOW REMOVED */
 }
 
-/* Image */
+/* Image Animation */
 .card-image { 
-    width: 100%; height: 120px; overflow: hidden; 
-    transition: max-height 0.4s ease, opacity 0.3s ease; 
-    max-height: 120px;
+    width: 100%; height: 130px; overflow: hidden; 
+    transition: all 0.5s ease-in-out; 
+    max-height: 130px; opacity: 1;
 }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
-.product-card.active .card-image { max-height: 0; opacity: 0; }
 
-/* Details Area */
+.product-card.active .card-image { 
+    max-height: 0; opacity: 0; transform: translateY(-20px); 
+}
+
+/* Details Section */
 .card-details { 
-    padding: 12px; 
-    flex-grow: 1; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: space-between; /* උඩ නමයි යට මිලයි තියන්න */
-    text-align: center;
+    padding: 12px; flex-grow: 1; 
+    display: flex; flex-direction: column; 
+    text-align: center; justify-content: space-between;
+    transition: all 0.5s ease;
 }
 
 .item-name { 
-    font-size: 0.9rem; font-weight: bold; color: white; 
-    margin-bottom: 5px; transition: 0.3s;
+    font-size: 0.9rem; font-weight: 800; color: white; 
+    transition: all 0.5s ease;
 }
-.product-card.active .item-name { font-size: 1.1rem; color: var(--primary); margin-top: 10px; }
+.product-card.active .item-name { 
+    color: var(--primary); transform: translateY(-5px); font-size: 1.1rem;
+}
 
-/* Description */
-.short-desc { font-size: 0.65rem; color: #94a3b8; line-height: 1.2; display: block; }
+/* Descriptions */
+.short-desc { font-size: 0.65rem; color: #94a3b8; margin: 5px 0; }
 .product-card.active .short-desc { display: none; }
 
 .long-desc { 
-    display: none; font-size: 0.7rem; color: #cbd5e1; 
-    text-align: left; padding: 10px 5px; line-height: 1.4;
+    display: none; font-size: 0.75rem; color: #cbd5e1; 
+    line-height: 1.5; padding: 15px 5px; text-align: left;
 }
-.product-card.active .long-desc { display: block; }
+.product-card.active .long-desc { display: block; animation: fadeIn 0.8s ease; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Price */
 .price { 
-    color: var(--primary); font-weight: bold; font-size: 0.85rem; 
-    margin-top: auto; padding-bottom: 5px;
+    color: var(--primary); font-weight: bold; font-size: 0.9rem; 
+    padding: 5px 0; transition: 0.5s;
 }
-.product-card.active .price { font-size: 1rem; padding-bottom: 15px; border-top: 1px solid rgba(212, 175, 55, 0.2); pt: 10px; }
+.product-card.active .price { font-size: 1.1rem; padding-bottom: 10px; }
