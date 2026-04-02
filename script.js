@@ -53,13 +53,11 @@ function toggleExpand(event, card) {
     
     card.classList.toggle('active');
 }
-
-// 4. SMOOTH SCROLL FOR NAV
 function smoothScroll(event, targetId) {
     event.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-        const offset = 150; // Tabs බාර් එකට ඉඩ තැබීම
+        const offset = 120; // මේ අගය අඩු වැඩි කරලා topic එක තියෙන තැන adjust කරගන්න
         const targetPos = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
         window.scrollTo({ top: targetPos, behavior: "smooth" });
     }

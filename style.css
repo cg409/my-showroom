@@ -39,23 +39,52 @@ header.main-header {
 .beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.8rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
 .beauty-nav a:hover { color: var(--primary); background: rgba(212, 175, 55, 0.1); }
 
-/* CONTENT WRAPPER - TOPIC එක වැහෙන එක නවත්තන්න */
-.content-wrapper { padding-top: 50px; }
-
-.category-section { padding: 40px 0; max-width: 1350px; margin: 0 auto; }
-.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 20px; border-left: 4px solid var(--primary); margin-bottom: 10px; }
-
-/* HORIZONTAL SCROLL & ARROWS */
-.scroll-wrapper { position: relative; }
-.scroll-btn {
-    position: absolute; width: 40px; height: 40px; border-radius: 50%;
-    background: rgba(20, 20, 22, 0.95); border: 1px solid var(--primary);
-    color: var(--primary); cursor: pointer; z-index: 500; top: 50%; transform: translateY(-50%);
-    display: none; align-items: center; justify-content: center; transition: 0.3s;
+/* 1. TOPIC එක වැහෙන එක නවත්තන්න සහ හිස්තැන අඩු කරන්න */
+.content-wrapper { 
+    padding-top: 10px; /* කලින් තිබ්බ ලොකු gap එක අඩු කළා */
 }
-.scroll-btn:hover { background: var(--primary); color: black; }
-.scroll-btn.left { left: 10px; }
-.scroll-btn.right { right: 10px; }
+
+.category-section { 
+    padding: 10px 0; /* Sections අතර තියෙන gap එක මෙතනින් අඩු කළා */
+    max-width: 1350px; 
+    margin: 0 auto; 
+}
+
+/* 2. TABS BAR එකට උඩින් පේන එක නවත්වන්න (Transparency Fix) */
+.beauty-nav { 
+    background: #0f0f11; 
+    position: sticky; 
+    top: 65px; /* Header එකේ height එක අනුව මේක ගලපාගන්න */
+    z-index: 999; 
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    width: 100%;
+}
+
+/* 3. HEADER එකේ Z-INDEX එක වැඩිකරන්න */
+header.main-header {
+    background: #0a0a0b; /* සම්පූර්ණයෙන් කළු කළා යටින් පේන එක නවත්වන්න */
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    position: sticky; 
+    top: 0; 
+    z-index: 1001; /* හැමදේටම වඩා උඩින් තියෙන්න ඕනේ */
+}
+
+/* 4. HORIZONTAL CONTAINER එකේ PADDING එක අඩු කරන්න */
+.horizontal-scroll-container {
+    display: flex; 
+    overflow-x: auto; 
+    gap: 20px; 
+    padding: 30px 25px; /* උඩ සහ යට padding එක අඩු කළා */
+    scrollbar-width: none; 
+    scroll-behavior: smooth;
+}
+
+/* Card active වුණාම අනිත් ඒවට වඩා උඩින් පේන්න */
+.product-card.active {
+    transform: scale(1.15); 
+    z-index: 100; /* Tabs වලට වඩා අඩුවෙන් තියෙන්න ඕනේ */
+}
 
 .horizontal-scroll-container {
     display: flex; overflow-x: auto; gap: 20px; padding: 50px 25px; 
