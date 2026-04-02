@@ -1,90 +1,109 @@
-// SMART ARROWS
-function updateArrows(containerId, leftBtnId, rightBtnId) {
-    const container = document.getElementById(containerId);
-    const leftBtn = document.getElementById(leftBtnId);
-    const rightBtn = document.getElementById(rightBtnId);
-    if (!container) return;
+const searchInput = document.getElementById('main-search');
+const suggestionBox = document.getElementById('search-suggestions');
+const sections = document.querySelectorAll('.category-section');
+const cards = document.querySelectorAll('.card-wrapper');
+const noResults = document.getElementById('no-results');
 
-    const hasScroll = container.scrollWidth > container.clientWidth;
-    if (hasScroll) {
-        rightBtn.style.display = (container.scrollLeft + container.clientWidth < container.scrollWidth - 10) ? 'flex' : 'none';
-        leftBtn.style.display = (container.scrollLeft > 5) ? 'flex' : 'none';
+// 1. LIVE SUGGESTIONS LOGIC
+searchInput.addEventListener('input', () => {
+    const val = searchInput.value.toLowerCase().trim();
+    suggestionBox.innerHTML = '';
+    
+    if (val.length > 0) {
+        suggestionBox.style.display = 'block';
+        const matches = Array.from(cards)
+            .map(c => c.getAttribute('data-name'))
+            .filter(name => name.toLowerCase().includes(val));
+
+        const uniqueMatches = [...new Set(matches)].slice(0, 5); // Max 5 suggestions
+
+        uniqueMatches.forEach(match => {
+            const div = document.createElement('div');
+            div.className = 'suggestion-item';
+            div.textContent = match;
+            div.onclick = () => {
+                searchInput.value = match;
+                suggestionBox.style.display = 'none';
+                performSearch(match);
+            };
+            suggestionBox.appendChild(div);
+        });
     } else {
-        leftBtn.style.display = 'none';
-        rightBtn.style.display = 'none';
-    }
-}
-
-window.addEventListener('load', () => {
-    updateArrows('sc-1', 'left-btn-1', 'right-btn-1');
-    updateArrows('sc-2', 'left-btn-2', 'right-btn-2');
-});
-
-function sideScroll(containerId, direction) {
-    const container = document.getElementById(containerId);
-    if (direction === 'left') { container.scrollLeft -= 280; }
-    else { container.scrollLeft += 280; }
-}
-
-// TOGGLE CARD
-function toggleExpand(event, card) {
-    event.stopPropagation();
-    const activeCard = document.querySelector('.product-card.active');
-    if (activeCard && activeCard !== card) {
-        activeCard.classList.remove('active');
-    }
-    card.classList.toggle('active');
-}
-
-// CLICK OUTSIDE TO CLOSE
-window.addEventListener('click', (e) => {
-    const activeCard = document.querySelector('.product-card.active');
-    if (activeCard && !activeCard.contains(e.target)) {
-        activeCard.classList.remove('active');
+        suggestionBox.style.display = 'none';
     }
 });
 
-// NAV SCROLL
-function smoothScroll(event, targetId) {
-    event.preventDefault();
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-        window.scrollTo({ top: targetElement.offsetTop - 120, behavior: "smooth" });
-    }
-}
-
-function searchProducts() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const sections = document.querySelectorAll('.category-section');
+// 2. SEARCH EXECUTION
+function performSearch(query) {
+    const q = query.toLowerCase().trim();
+    let foundAny = false;
 
     sections.forEach(section => {
-        const cards = section.querySelectorAll('.card-wrapper');
-        let hasVisibleCards = false;
+        const catName = section.getAttribute('data-cat-name').toLowerCase();
+        const sectionCards = section.querySelectorAll('.card-wrapper');
+        let cardInCatFound = false;
 
-        cards.forEach(wrapper => {
-            const itemName = wrapper.querySelector('.item-name').innerText.toLowerCase();
-            const shortDesc = wrapper.querySelector('.short-desc').innerText.toLowerCase();
-            
-            // Fuzzy Search: හරියටම ගැලපීම හෝ වචනයේ කොටසක් තිබේදැයි බැලීම
-            const isMatch = itemName.includes(input) || shortDesc.includes(input);
-
-            if (isMatch) {
-                wrapper.classList.remove('hidden');
-                hasVisibleCards = true;
+        sectionCards.forEach(card => {
+            const itemName = card.getAttribute('data-name').toLowerCase();
+            // Match Name OR Category
+            if (itemName.includes(q) || catName.includes(q)) {
+                card.style.display = 'block';
+                cardInCatFound = true;
+                foundAny = true;
             } else {
-                wrapper.classList.add('hidden');
+                card.style.display = 'none';
             }
         });
 
-        // අදාළ Category එකේ කිසිම Result එකක් නැතිනම් මුළු Section එකම Hide කරයි
-        if (hasVisibleCards) {
-            section.classList.remove('hidden');
-        } else {
-            section.classList.add('hidden');
-        }
+        section.style.display = cardInCatFound ? 'block' : 'none';
     });
 
-    // Arrow keys නැවත Update කිරීම (Visible items වලට පමණක්)
-    updateArrows('sc-1', 'left-btn-1', 'right-btn-1');
-    updateArrows('sc-2', 'left-btn-2', 'right-btn-2');
+    noResults.style.display = foundAny ? 'none' : 'block';
+    updateAllArrows();
 }
+
+document.getElementById('search-trigger').onclick = () => performSearch(searchInput.value);
+searchInput.onkeypress = (e) => { if(e.key === 'Enter') performSearch(searchInput.value); };
+
+// 3. CORE FEATURES (SMOOTH SCROLL, TOGGLE, ETC.)
+function toggleExpand(event, card) {
+    event.stopPropagation();
+    const activeCard = document.querySelector('.product-card.active');
+    if (activeCard && activeCard !== card) activeCard.classList.remove('active');
+    card.classList.toggle('active');
+}
+
+window.onclick = (e) => {
+    const activeCard = document.querySelector('.product-card.active');
+    if (activeCard && !activeCard.contains(e.target)) activeCard.classList.remove('active');
+    if (!e.target.closest('.search-wrapper')) suggestionBox.style.display = 'none';
+};
+
+function sideScroll(id, dir) {
+    const el = document.getElementById(id);
+    el.scrollLeft += (dir === 'left' ? -280 : 280);
+    setTimeout(updateAllArrows, 300);
+}
+
+function updateAllArrows() {
+    sections.forEach((s, i) => {
+        const container = s.querySelector('.horizontal-scroll-container');
+        const l = s.querySelector('.left');
+        const r = s.querySelector('.right');
+        if(!container || !l || !r) return;
+        l.style.display = container.scrollLeft > 5 ? 'flex' : 'none';
+        r.style.display = (container.scrollLeft + container.clientWidth < container.scrollWidth - 10) ? 'flex' : 'none';
+    });
+}
+
+window.onload = updateAllArrows;
+
+// Nav Category Filter
+document.querySelectorAll('.beauty-nav a').forEach(link => {
+    link.onclick = (e) => {
+        e.preventDefault();
+        const cat = link.getAttribute('data-category');
+        searchInput.value = cat;
+        performSearch(cat);
+    };
+});

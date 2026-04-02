@@ -16,27 +16,39 @@ body {
     overflow-x: hidden;
 }
 
-/* HEADER & NAV */
+/* HEADER & SEARCH SUGGESTIONS */
 header.main-header {
     background: #0a0a0b; height: 65px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     position: sticky; top: 0; z-index: 2000; display: flex; align-items: center;
 }
 .header-container { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; }
-.logo { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.2rem; }
+.logo { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.2rem; cursor: pointer; }
 
+.search-wrapper { position: relative; }
 .search-bar { display: flex; background: #1c1c1e; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); overflow: hidden; }
-.search-bar input { background: none; border: none; color: white; padding: 6px 12px; font-size: 0.8rem; width: 140px; }
-.search-bar button { background: var(--primary); border: none; padding: 0 10px; color: black; }
+.search-bar input { background: none; border: none; color: white; padding: 8px 15px; font-size: 0.8rem; width: 180px; }
+.search-bar button { background: var(--primary); border: none; padding: 0 12px; color: black; cursor: pointer; }
+
+/* Suggestion Box */
+#search-suggestions {
+    position: absolute; top: 110%; left: 0; width: 100%; background: #1c1c1e;
+    border: 1px solid var(--primary); border-radius: 10px; z-index: 3000;
+    max-height: 200px; overflow-y: auto; display: none;
+}
+.suggestion-item { padding: 10px; font-size: 0.8rem; cursor: pointer; color: #94a3b8; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+.suggestion-item:hover { background: var(--primary); color: black; }
 
 .beauty-nav { background: #0f0f11; position: sticky; top: 64px; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
 .beauty-nav ul { display: flex; justify-content: center; gap: 10px; padding: 12px; list-style: none; }
 .beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
 
-/* SECTION SPACING */
-.category-section { padding: 25px 0; max-width: 1350px; margin: 0 auto; }
+/* NOT FOUND MESSAGE */
+#no-results { display: none; text-align: center; padding: 50px; color: #94a3b8; font-size: 1rem; width: 100%; }
+
+/* CATEGORY & CARDS (SAME AS BEFORE) */
+.category-section { padding: 25px 0; max-width: 1350px; margin: 0 auto; transition: 0.4s; }
 .category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 20px 20px 5px 20px; }
 
-/* SCROLLING */
 .scroll-wrapper { position: relative; }
 .scroll-btn {
     position: absolute; width: 35px; height: 35px; border-radius: 50%;
@@ -48,78 +60,28 @@ header.main-header {
 .scroll-btn.right { right: 10px; }
 .horizontal-scroll-container { display: flex; overflow-x: auto; gap: 20px; padding: 35px 25px; scrollbar-width: none; scroll-behavior: smooth; }
 
-/* ✨ UPDATED CARD DESIGN (NO GLOW, SMOOTH ANIMATION) ✨ */
-.card-wrapper { flex: 0 0 180px; height: 260px; position: relative; }
-
+.card-wrapper { flex: 0 0 180px; height: 260px; position: relative; transition: 0.3s; }
 .product-card {
-    background: var(--card-bg); 
-    border-radius: 25px; 
-    border: 1px solid rgba(212, 175, 55, 0.3); 
-    width: 100%; height: 100%; position: absolute; 
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Ultra Smooth Transition */
-    overflow: hidden; 
-    display: flex; flex-direction: column;
+    background: var(--card-bg); border-radius: 25px; border: 1px solid rgba(212, 175, 55, 0.3); 
+    width: 100%; height: 100%; position: absolute; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden; display: flex; flex-direction: column;
 }
+.product-card.active { transform: scale(1.15); z-index: 100; border: 2px solid var(--primary); box-shadow: none; }
 
-.product-card.active { 
-    transform: scale(1.15); z-index: 100; 
-    border: 2px solid var(--primary); 
-    box-shadow: none; /* GOLDEN GLOW REMOVED */
-}
-
-/* Image Animation */
-.card-image { 
-    width: 100%; height: 130px; overflow: hidden; 
-    transition: all 0.5s ease-in-out; 
-    max-height: 130px; opacity: 1;
-}
+.card-image { width: 100%; height: 130px; overflow: hidden; transition: 0.5s; max-height: 130px; opacity: 1; }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
+.product-card.active .card-image { max-height: 0; opacity: 0; transform: translateY(-20px); }
 
-.product-card.active .card-image { 
-    max-height: 0; opacity: 0; transform: translateY(-20px); 
-}
+.card-details { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; text-align: center; justify-content: space-between; transition: 0.5s; }
+.item-name { font-size: 0.9rem; font-weight: 800; color: white; transition: 0.5s; }
+.product-card.active .item-name { color: var(--primary); transform: translateY(-5px); font-size: 1.1rem; }
 
-/* Details Section */
-.card-details { 
-    padding: 12px; flex-grow: 1; 
-    display: flex; flex-direction: column; 
-    text-align: center; justify-content: space-between;
-    transition: all 0.5s ease;
-}
-
-.item-name { 
-    font-size: 0.9rem; font-weight: 800; color: white; 
-    transition: all 0.5s ease;
-}
-.product-card.active .item-name { 
-    color: var(--primary); transform: translateY(-5px); font-size: 1.1rem;
-}
-
-/* Descriptions */
 .short-desc { font-size: 0.65rem; color: #94a3b8; margin: 5px 0; }
 .product-card.active .short-desc { display: none; }
 
-.long-desc { 
-    display: none; font-size: 0.75rem; color: #cbd5e1; 
-    line-height: 1.5; padding: 15px 5px; text-align: left;
-}
-.product-card.active .long-desc { display: block; animation: fadeIn 0.8s ease; }
-
+.long-desc { display: none; font-size: 0.75rem; color: #cbd5e1; line-height: 1.5; padding: 15px 5px; text-align: left; animation: fadeIn 0.8s ease; }
+.product-card.active .long-desc { display: block; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Price */
-.price { 
-    color: var(--primary); font-weight: bold; font-size: 0.9rem; 
-    padding: 5px 0; transition: 0.5s;
-}
+.price { color: var(--primary); font-weight: bold; font-size: 0.9rem; transition: 0.5s; }
 .product-card.active .price { font-size: 1.1rem; padding-bottom: 10px; }
-
-/* සෙවුම් ප්‍රතිඵල නැති විට Category එක hide කිරීමට */
-.category-section.hidden {
-    display: none;
-}
-
-/* සෙවුමට අදාළ නැති Card එක hide කිරීමට */
-.card-wrapper.hidden {
-    display: none;
-}
