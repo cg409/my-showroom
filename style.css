@@ -5,7 +5,11 @@
 }
 
 /* NO BLUE HIGHLIGHT */
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent !important; outline: none !important; }
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent !important; 
+    outline: none !important; 
+}
 
 body {
     background-color: var(--bg-black);
@@ -15,7 +19,7 @@ body {
     overflow-x: hidden;
 }
 
-/* HEADER & TABS (GAP FIXED) */
+/* HEADER & TABS */
 header.main-header {
     background: #0a0a0b; height: 65px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     position: sticky; top: 0; z-index: 2000; display: flex; align-items: center;
@@ -27,16 +31,32 @@ header.main-header {
 .search-bar input { background: none; border: none; color: white; padding: 6px 12px; font-size: 0.8rem; width: 140px; }
 .search-bar button { background: var(--primary); border: none; padding: 0 10px; color: black; }
 
-.beauty-nav { background: #0f0f11; position: sticky; top: 64px; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+.beauty-nav { 
+    background: #0f0f11; position: sticky; top: 64px; 
+    z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
+}
 .beauty-nav ul { display: flex; justify-content: center; gap: 10px; padding: 12px; list-style: none; }
 .beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
 
-/* CONTENT WRAPPER */
-.content-wrapper { padding-top: 10px; }
-.category-section { padding: 5px 0; max-width: 1350px; margin: 0 auto; }
-.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 20px; }
+/* --- SPACING UPDATES --- */
 
-/* HORIZONTAL SCROLL & SMART ARROWS */
+.content-wrapper { padding-top: 10px; }
+
+.category-section { 
+    padding: 25px 0; /* Category අතර Gap එක වැඩි කළා */
+    max-width: 1350px; 
+    margin: 0 auto; 
+}
+
+.category-title { 
+    color: var(--primary); 
+    font-family: 'Cinzel', serif; 
+    padding-left: 15px; 
+    border-left: 3px solid var(--primary); 
+    margin: 20px 20px 5px 20px; /* Topic සහ Item අතර දුර අඩු කළා (5px) */
+}
+
+/* HORIZONTAL SCROLL & ARROWS */
 .scroll-wrapper { position: relative; }
 .scroll-btn {
     position: absolute; width: 35px; height: 35px; border-radius: 50%;
@@ -48,51 +68,49 @@ header.main-header {
 .scroll-btn.right { right: 10px; }
 
 .horizontal-scroll-container {
-    display: flex; overflow-x: auto; gap: 20px; padding: 45px 25px; 
-    scrollbar-width: none; scroll-behavior: smooth; overflow-y: visible;
+    display: flex; overflow-x: auto; gap: 20px; padding: 35px 25px; 
+    scrollbar-width: none; scroll-behavior: smooth;
 }
 
-/* 🖼️ THE CARD & SHARP CORNER FIX 🖼️ */
+/* CARD DESIGN & SHARP CORNER FIX */
 .card-wrapper { flex: 0 0 180px; height: 250px; position: relative; overflow: visible; }
 
 .product-card {
     background: var(--card-bg); 
-    border-radius: 25px; /* කොන් හතරම Round කිරීම */
-    border: 1px solid rgba(212, 175, 55, 0.3); /* සැමවිටම පෙනෙන Golden Border */
+    border-radius: 25px; 
+    border: 1px solid rgba(212, 175, 55, 0.3); 
     width: 100%; height: 100%; position: absolute; 
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    overflow: hidden; /* මේක වැදගත්, රූපයේ කොන් hide වෙන්න */
-    transform-origin: center top; /* Animation එක උඩ සිට පහලට වෙන්න */
+    overflow: hidden; 
 }
 
-/* Active Animation */
 .product-card.active { 
     transform: scale(1.18); z-index: 100; 
-    border: 2px solid var(--primary); /* Active වුණාම Frame එක තද වීම */
+    border: 2px solid var(--primary); 
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
 }
 
-/* Image section */
 .card-image { 
-    width: 100%; 
-    height: 140px; /* Default height */
-    overflow: hidden; 
-    transition: max-height 0.4s ease-in-out, opacity 0.3s ease; /* Smooth height change */
+    width: 100%; height: 140px; overflow: hidden; 
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease; 
     max-height: 140px;
 }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ✅ THE FIX: Image එක අයින් වෙද්දී Sharp Corners නැති කිරීම */
+/* Animation Fix for Sharp Corners */
 .product-card.active .card-image { 
-    max-height: 0; /* height: 0 වෙනුවට max-height පාවිච්චි කළා, එතකොට කොන් smooth වෙනවා */
+    max-height: 0; 
     opacity: 0; 
 }
 
-/* Details section */
 .card-details { padding: 10px; text-align: center; }
 .price { color: var(--primary); font-weight: bold; margin-top: 5px; }
 
 .expanded-info { opacity: 0; max-height: 0; transition: 0.4s; padding: 0 10px; text-align: center; }
 .product-card.active .expanded-info { opacity: 1; max-height: 100px; padding-top: 15px; }
 
-.more-btn { display: inline-block; background: var(--primary); color: black; padding: 8px 15px; border-radius: 10px; font-weight: bold; text-decoration: none; font-size: 0.7rem; }
+.more-btn { 
+    display: inline-block; background: var(--primary); color: black; 
+    padding: 8px 15px; border-radius: 10px; font-weight: bold; 
+    text-decoration: none; font-size: 0.7rem; 
+}
