@@ -52,3 +52,39 @@ function smoothScroll(event, targetId) {
         window.scrollTo({ top: targetElement.offsetTop - 120, behavior: "smooth" });
     }
 }
+
+function searchProducts() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const sections = document.querySelectorAll('.category-section');
+
+    sections.forEach(section => {
+        const cards = section.querySelectorAll('.card-wrapper');
+        let hasVisibleCards = false;
+
+        cards.forEach(wrapper => {
+            const itemName = wrapper.querySelector('.item-name').innerText.toLowerCase();
+            const shortDesc = wrapper.querySelector('.short-desc').innerText.toLowerCase();
+            
+            // Fuzzy Search: හරියටම ගැලපීම හෝ වචනයේ කොටසක් තිබේදැයි බැලීම
+            const isMatch = itemName.includes(input) || shortDesc.includes(input);
+
+            if (isMatch) {
+                wrapper.classList.remove('hidden');
+                hasVisibleCards = true;
+            } else {
+                wrapper.classList.add('hidden');
+            }
+        });
+
+        // අදාළ Category එකේ කිසිම Result එකක් නැතිනම් මුළු Section එකම Hide කරයි
+        if (hasVisibleCards) {
+            section.classList.remove('hidden');
+        } else {
+            section.classList.add('hidden');
+        }
+    });
+
+    // Arrow keys නැවත Update කිරීම (Visible items වලට පමණක්)
+    updateArrows('sc-1', 'left-btn-1', 'right-btn-1');
+    updateArrows('sc-2', 'left-btn-2', 'right-btn-2');
+}

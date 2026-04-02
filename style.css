@@ -113,3 +113,13 @@ header.main-header {
     padding: 5px 0; transition: 0.5s;
 }
 .product-card.active .price { font-size: 1.1rem; padding-bottom: 10px; }
+
+/* සෙවුම් ප්‍රතිඵල නැති විට Category එක hide කිරීමට */
+.category-section.hidden {
+    display: none;
+}
+
+/* සෙවුමට අදාළ නැති Card එක hide කිරීමට */
+.card-wrapper.hidden {
+    display: none;
+}
