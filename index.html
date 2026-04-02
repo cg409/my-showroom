@@ -3,47 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmetics.lk | Premium Beauty Store</title>
+    <title>MED HUB | Premium Beauty Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="ticker-wrapper">
-        <div class="ticker-content">
-            ✨ FREE SHIPPING ON ORDERS OVER RS. 5000! ✨ NEW CENTELLA PRODUCTS ARRIVED! ✨ GET 10% OFF ON YOUR FIRST PURCHASE! ✨
-        </div>
-    </div>
 
-    <header>
+    <header class="main-header">
         <div class="header-container">
-            <h1>COSMETICS<span>.lk</span></h1>
+            <div class="logo">MED HUB</div>
+            
             <div class="search-bar">
-                <input type="text" placeholder="Search for products...">
-                <button>SEARCH</button>
+                <input type="text" placeholder="Search for premium products...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="header-icons">
+                <a href="#" title="My Account"><i class="fas fa-user-circle"></i> Account</a>
+                <a href="#" title="Cart" class="cart-icon"><i class="fas fa-shopping-bag"></i> Cart (0)</a>
             </div>
         </div>
     </header>
 
+    <section class="main-banner">
+        <div class="banner-track">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1617897903246-719242758050?w=1600');">
+                <div class="slide-content">
+                    <h2>Madagascar Centella</h2>
+                    <p>Pure, Gentle & Natural Glow</p>
+                    <a href="#" class="shop-now-btn">Shop Now</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1598454441315-9989b5c2dfbf?w=1600');">
+                <div class="slide-content">
+                    <h2>Organic Face Masks</h2>
+                    <p>Unlock Your Natural Radiance</p>
+                    <a href="#" class="shop-now-btn">Explore</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1600');">
+                <div class="slide-content">
+                    <h2>Premium Serums</h2>
+                    <p>Hydration & Brightening in One Drop</p>
+                    <a href="#" class="shop-now-btn">View All</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="banner-controls">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <nav class="beauty-nav">
+        <ul>
+            <li><a href="#">Skin Care</a></li>
+            <li><a href="#">K-Beauty</a></li>
+            <li><a href="#">Makeup</a></li>
+            <li><a href="#">Vitamin & Supplements</a></li>
+            <li><a href="#">Mother & Baby</a></li>
+            <li><a href="#">Brands</a></li>
+            <li><a href="#">New Arrivals</a></li>
+        </ul>
+    </nav>
+
     <main class="product-container">
+        
+        <div class="card-wrapper">
+            <div class="product-card" onclick="toggleExpand(this)">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400">
+                </div>
+                <div class="card-details">
+                    <h3>Madagascar Centella Cream</h3>
+                    <p class="price">Rs. 4,500</p>
+                    <p class="description">Hydrating & calming cream for a natural, healthy glow. 50ml.</p>
+                </div>
+                <div class="expanded-info">
+                    <a href="#" class="more-btn">More Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="product-card" onclick="toggleExpand(this)">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400">
+                </div>
+                <div class="card-details">
+                    <h3>Premium Brightening Serum</h3>
+                    <p class="price">Rs. 6,800</p>
+                    <p class="description">Reduces dark spots and improves skin texture with 10% Vitamin C.</p>
+                </div>
+                <div class="expanded-info">
+                    <a href="#" class="more-btn">More Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="product-card" onclick="toggleExpand(this)">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1622791269389-98ff2a0d7f55?w=400">
+                </div>
+                <div class="card-details">
+                    <h3>SPF 50+ Sun Protection</h3>
+                    <p class="price">Rs. 3,900</p>
+                    <p class="description">Ultra-light, non-greasy sunscreen suitable for sensitive skin.</p>
+                </div>
+                <div class="expanded-info">
+                    <a href="#" class="more-btn">More Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="product-card" onclick="toggleExpand(this)">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1598454441315-9989b5c2dfbf?w=400">
+                </div>
+                <div class="card-details">
+                    <h3>Organic Face Mask</h3>
+                    <p class="price">Rs. 2,500</p>
+                    <p class="description">Deep cleaning and pore reduction with natural clay extract.</p>
+                </div>
+                <div class="expanded-info">
+                    <a href="#" class="more-btn">More Details</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="product-card" onclick="toggleExpand(this)">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1631730486572-c045155f6e80?w=400">
+                </div>
+                <div class="card-details">
+                    <h3>Hydrating Lip Balm</h3>
+                    <p class="price">Rs. 1,800</p>
+                    <p class="description">Long-lasting moisture with a soft bronze tint and SPF 15.</p>
+                </div>
+                <div class="expanded-info">
+                    <a href="#" class="more-btn">More Details</a>
+                </div>
+            </div>
+        </div>
+
         <div class="card-wrapper">
             <div class="product-card" onclick="toggleExpand(this)">
                 <div class="card-image">
                     <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400">
                 </div>
                 <div class="card-details">
-                    <h3>Premium Skin Serum</h3>
-                    <p class="price">Rs. 4,500</p>
-                    <p class="description">Luxury serum with gold particles for a natural glow. Perfect for all skin types.</p>
+                    <h3>Premium Eye Cream</h3>
+                    <p class="price">Rs. 5,200</p>
+                    <p class="description">Reduces puffiness and fine lines around the eyes. 30ml.</p>
                 </div>
                 <div class="expanded-info">
-                    <a href="#" class="more-btn">Order Now</a>
+                    <a href="#" class="more-btn">More Details</a>
                 </div>
             </div>
         </div>
-        </main>
+
+    </main>
 
     <footer class="page-footer">
-        <p>Thank You for Choosing Luxury Beauty</p>
-        <span>© 2026 Cosmetics.lk | TechKey Crew</span>
+        <p>Explore Your Natural Glow</p>
+        <span>© 2026 TechKey Crew</span>
     </footer>
 
     <script src="script.js"></script>
