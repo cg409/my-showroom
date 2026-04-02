@@ -4,7 +4,7 @@
     --card-bg: #141416;
 }
 
-/* NO BLUE HIGHLIGHT */
+/* NO BLUE HIGHLIGHT & RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent !important; outline: none !important; }
 
 body {
@@ -15,7 +15,7 @@ body {
     overflow-x: hidden;
 }
 
-/* HEADER FIX */
+/* HEADER & TABS (1mm GAP FIXED) */
 header.main-header {
     background: #0a0a0b; height: 65px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     position: sticky; top: 0; z-index: 2000; display: flex; align-items: center;
@@ -23,27 +23,25 @@ header.main-header {
 .header-container { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; }
 .logo { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.2rem; }
 
-/* SEARCH BAR */
-.search-bar { display: flex; background: #1c1c1e; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.1); overflow: hidden; }
+.search-bar { display: flex; background: #1c1c1e; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); overflow: hidden; }
 .search-bar input { background: none; border: none; color: white; padding: 6px 12px; font-size: 0.8rem; width: 140px; }
 .search-bar button { background: var(--primary); border: none; padding: 0 10px; color: black; }
 
-/* TABS BAR - GAP REMOVED */
 .beauty-nav { 
     background: #0f0f11; position: sticky; 
-    top: 64px; /* Header එකට ලං කළා */
+    top: 64px; /* Gap එක සම්පූර්ණයෙන් වැහුවා */
     z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
 }
 .beauty-nav ul { display: flex; justify-content: center; gap: 10px; padding: 12px; list-style: none; }
-.beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; border: 1px solid transparent; }
-.beauty-nav a:hover { color: var(--primary); background: rgba(212, 175, 55, 0.05); border-color: var(--primary); }
+.beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
+.beauty-nav a:hover { color: var(--primary); background: rgba(212, 175, 55, 0.05); }
 
-/* CONTENT WRAPPER & GAPS */
-.content-wrapper { padding-top: 20px; }
-.category-section { padding: 10px 0; max-width: 1350px; margin: 0 auto; }
-.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 20px; }
+/* CONTENT & CATEGORY GAPS */
+.content-wrapper { padding-top: 10px; }
+.category-section { padding: 5px 0; max-width: 1350px; margin: 0 auto; }
+.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 20px 20px 10px 20px; }
 
-/* HORIZONTAL SCROLL & ARROWS */
+/* HORIZONTAL SCROLL & SMART ARROWS */
 .scroll-wrapper { position: relative; }
 .scroll-btn {
     position: absolute; width: 35px; height: 35px; border-radius: 50%;
@@ -59,14 +57,26 @@ header.main-header {
     scrollbar-width: none; scroll-behavior: smooth;
 }
 
-/* ORIGINAL CARD ANIMATIONS */
+/* --- THE NEW ROUNDED GOLDEN CARDS --- */
 .card-wrapper { flex: 0 0 180px; height: 250px; position: relative; overflow: visible; }
+
 .product-card {
-    background: var(--card-bg); border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15);
+    background: var(--card-bg); 
+    border-radius: 25px; /* කොන් 4ම ලස්සනට Round කළා */
+    border: 1px solid rgba(212, 175, 55, 0.4); /* සැමවිටම පෙනෙන Golden Frame එක */
     width: 100%; height: 100%; position: absolute; 
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border 0.3s ease;
+    overflow: hidden; /* උඩ කොන් වල රූපයත් එක්කම round වෙන්න */
 }
-.product-card.active { transform: scale(1.18); z-index: 100; border-color: var(--primary); box-shadow: 0 15px 40px rgba(0,0,0,0.8); overflow: visible; }
+
+/* Active Animation */
+.product-card.active { 
+    transform: scale(1.18); 
+    z-index: 100; 
+    border: 2px solid var(--primary); /* Active වුණාම Frame එක තද වෙනවා */
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+    overflow: visible; 
+}
 
 .card-image { width: 100%; height: 130px; overflow: hidden; transition: 0.4s; }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
