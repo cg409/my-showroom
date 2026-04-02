@@ -2,35 +2,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
 
 :root {
-    --primary: #cda472;    /* Elegant Golden/Rose Gold */
-    --primary-dark: #b89163; /* Darker Gold for hover/details */
+    --primary: #d4af37;    /* Classic Metallic Gold */
+    --primary-dark: #b8860b; /* Darker Gold for hover */
     
-    /* 1. Tiled Background Fix: ඉතා ලා පැහැති Cream Tiled background එකක් */
-    --bg-colour: #fffbf8; 
-    --bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23cda472' fill-opacity='0.03'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+    /* 1. DARK THEME COLORS */
+    --bg-colour: #0a0a0b;  /* Midnight Black */
+    --bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath fill-rule='evenodd' d='M0 0h10v10H0V0zm10 10h10v10H10V10z'/%3E%3C/g%3E%3C/svg%3E");
     
-    --card-bg: #ffffff;
-    --text: #334155;       /* Soft Dark Grey */
+    --card-bg: #141416;    /* Darker Card for Contrast */
+    --text: #e2e8f0;       /* Off-white Text for readability */
     --muted: #94a3b8;
-    --accent: #fdfaf7;     /* Very Light Golden Accent */
+    --accent: #1a1a1c;     /* Subtle Highlight */
 }
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--bg-colour);
-    background-image: var(--bg-image); /* Tiled Background එක */
+    background-image: var(--bg-image);
     color: var(--text);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
 
-/* --- HEADER (Luxury with Search) --- */
-.main-header {
-    background: rgba(255, 255, 255, 0.9);
+/* --- HEADER (Dark Luxury) --- */
+header.main-header {
+    background: rgba(10, 10, 11, 0.95);
     backdrop-filter: blur(15px);
     padding: 15px 0;
-    border-bottom: 1px solid rgba(205, 164, 114, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header-container {
@@ -43,20 +46,21 @@ body {
 }
 
 .logo {
-    font-family: 'Cinzel', serif; /* Elegant serif for logo */
+    font-family: 'Cinzel', serif;
     font-size: 1.6rem;
     color: var(--primary);
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
-/* 2. SEARCH BAR Fix */
+/* SEARCH BAR Fix */
 .search-bar {
     display: flex;
     max-width: 600px;
     width: 45%;
-    background: #fdfbf8;
-    border: 1px solid rgba(205, 164, 114, 0.15);
+    background: #1c1c1e;
+    border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 20px;
     overflow: hidden;
     margin: 0 20px;
@@ -69,31 +73,23 @@ body {
     font-family: inherit;
     font-size: 0.75rem;
     background: none;
+    color: white;
     outline: none;
 }
-
-.search-bar input::placeholder { color: var(--muted); }
 
 .search-bar button {
     background: var(--primary);
     border: none;
-    color: white;
+    color: #000;
     padding: 0 20px;
     cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.search-bar button:hover { background: var(--primary-dark); }
-
-.header-icons {
-    display: flex;
-    gap: 15px;
-    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 .header-icons a {
-    color: #445163;
+    color: var(--muted);
     text-decoration: none;
+    font-size: 0.75rem;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -102,18 +98,13 @@ body {
 
 .header-icons a:hover, .header-icons a.cart-icon { color: var(--primary); }
 
-/* --- 3. AUTO-SLIDING BANNER (The New Section) --- */
+/* --- 2. AUTO-SLIDING BANNER --- */
 .main-banner {
     position: relative;
     width: 100%;
-    height: 350px; /* PC height */
+    height: 380px;
     overflow: hidden;
-}
-
-.banner-track {
-    width: 100%;
-    height: 100%;
-    position: relative;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 .slide {
@@ -125,7 +116,7 @@ body {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 0.6s ease-in-out; /* Smooth transition */
+    transition: opacity 0.8s ease-in-out;
     display: flex;
     align-items: center;
     padding-left: 10%;
@@ -133,6 +124,7 @@ body {
 
 .slide.active { opacity: 1; }
 
+/* Overlay for Dark Banner */
 .slide::after {
     content: '';
     position: absolute;
@@ -140,120 +132,77 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(253, 250, 247, 0.8), rgba(255,255,255,0));
+    background: linear-gradient(90deg, rgba(10, 10, 11, 0.9) 20%, rgba(10, 10, 11, 0.2));
 }
 
 .slide-content {
     position: relative;
     z-index: 5;
-    max-width: 500px;
-    text-align: left;
 }
 
 .slide-content h2 {
     font-family: 'Cinzel', serif;
-    font-size: 2.2rem;
-    color: #1e293b;
+    font-size: 2.5rem;
+    color: var(--primary);
     margin: 0;
 }
 
 .slide-content p {
-    font-size: 0.9rem;
-    color: #64748b;
-    margin: 10px 0 20px 0;
+    font-size: 1rem;
+    color: #cbd5e1;
+    margin: 10px 0 25px 0;
 }
 
 .shop-now-btn {
     display: inline-block;
-    padding: 8px 25px;
-    border: 1px solid var(--primary);
-    border-radius: 20px;
-    color: var(--primary);
+    padding: 10px 30px;
+    background: var(--primary);
+    color: #000;
     text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 700;
+    font-size: 0.75rem;
+    font-weight: 800;
+    border-radius: 25px;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
-.shop-now-btn:hover { background: var(--primary); color: white; }
+.shop-now-btn:hover { transform: scale(1.05); }
 
-.banner-controls {
-    position: absolute;
-    bottom: 20px;
-    left: 10%;
-    z-index: 10;
-    display: flex;
-    gap: 8px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background: rgba(169, 116, 68, 0.3);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.dot.active { background: var(--primary); }
-
-@media (max-width: 767px) {
-    .main-banner { height: 250px; }
-    .slide-content h2 { font-size: 1.6rem; }
-    .slide-content p { font-size: 0.75rem; }
-}
-
-/* --- 4. NAVIGATION --- */
+/* --- 3. NAVIGATION --- */
 .beauty-nav {
-    background: rgba(253, 250, 247, 0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(205, 164, 114, 0.08);
-}
-
-.beauty-nav ul {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding: 12px 20px;
-    margin: 0;
-    list-style: none;
-    max-width: 1300px;
-    margin: 0 auto;
+    background: #0f0f11;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 .beauty-nav li a {
     font-size: 0.65rem;
-    color: #334155;
-    text-transform: uppercase;
+    color: var(--muted);
     text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1.5px;
     transition: color 0.3s ease;
 }
 
 .beauty-nav li a:hover { color: var(--primary); }
 
-/* --- 5. PRODUCT CONTAINER (Existing logic maintained) --- */
+/* --- 4. PRODUCT CONTAINER --- */
 .product-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    padding: 20px;
+    padding: 30px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    background: none;
 }
 
 .card-wrapper {
     position: relative;
     width: 100%;
-    height: 250px; 
+    height: 260px; 
 }
 
 @media (min-width: 768px) {
-    .product-container { grid-template-columns: repeat(4, 1fr); }
     .card-wrapper { height: 280px; }
 }
 
@@ -262,7 +211,7 @@ body {
     background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(205, 164, 114, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.15);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -271,116 +220,83 @@ body {
     top: 0;
     left: 0;
     z-index: 10;
-    box-shadow: 0 4px 15px rgba(205, 164, 114, 0.03);
-    will-change: transform, opacity;
-    transition: transform 0.45s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.2, 1, 0.3, 1), border-color 0.4s ease;
     cursor: pointer;
-    transform-origin: left top;
-}
-
-.card-wrapper:nth-child(even) .product-card { transform-origin: right top; }
-
-@media (min-width: 768px) {
-    .card-wrapper:nth-child(4n-2) .product-card,
-    .card-wrapper:nth-child(4n) .product-card { transform-origin: right top; }
+    transform-origin: center center; /* Improved scaling origin */
 }
 
 .product-card.active {
     z-index: 999 !important;
     transform: scale(1.35);
-    box-shadow: 0 30px 60px rgba(205, 164, 114, 0.1);
     border-color: var(--primary);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
 .card-image {
     width: 100%;
     height: 140px;
     overflow: hidden;
-    transition: height 0.4s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.3s ease;
+    transition: height 0.4s ease, opacity 0.3s ease;
 }
 
 .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    filter: brightness(0.9);
 }
 
 .product-card.active .card-image { height: 0; opacity: 0; }
-.product-card.active .card-image img { transform: translateX(-100%); }
 
 .card-details {
-    padding: 10px;
+    padding: 15px 10px;
     text-align: center;
 }
 
-.card-details h3 { font-size: 0.8rem; color: #1e293b; margin: 0 0 4px 0; }
-.price { color: var(--primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 5px; display: block; }
+.card-details h3 { font-size: 0.85rem; color: #fff; margin-bottom: 5px; }
+.price { color: var(--primary); font-weight: 700; font-size: 1rem; margin-bottom: 8px; display: block; }
 
 .description {
-    font-size: 0.65rem;
-    color: #64748b;
-    line-height: 1.4;
+    font-size: 0.7rem;
+    color: var(--muted);
+    line-height: 1.5;
     display: -webkit-box;
     -webkit-line-clamp: 2; 
     -webkit-box-orient: vertical;
     overflow: hidden;
-    transition: all 0.3s ease;
 }
 
 .product-card.active .description {
     -webkit-line-clamp: unset;
-    color: var(--text);
+    color: #e2e8f0;
 }
 
-.expanded-info {
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    padding: 0 10px;
-}
-
-.product-card.active .expanded-info {
-    max-height: 100px;
-    opacity: 1;
-    visibility: visible;
-    padding-bottom: 15px;
-}
-
+/* --- BUTTON --- */
 .more-btn {
     display: block;
-    background: linear-gradient(135deg, #cda472, #a97444); /* Elegant Golden Gradient */
-    color: white;
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    color: #000;
     text-align: center;
     text-decoration: none;
-    padding: 9px;
+    padding: 10px;
     border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.7rem;
-    margin-top: 5px;
-    box-shadow: 0 4px 10px rgba(169, 116, 68, 0.2);
-    transition: transform 0.2s ease;
+    font-weight: 800;
+    font-size: 0.75rem;
+    margin: 10px 15px 20px 15px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
 }
 
-.more-btn:active { transform: scale(0.95); }
-.extra-text { display: none; }
-
-/* --- 6. FOOTER (Luxury space Fix) --- */
+/* --- FOOTER --- */
 .page-footer {
     text-align: center;
-    padding: 60px 20px 80px 20px;
-    background: var(--accent);
-    margin-top: 50px;
-    border-top: 1px solid rgba(205, 164, 114, 0.06);
+    padding: 80px 20px;
+    background: #0a0a0b;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
 }
 
-.page-footer p {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 8px;
-}
-
-.page-footer span { font-size: 0.65rem; color: var(--muted); }
+.page-footer p { color: var(--primary); font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 2px; }
+.page-footer span { color: var(--muted); font-size: 0.7rem; }
 
 * { -webkit-tap-highlight-color: transparent !important; }
