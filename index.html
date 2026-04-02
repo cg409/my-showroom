@@ -34,28 +34,43 @@
             <div class="scroll-wrapper">
                 <button id="left-btn-skin" class="scroll-btn left" onclick="sideScroll('skin-container', 'left')"><i class="fas fa-chevron-left"></i></button>
                 <div id="skin-container" class="horizontal-scroll-container" onscroll="updateArrows('skin-container', 'left-btn-skin', 'right-btn-skin')">
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400"></div><div class="card-details"><h3>Centella Moisturizer</h3><p class="price">Rs. 4,500</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400"></div><div class="card-details"><h3>Rose Toner</h3><p class="price">Rs. 2,800</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400"></div><div class="card-details"><h3>Hyaluronic Acid</h3><p class="price">Rs. 5,200</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1598454441315-9989b5c2dfbf?w=400"></div><div class="card-details"><h3>Clay Detox Mask</h3><p class="price">Rs. 3,400</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=400"></div><div class="card-details"><h3>Night Repair Oil</h3><p class="price">Rs. 7,500</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
+                    
+                    <div class="card-wrapper">
+                        <div class="product-card" onclick="toggleExpand(event, this)">
+                            <div class="card-image"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400"></div>
+                            <div class="card-details">
+                                <h3 class="item-name">Centella Moisturizer</h3>
+                                <p class="short-desc">Daily hydration for sensitive skin.</p>
+                                <div class="long-desc">
+                                    • Deep hydration formula<br>
+                                    • Soothes irritated skin<br>
+                                    • 100% Vegan & Natural<br>
+                                    • Recommended by doctors
+                                </div>
+                                <p class="price">Rs. 4,500</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-wrapper">
+                        <div class="product-card" onclick="toggleExpand(event, this)">
+                            <div class="card-image"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400"></div>
+                            <div class="card-details">
+                                <h3 class="item-name">Rose Toner</h3>
+                                <p class="short-desc">Ph balanced flower extract.</p>
+                                <div class="long-desc">
+                                    • Refreshing rose water<br>
+                                    • Minimizes skin pores<br>
+                                    • Instant glow effect<br>
+                                    • Alcohol-free formula
+                                </div>
+                                <p class="price">Rs. 2,800</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <button id="right-btn-skin" class="scroll-btn right" onclick="sideScroll('skin-container', 'right')"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </section>
-
-        <section id="k-beauty" class="category-section">
-            <h2 class="category-title">K-BEAUTY</h2>
-            <div class="scroll-wrapper">
-                <button id="left-btn-k" class="scroll-btn left" onclick="sideScroll('k-container', 'left')"><i class="fas fa-chevron-left"></i></button>
-                <div id="k-container" class="horizontal-scroll-container" onscroll="updateArrows('k-container', 'left-btn-k', 'right-btn-k')">
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400"></div><div class="card-details"><h3>Glow Serum</h3><p class="price">Rs. 6,800</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"></div><div class="card-details"><h3>Rice Essence</h3><p class="price">Rs. 4,200</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1622791269389-98ff2a0d7f55?w=400"></div><div class="card-details"><h3>SPF 50 Milk</h3><p class="price">Rs. 3,900</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1631730486572-c045155f6e80?w=400"></div><div class="card-details"><h3>Velvet Lip Tint</h3><p class="price">Rs. 2,100</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400"></div><div class="card-details"><h3>Collagen Mask</h3><p class="price">Rs. 1,500</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                </div>
-                <button id="right-btn-k" class="scroll-btn right" onclick="sideScroll('k-container', 'right')"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
     </div>
