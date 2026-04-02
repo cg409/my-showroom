@@ -4,125 +4,78 @@
     --card-bg: #141416;
 }
 
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent !important;
-}
+/* NO BLUE HIGHLIGHT */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent !important; outline: none !important; }
 
 body {
     background-color: var(--bg-black);
-    /* Luxury Dark Pattern */
     background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.05) 1px, transparent 0);
     background-size: 24px 24px;
     color: #e2e8f0; font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
 }
 
-/* HEADER & TABS */
+/* HEADER FIX */
 header.main-header {
-    background: rgba(10, 10, 11, 0.98);
-    backdrop-filter: blur(10px);
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    position: sticky; top: 0; z-index: 1000;
+    background: #0a0a0b; height: 65px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    position: sticky; top: 0; z-index: 2000; display: flex; align-items: center;
 }
+.header-container { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; }
+.logo { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.2rem; }
 
-.header-container { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
-.logo { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.5rem; letter-spacing: 2px; }
-
+/* SEARCH BAR */
 .search-bar { display: flex; background: #1c1c1e; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.1); overflow: hidden; }
-.search-bar input { background: none; border: none; color: white; padding: 8px 15px; width: 150px; }
+.search-bar input { background: none; border: none; color: white; padding: 6px 12px; font-size: 0.8rem; width: 140px; }
 .search-bar button { background: var(--primary); border: none; padding: 0 10px; color: black; }
 
-.beauty-nav { background: #0f0f11; position: sticky; top: 68px; z-index: 999; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
-.beauty-nav ul { display: flex; justify-content: center; gap: 15px; padding: 15px; list-style: none; }
-.beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.8rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
-.beauty-nav a:hover { color: var(--primary); background: rgba(212, 175, 55, 0.1); }
-
-/* 1. TOPIC එක වැහෙන එක නවත්තන්න සහ හිස්තැන අඩු කරන්න */
-.content-wrapper { 
-    padding-top: 10px; /* කලින් තිබ්බ ලොකු gap එක අඩු කළා */
-}
-
-.category-section { 
-    padding: 10px 0; /* Sections අතර තියෙන gap එක මෙතනින් අඩු කළා */
-    max-width: 1350px; 
-    margin: 0 auto; 
-}
-
-/* 2. TABS BAR එකට උඩින් පේන එක නවත්වන්න (Transparency Fix) */
+/* TABS BAR - GAP REMOVED */
 .beauty-nav { 
-    background: #0f0f11; 
-    position: sticky; 
-    top: 65px; /* Header එකේ height එක අනුව මේක ගලපාගන්න */
-    z-index: 999; 
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-    width: 100%;
+    background: #0f0f11; position: sticky; 
+    top: 64px; /* Header එකට ලං කළා */
+    z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
 }
+.beauty-nav ul { display: flex; justify-content: center; gap: 10px; padding: 12px; list-style: none; }
+.beauty-nav a { color: #94a3b8; text-decoration: none; font-size: 0.75rem; font-weight: 800; padding: 8px 15px; border-radius: 20px; transition: 0.3s; border: 1px solid transparent; }
+.beauty-nav a:hover { color: var(--primary); background: rgba(212, 175, 55, 0.05); border-color: var(--primary); }
 
-/* 3. HEADER එකේ Z-INDEX එක වැඩිකරන්න */
-header.main-header {
-    background: #0a0a0b; /* සම්පූර්ණයෙන් කළු කළා යටින් පේන එක නවත්වන්න */
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    position: sticky; 
-    top: 0; 
-    z-index: 1001; /* හැමදේටම වඩා උඩින් තියෙන්න ඕනේ */
-}
+/* CONTENT WRAPPER & GAPS */
+.content-wrapper { padding-top: 20px; }
+.category-section { padding: 10px 0; max-width: 1350px; margin: 0 auto; }
+.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 20px; }
 
-/* 4. HORIZONTAL CONTAINER එකේ PADDING එක අඩු කරන්න */
-.horizontal-scroll-container {
-    display: flex; 
-    overflow-x: auto; 
-    gap: 20px; 
-    padding: 30px 25px; /* උඩ සහ යට padding එක අඩු කළා */
-    scrollbar-width: none; 
-    scroll-behavior: smooth;
+/* HORIZONTAL SCROLL & ARROWS */
+.scroll-wrapper { position: relative; }
+.scroll-btn {
+    position: absolute; width: 35px; height: 35px; border-radius: 50%;
+    background: rgba(20, 20, 22, 0.95); border: 1px solid var(--primary);
+    color: var(--primary); cursor: pointer; z-index: 500; top: 50%; transform: translateY(-50%);
+    display: none; align-items: center; justify-content: center;
 }
-
-/* Card active වුණාම අනිත් ඒවට වඩා උඩින් පේන්න */
-.product-card.active {
-    transform: scale(1.15); 
-    z-index: 100; /* Tabs වලට වඩා අඩුවෙන් තියෙන්න ඕනේ */
-}
+.scroll-btn.left { left: 10px; }
+.scroll-btn.right { right: 10px; }
 
 .horizontal-scroll-container {
-    display: flex; overflow-x: auto; gap: 20px; padding: 50px 25px; 
-    scrollbar-width: none; scroll-behavior: smooth; overflow-y: visible;
+    display: flex; overflow-x: auto; gap: 20px; padding: 40px 25px; 
+    scrollbar-width: none; scroll-behavior: smooth;
 }
-.horizontal-scroll-container::-webkit-scrollbar { display: none; }
 
-/* --- THE ORIGINAL ANIMATIONS --- */
-.card-wrapper { flex: 0 0 190px; height: 260px; position: relative; overflow: visible; }
-
+/* ORIGINAL CARD ANIMATIONS */
+.card-wrapper { flex: 0 0 180px; height: 250px; position: relative; overflow: visible; }
 .product-card {
     background: var(--card-bg); border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15);
     width: 100%; height: 100%; position: absolute; 
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer; overflow: hidden;
 }
+.product-card.active { transform: scale(1.18); z-index: 100; border-color: var(--primary); box-shadow: 0 15px 40px rgba(0,0,0,0.8); overflow: visible; }
 
-/* Active Animation */
-.product-card.active {
-    transform: scale(1.2); z-index: 100; border-color: var(--primary);
-    overflow: visible; box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-}
-
-.card-image { width: 100%; height: 140px; overflow: hidden; transition: 0.4s ease-in-out; }
+.card-image { width: 100%; height: 130px; overflow: hidden; transition: 0.4s; }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
-
-/* Image එක අයින් වෙන animation එක */
 .product-card.active .card-image { height: 0; opacity: 0; }
 
-.card-details { padding: 12px; text-align: center; transition: 0.3s; }
-.card-details h3 { font-size: 0.85rem; color: #fff; }
+.card-details { padding: 10px; text-align: center; }
 .price { color: var(--primary); font-weight: bold; margin-top: 5px; }
 
-.expanded-info { opacity: 0; max-height: 0; transition: 0.4s ease; padding: 0 10px; text-align: center; }
-.product-card.active .expanded-info { opacity: 1; max-height: 120px; padding-top: 15px; }
+.expanded-info { opacity: 0; max-height: 0; transition: 0.4s; padding: 0 10px; text-align: center; }
+.product-card.active .expanded-info { opacity: 1; max-height: 100px; padding-top: 15px; }
 
-.more-btn {
-    display: inline-block; background: linear-gradient(135deg, #d4af37, #b8860b);
-    color: black; padding: 10px 20px; border-radius: 12px; font-weight: bold;
-    text-decoration: none; font-size: 0.75rem;
-}
+.more-btn { display: inline-block; background: var(--primary); color: black; padding: 8px 15px; border-radius: 10px; font-weight: bold; text-decoration: none; font-size: 0.7rem; }
