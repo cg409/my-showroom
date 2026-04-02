@@ -3,44 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MED MART | Store</title>
+    <title>MED MART | Luxury Cosmetics</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
     <header class="main-header">
         <div class="header-container">
-            <div class="logo">MED MART</div>
+            <div class="logo" onclick="location.reload()">MED MART</div>
             <div class="search-wrapper">
                 <div class="search-bar">
-                    <input type="text" id="main-search" placeholder="Search...">
+                    <input type="text" id="main-search" placeholder="Search..." autocomplete="off">
                     <button><i class="fas fa-search"></i></button>
                 </div>
+                <div id="search-suggestions"></div>
             </div>
         </div>
     </header>
+
+    <div class="hero-slider">
+        <div class="slides" id="hero-slides">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1200"></div>
+            <div class="slide"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200"></div>
+            <div class="slide"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?w=1200"></div>
+        </div>
+    </div>
 
     <nav class="beauty-nav">
         <ul>
             <li><a href="#" class="nav-link active-tab" data-target="sc-sec">SKIN CARE</a></li>
             <li><a href="#" class="nav-link" data-target="kb-sec">K-BEAUTY</a></li>
             <li><a href="#" class="nav-link" data-target="bc-sec">BODY CARE</a></li>
+            <li><a href="#" class="nav-link" data-target="hc-sec">HAIR CARE</a></li>
+            <li><a href="#" class="nav-link" data-target="fm-sec">MASKS</a></li>
         </ul>
     </nav>
 
     <div class="content-wrapper">
-        <section id="sc-sec" class="category-section">
-            <h2 style="color:var(--primary); margin-left:20px; font-family:'Cinzel';">SKIN CARE</h2>
-            <div id="sc-container" class="horizontal-scroll-container"></div>
-        </section>
-        <section id="kb-sec" class="category-section">
-            <h2 style="color:var(--primary); margin-left:20px; font-family:'Cinzel';">K-BEAUTY</h2>
-            <div id="kb-container" class="horizontal-scroll-container"></div>
-        </section>
-        <section id="bc-sec" class="category-section">
-            <h2 style="color:var(--primary); margin-left:20px; font-family:'Cinzel';">BODY CARE</h2>
-            <div id="bc-container" class="horizontal-scroll-container"></div>
-        </section>
+        <section id="sc-sec" class="category-section"><h2 class="category-title">SKIN CARE</h2><div id="sc-container" class="product-grid"></div></section>
+        <section id="kb-sec" class="category-section"><h2 class="category-title">K-BEAUTY</h2><div id="kb-container" class="product-grid"></div></section>
+        <section id="bc-sec" class="category-section"><h2 class="category-title">BODY CARE</h2><div id="bc-container" class="product-grid"></div></section>
+        <section id="hc-sec" class="category-section"><h2 class="category-title">HAIR CARE</h2><div id="hc-container" class="product-grid"></div></section>
+        <section id="fm-sec" class="category-section"><h2 class="category-title">FACE MASKS</h2><div id="fm-container" class="product-grid"></div></section>
     </div>
 
     <script src="script.js"></script>
