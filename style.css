@@ -18,10 +18,9 @@ body {
     overflow-x: hidden;
 }
 
-/* --- HEADER & SEARCH --- */
 header.main-header {
     background: var(--bg-black); height: 65px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    position: sticky; top: 0; z-index: 2000; display: flex; align-items: center;
+    position: sticky; top: 0; z-index: 5000; display: flex; align-items: center;
 }
 .header-container { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; }
 .logo { font-family: 'Cinzel', serif; color: var(--primary); font-size: 1.2rem; cursor: pointer; font-weight: bold; }
@@ -29,92 +28,83 @@ header.main-header {
 .search-wrapper { position: relative; }
 .search-bar { 
     display: flex; align-items: center; background: #1c1c1e; 
-    border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); 
-    padding-right: 5px;
+    border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); padding-right: 5px;
 }
 .search-bar input { background: none; border: none; color: white; padding: 8px 12px; font-size: 0.8rem; width: 130px; }
-
-#clear-search {
-    color: #94a3b8; font-size: 0.9rem; cursor: pointer;
-    padding: 0 8px; display: none; transition: 0.2s;
-}
-#clear-search:hover { color: var(--primary); }
 .search-bar button { background: var(--primary); border: none; padding: 6px 10px; border-radius: 15px; color: black; cursor: pointer; }
 
-/* --- HERO & NAV --- */
-.hero-slider { width: 100%; height: 220px; position: relative; overflow: hidden; }
-.slides { display: flex; width: 300%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-.slide { width: 100%; height: 100%; flex-shrink: 0; position: relative; }
-.slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
-
-.beauty-nav { background: #0f0f11; position: sticky; top: 64px; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+.beauty-nav { background: #0f0f11; position: sticky; top: 64px; z-index: 4000; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
 .beauty-nav ul { display: flex; justify-content: center; gap: 8px; padding: 12px; list-style: none; overflow-x: auto; }
 .nav-link { color: var(--text-dim); text-decoration: none; font-size: 0.65rem; font-weight: 800; padding: 8px 12px; border-radius: 20px; border: 1px solid transparent; white-space: nowrap; transition: 0.3s; }
 .nav-link.active-tab { background: rgba(212, 175, 55, 0.1); color: var(--primary); border: 1px solid var(--primary); }
 
-/* --- SECTIONS --- */
+/* --- SECTIONS FIX --- */
 .category-section { 
-    padding: 10px 0; max-width: 1400px; margin: 0 auto; 
-    scroll-margin-top: 130px; 
-    margin-bottom: 17mm; 
+    padding: 10px 0; max-width: 1400px; margin: 0 auto 60px auto; 
+    position: relative; z-index: 10;
 }
-.category-title { color: var(--primary); font-family: 'Cinzel', serif; padding-left: 15px; border-left: 3px solid var(--primary); margin: 0 20px 10px 20px; font-size: 1.1rem; }
 
-.scroll-wrapper { position: relative; }
-.horizontal-scroll-container { display: flex; overflow-x: auto; gap: 15px; padding: 25px 20px; scrollbar-width: none; scroll-behavior: smooth; }
-.scroll-btn {
-    position: absolute; width: 35px; height: 35px; border-radius: 50%;
-    background: rgba(20, 20, 22, 0.9); border: 1px solid var(--primary);
-    color: var(--primary); cursor: pointer; z-index: 500; top: 50%; transform: translateY(-50%);
-    display: none; align-items: center; justify-content: center;
+/* 🌟 IMPORTANT: Container එක ඇතුළෙ දේවල් හිරවෙන්නෙ නැති වෙන්න */
+.horizontal-scroll-container { 
+    display: flex; overflow-x: auto; gap: 20px; padding: 40px 20px; 
+    scrollbar-width: none; scroll-behavior: smooth;
+    overflow-y: visible !important; 
 }
-.scroll-btn.left { left: 10px; }
-.scroll-btn.right { right: 10px; }
 
-/* --- 🌟 CARD DESIGN (REDUCED BY ANOTHER 5MM) --- */
-.card-wrapper { flex: 0 0 160px; height: 222px; position: relative; z-index: 1; } /* Reduced height */
+/* --- CARD DESIGN --- */
+.card-wrapper { 
+    flex: 0 0 160px; 
+    height: 220px; 
+    position: relative; 
+    overflow: visible !important; /* 🌟 Wrapper එකෙන් එළියට යන දේවල් පේන්න */
+} 
+
 .product-card {
-    background: var(--card-bg); border-radius: 18px; border: 1px solid rgba(212, 175, 55, 0.12); 
+    background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.12); 
     width: 100%; height: 100%; position: absolute; top: 0; left: 0;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    overflow: hidden; display: flex; flex-direction: column; cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex; flex-direction: column; cursor: pointer;
+    z-index: 5;
 }
 
+/* 🌟 Active State: මෙතන තමයි magic එක තියෙන්නේ */
 .product-card.active { 
-    transform: scale(1.06) translateY(-5px); z-index: 9999 !important; 
-    height: 265px; border: 2px solid var(--primary); box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+    transform: scale(1.12) translateY(-15px); 
+    z-index: 99999 !important; 
+    height: auto; 
+    min-height: 300px; /* Content එකට ඕන ඉඩ */
+    padding-bottom: 20px; 
+    border: 2px solid var(--primary); 
+    box-shadow: 0 30px 60px rgba(0,0,0,1);
+    background: #1a1a1c;
 }
 
-.card-image { width: 100%; height: 120px; transition: 0.4s ease; } /* Adjusted image height */
+.card-image { width: 100%; height: 120px; border-radius: 15px 15px 0 0; overflow: hidden; transition: 0.3s; }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
-.product-card.active .card-image { height: 0; opacity: 0; }
+.product-card.active .card-image { height: 0; opacity: 0; margin-bottom: 0; }
 
-.card-details { padding: 8px; flex-grow: 1; display: flex; flex-direction: column; text-align: center; }
-.item-name { font-size: 0.8rem; font-weight: 800; color: white; line-height: 1.2; }
-.product-card.active .item-name { color: var(--primary); font-size: 0.9rem; margin-bottom: 5px; }
+.card-details { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; text-align: center; }
+.item-name { font-size: 0.85rem; font-weight: 800; color: white; margin-bottom: 5px; }
+.product-card.active .item-name { color: var(--primary); font-size: 1.05rem; }
 
-.short-desc { font-size: 0.6rem; color: var(--text-dim); margin: 2px 0; }
+.short-desc { font-size: 0.65rem; color: var(--text-dim); }
 .product-card.active .short-desc { display: none; }
 
-.long-desc { display: none; font-size: 0.68rem; color: #cbd5e1; line-height: 1.2; text-align: left; padding: 4px 0; }
-.product-card.active .long-desc { display: block; animation: fadeIn 0.4s; }
+.long-desc { 
+    display: none; font-size: 0.75rem; color: #e2e8f0; line-height: 1.5; 
+    text-align: left; padding: 12px; background: rgba(255,255,255,0.05); 
+    border-radius: 10px; margin: 10px 0;
+}
+.product-card.active .long-desc { display: block; animation: fadeIn 0.4s forwards; }
 
-.price { color: var(--primary); font-weight: bold; font-size: 0.8rem; margin-top: auto; padding: 3px 0; }
-.product-card.active .price { font-size: 1rem; border-top: 1px solid rgba(212,175,55,0.1); width: 100%; }
+.price { color: var(--primary); font-weight: bold; font-size: 0.95rem; margin-top: auto; }
 
 .wa-btn {
     display: none; background: var(--whatsapp); color: white; text-decoration: none;
-    font-size: 0.68rem; font-weight: bold; padding: 8px; border-radius: 10px;
-    align-items: center; justify-content: center; gap: 5px; margin-top: 4px;
+    font-size: 0.8rem; font-weight: bold; padding: 12px; border-radius: 10px;
+    align-items: center; justify-content: center; gap: 8px; margin-top: 15px;
 }
-.product-card.active .wa-btn { display: flex; animation: fadeInUp 0.4s; }
+.product-card.active .wa-btn { display: flex; animation: fadeInUp 0.4s forwards; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-#search-suggestions {
-    position: absolute; top: 110%; left: 0; width: 100%; background: #1c1c1e;
-    border: 1px solid var(--primary); border-radius: 10px; z-index: 3000;
-    max-height: 200px; overflow-y: auto; display: none;
-}
-.suggestion-item { padding: 12px; font-size: 0.8rem; cursor: pointer; color: var(--text-dim); border-bottom: 1px solid rgba(212, 175, 55, 0.05); }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
