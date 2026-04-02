@@ -1,3 +1,4 @@
+// SMART ARROWS LOGIC
 function updateArrows(containerId, leftBtnId, rightBtnId) {
     const container = document.getElementById(containerId);
     const leftBtn = document.getElementById(leftBtnId);
@@ -26,13 +27,30 @@ function sideScroll(containerId, direction) {
     else { container.scrollLeft += scrollAmount; }
 }
 
+// TOGGLE CARD ACTIVE STATE
 function toggleExpand(event, card) {
-    event.preventDefault(); event.stopPropagation();
+    // Stop click from bubbling up to the window
+    event.stopPropagation();
+    
     const activeCard = document.querySelector('.product-card.active');
-    if (activeCard && activeCard !== card) activeCard.classList.remove('active');
+    if (activeCard && activeCard !== card) {
+        activeCard.classList.remove('active');
+    }
     card.classList.toggle('active');
 }
 
+// ✅ NEW: CLICK ANYWHERE ELSE TO CLOSE CARD
+window.addEventListener('click', function(event) {
+    const activeCard = document.querySelector('.product-card.active');
+    if (activeCard) {
+        // If the clicked target is NOT the active card or its children
+        if (!activeCard.contains(event.target)) {
+            activeCard.classList.remove('active');
+        }
+    }
+});
+
+// SMOOTH SCROLL
 function smoothScroll(event, targetId) {
     event.preventDefault();
     const targetElement = document.getElementById(targetId);
