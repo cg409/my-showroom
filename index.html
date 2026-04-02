@@ -11,29 +11,29 @@
 
     <header class="main-header">
         <div class="header-container">
-            <div class="logo" onclick="window.location.reload()">MED HUB</div>
+            <div class="logo" onclick="resetSearch()">MED HUB</div>
             <div class="search-wrapper">
                 <div class="search-bar">
-                    <input type="text" id="main-search" placeholder="Search name or category..." autocomplete="off">
+                    <input type="text" id="main-search" placeholder="Search..." autocomplete="off">
+                    <i class="fas fa-times" id="clear-search" onclick="resetSearch()"></i>
                     <button id="search-trigger"><i class="fas fa-search"></i></button>
                 </div>
                 <div id="search-suggestions"></div>
             </div>
-            <div class="header-icons"><i class="fas fa-shopping-bag" style="color:var(--primary)"></i></div>
-        </div>
+            <div></div> </div>
     </header>
 
     <nav class="beauty-nav">
         <ul>
-            <li><a href="#" data-category="SKIN CARE">SKIN CARE</a></li>
-            <li><a href="#" data-category="K-BEAUTY">K-BEAUTY</a></li>
+            <li><a href="#skin-care-sec" class="nav-link" data-target="skin-care-sec">SKIN CARE</a></li>
+            <li><a href="#k-beauty-sec" class="nav-link" data-target="k-beauty-sec">K-BEAUTY</a></li>
         </ul>
     </nav>
 
     <div id="no-results">Nothing found! Try a different keyword.</div>
 
     <div class="content-wrapper" id="products-area">
-        <section class="category-section" data-cat-name="SKIN CARE">
+        <section id="skin-care-sec" class="category-section" data-cat-name="SKIN CARE">
             <h2 class="category-title">SKIN CARE</h2>
             <div class="scroll-wrapper">
                 <button id="l-1" class="scroll-btn left" onclick="sideScroll('sc-1', 'left')"><i class="fas fa-chevron-left"></i></button>
@@ -48,7 +48,7 @@
             </div>
         </section>
 
-        <section class="category-section" data-cat-name="K-BEAUTY">
+        <section id="k-beauty-sec" class="category-section" data-cat-name="K-BEAUTY">
             <h2 class="category-title">K-BEAUTY</h2>
             <div class="scroll-wrapper">
                 <button id="l-2" class="scroll-btn left" onclick="sideScroll('sc-2', 'left')"><i class="fas fa-chevron-left"></i></button>
