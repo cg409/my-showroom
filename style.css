@@ -1,8 +1,8 @@
-/* Google Fonts */
+/* Google Fonts - Elegant Style */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
 
 :root {
-    --primary: #d4af37;    /* Classic Metallic Gold */
+    --primary: #d4af37;    /* Metallic Gold */
     --primary-dark: #b8860b;
     --bg-colour: #0a0a0b;  /* Midnight Black */
     --bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath fill-rule='evenodd' d='M0 0h10v10H0V0zm10 10h10v10H10V10z'/%3E%3C/g%3E%3C/svg%3E");
@@ -18,9 +18,10 @@ body {
     color: var(--text);
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth; /* Native smooth scroll */
 }
 
-/* --- HEADER FIX --- */
+/* --- HEADER --- */
 header.main-header {
     background: rgba(10, 10, 11, 0.98);
     backdrop-filter: blur(15px);
@@ -42,9 +43,10 @@ header.main-header {
 
 .logo {
     font-family: 'Cinzel', serif;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: var(--primary);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
 .search-bar {
@@ -53,16 +55,16 @@ header.main-header {
     max-width: 500px;
     background: #1c1c1e;
     border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 .search-bar input {
     flex-grow: 1;
     border: none;
-    padding: 8px 12px;
-    font-size: 0.7rem;
+    padding: 10px 15px;
+    font-size: 0.75rem;
     background: none;
     color: white;
     outline: none;
@@ -72,26 +74,26 @@ header.main-header {
     background: var(--primary);
     border: none;
     color: #000;
-    padding: 0 12px;
+    padding: 0 15px;
+    cursor: pointer;
 }
 
-/* --- BANNER FIX --- */
+/* --- BANNER --- */
 .main-banner {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 350px;
     overflow: hidden;
-    z-index: 1; /* Card එකට වඩා යටින් තියෙන්න ඕනේ */
+    z-index: 1;
 }
 
 .slide {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 1s ease;
     display: flex;
     align-items: center;
     padding: 0 10%;
@@ -103,57 +105,87 @@ header.main-header {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(10, 10, 11, 0.85) 30%, rgba(10, 10, 11, 0.1));
+    background: linear-gradient(90deg, rgba(10, 10, 11, 0.9) 30%, rgba(10,10,11,0.1));
 }
 
 .slide-content { position: relative; z-index: 5; }
-.slide-content h2 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary); margin: 0; }
-.slide-content p { font-size: 0.8rem; color: #cbd5e1; margin: 5px 0 15px 0; }
+.slide-content h2 { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--primary); margin: 0; }
 
 /* --- NAVIGATION --- */
 .beauty-nav {
     background: #0f0f11;
     border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-    overflow-x: auto; /* Mobile වලදී පැත්තට scroll වෙන්න */
-    white-space: nowrap;
+    position: sticky;
+    top: 65px; /* Just below header */
+    z-index: 999;
 }
 
 .beauty-nav ul {
     display: flex;
-    padding: 12px 20px;
-    gap: 20px;
+    justify-content: center;
+    padding: 12px;
+    gap: 25px;
     list-style: none;
     margin: 0;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
-.beauty-nav li a { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; text-decoration: none; font-weight: 700; }
+.beauty-nav li a {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: color 0.3s;
+}
 
-/* --- PRODUCT CONTAINER & IMAGE FIX --- */
-.product-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    padding: 20px 15px;
-    max-width: 1200px;
+.beauty-nav li a:hover { color: var(--primary); }
+
+/* --- CATEGORY SECTIONS --- */
+.category-section {
+    padding: 40px 0 20px 0;
+    max-width: 1300px;
     margin: 0 auto;
-    position: relative;
-    z-index: 10;
 }
+
+.category-title {
+    font-family: 'Cinzel', serif;
+    color: var(--primary);
+    font-size: 1.3rem;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary);
+}
+
+/* ↕️ HORIZONTAL SCROLL CONTAINER */
+.horizontal-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 20px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+}
+
+.horizontal-scroll-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
 .card-wrapper {
+    flex: 0 0 190px; /* Item width on mobile */
     position: relative;
-    width: 100%;
-    height: 250px; /* Mobile උස */
+    height: 260px;
+    scroll-snap-align: start;
 }
 
 @media (min-width: 768px) {
-    .product-container { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .card-wrapper { height: 280px; }
+    .card-wrapper { flex: 0 0 230px; height: 280px; }
 }
 
+/* --- PRODUCT CARD --- */
 .product-card {
     background: var(--card-bg);
-    border-radius: 18px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgba(212, 175, 55, 0.15);
     display: flex;
@@ -161,51 +193,35 @@ header.main-header {
     height: 100%;
     width: 100%;
     position: absolute;
-    z-index: 20;
-    transition: transform 0.45s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
     cursor: pointer;
+    z-index: 10;
 }
 
 .product-card.active {
     z-index: 999 !important;
-    transform: scale(1.3);
+    transform: scale(1.25);
     border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
 }
 
-/* 🖼️ THE IMAGE FIX: Mobile වලදී image එක හරියට පේන්න */
 .card-image {
     width: 100%;
-    height: 135px; /* Default image height */
-    position: relative;
+    height: 140px;
     overflow: hidden;
-    background: #000; /* Loading වෙද්දී කළු පාටට පේන්න */
-    transition: height 0.4s ease, opacity 0.3s ease;
+    transition: height 0.4s ease, opacity 0.3s;
 }
 
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* මේක වැදගත් */
-    display: block;
-    filter: brightness(0.9);
-}
+.card-image img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
 
-.product-card.active .card-image {
-    height: 0;
-    opacity: 0;
-}
+.product-card.active .card-image { height: 0; opacity: 0; }
 
-/* --- DETAILS --- */
-.card-details {
-    padding: 10px;
-    text-align: center;
-}
-
-.card-details h3 { font-size: 0.75rem; color: #fff; margin: 0 0 4px 0; }
-.price { color: var(--primary); font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; display: block; }
+.card-details { padding: 12px; text-align: center; }
+.card-details h3 { font-size: 0.8rem; color: #fff; margin: 0 0 5px 0; }
+.price { color: var(--primary); font-weight: 700; font-size: 0.95rem; display: block; }
 
 .description {
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     color: var(--muted);
     line-height: 1.4;
     display: -webkit-box;
@@ -214,24 +230,7 @@ header.main-header {
     overflow: hidden;
 }
 
-.product-card.active .description {
-    -webkit-line-clamp: unset;
-    color: #e2e8f0;
-}
-
-/* --- BUTTON --- */
-.expanded-info {
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.product-card.active .expanded-info {
-    max-height: 80px;
-    opacity: 1;
-    visibility: visible;
-    padding-bottom: 15px;
-}
+.product-card.active .description { -webkit-line-clamp: unset; color: #fff; }
 
 .more-btn {
     display: block;
@@ -240,21 +239,18 @@ header.main-header {
     text-align: center;
     text-decoration: none;
     padding: 8px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 800;
     font-size: 0.65rem;
-    margin: 5px 12px;
+    margin: 10px 15px 20px 15px;
 }
 
 /* --- FOOTER --- */
 .page-footer {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
     background: #0a0a0b;
     border-top: 1px solid rgba(212, 175, 55, 0.1);
 }
-
-.page-footer p { color: var(--primary); font-family: 'Cinzel', serif; font-size: 0.9rem; }
-.page-footer span { color: var(--muted); font-size: 0.6rem; }
 
 * { -webkit-tap-highlight-color: transparent !important; }
