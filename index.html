@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MED HUB | Premium Store</title>
+    <title>MED HUB | Luxury Store</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -27,7 +27,6 @@
         <ul>
             <li><a href="#skin-care" onclick="smoothScroll(event, 'skin-care')">SKIN CARE</a></li>
             <li><a href="#k-beauty" onclick="smoothScroll(event, 'k-beauty')">K-BEAUTY</a></li>
-            <li><a href="#makeup" onclick="smoothScroll(event, 'makeup')">MAKEUP</a></li>
             <li><a href="#">NEW ARRIVALS</a></li>
         </ul>
     </nav>
@@ -37,45 +36,30 @@
         <section id="skin-care" class="category-section">
             <h2 class="category-title">SKIN CARE</h2>
             <div class="scroll-wrapper">
-                <button class="scroll-btn left" onclick="sideScroll('skin-care-container', 'left')"><i class="fas fa-chevron-left"></i></button>
-                <div id="skin-care-container" class="horizontal-scroll-container">
+                <button id="left-btn-skin" class="scroll-btn left" onclick="sideScroll('skin-container', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="skin-container" class="horizontal-scroll-container" onscroll="updateArrows('skin-container', 'left-btn-skin', 'right-btn-skin')">
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400"></div><div class="card-details"><h3>Centella Moisturizer</h3><p class="price">Rs. 4,500</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400"></div><div class="card-details"><h3>Rose Toner</h3><p class="price">Rs. 2,800</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400"></div><div class="card-details"><h3>Hyaluronic Acid</h3><p class="price">Rs. 5,200</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1598454441315-9989b5c2dfbf?w=400"></div><div class="card-details"><h3>Clay Detox Mask</h3><p class="price">Rs. 3,400</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=400"></div><div class="card-details"><h3>Night Repair Oil</h3><p class="price">Rs. 7,500</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                 </div>
-                <button class="scroll-btn right" onclick="sideScroll('skin-care-container', 'right')"><i class="fas fa-chevron-right"></i></button>
+                <button id="right-btn-skin" class="scroll-btn right" onclick="sideScroll('skin-container', 'right')"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
         <section id="k-beauty" class="category-section">
             <h2 class="category-title">K-BEAUTY</h2>
             <div class="scroll-wrapper">
-                <button class="scroll-btn left" onclick="sideScroll('k-beauty-container', 'left')"><i class="fas fa-chevron-left"></i></button>
-                <div id="k-beauty-container" class="horizontal-scroll-container">
+                <button id="left-btn-k" class="scroll-btn left" onclick="sideScroll('k-container', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="k-container" class="horizontal-scroll-container" onscroll="updateArrows('k-container', 'left-btn-k', 'right-btn-k')">
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400"></div><div class="card-details"><h3>Glow Serum (K)</h3><p class="price">Rs. 6,800</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"></div><div class="card-details"><h3>Rice Essence</h3><p class="price">Rs. 4,200</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1622791269389-98ff2a0d7f55?w=400"></div><div class="card-details"><h3>SPF 50 Milk</h3><p class="price">Rs. 3,900</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1631730486572-c045155f6e80?w=400"></div><div class="card-details"><h3>Velvet Tint</h3><p class="price">Rs. 2,100</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
+                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1631730486572-c045155f6e80?w=400"></div><div class="card-details"><h3>Velvet Lip Tint</h3><p class="price">Rs. 2,100</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                     <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400"></div><div class="card-details"><h3>Collagen Mask</h3><p class="price">Rs. 1,500</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
                 </div>
-                <button class="scroll-btn right" onclick="sideScroll('k-beauty-container', 'right')"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </section>
-
-        <section id="makeup" class="category-section">
-            <h2 class="category-title">MAKEUP</h2>
-            <div class="scroll-wrapper">
-                <button class="scroll-btn left" onclick="sideScroll('makeup-container', 'left')"><i class="fas fa-chevron-left"></i></button>
-                <div id="makeup-container" class="horizontal-scroll-container">
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400"></div><div class="card-details"><h3>Matte Lipstick</h3><p class="price">Rs. 3,200</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400"></div><div class="card-details"><h3>HD Foundation</h3><p class="price">Rs. 8,500</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?w=400"></div><div class="card-details"><h3>Eyeshadow Palette</h3><p class="price">Rs. 12,000</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1625093748300-647ad637996c?w=400"></div><div class="card-details"><h3>Blush Stick</h3><p class="price">Rs. 4,800</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                    <div class="card-wrapper"><div class="product-card" onclick="toggleExpand(event, this)"><div class="card-image"><img src="https://images.unsplash.com/photo-1591360236480-9c6a4cb3a6de?w=400"></div><div class="card-details"><h3>Setting Spray</h3><p class="price">Rs. 5,600</p></div><div class="expanded-info"><a href="#" class="more-btn">Details</a></div></div></div>
-                </div>
-                <button class="scroll-btn right" onclick="sideScroll('makeup-container', 'right')"><i class="fas fa-chevron-right"></i></button>
+                <button id="right-btn-k" class="scroll-btn right" onclick="sideScroll('k-container', 'right')"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
