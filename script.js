@@ -1,3 +1,4 @@
+// 1. SMART ARROWS VISIBILITY
 function updateArrows(containerId, leftBtnId, rightBtnId) {
     const container = document.getElementById(containerId);
     const leftBtn = document.getElementById(leftBtnId);
@@ -14,11 +15,7 @@ function updateArrows(containerId, leftBtnId, rightBtnId) {
     }
 }
 
-window.addEventListener('load', () => {
-    updateArrows('skin-container', 'left-btn-skin', 'right-btn-skin');
-    updateArrows('k-container', 'left-btn-k', 'right-btn-k');
-});
-
+// 2. SIDE SCROLL
 function sideScroll(containerId, direction) {
     const container = document.getElementById(containerId);
     const scrollAmount = 280;
@@ -26,6 +23,7 @@ function sideScroll(containerId, direction) {
     else { container.scrollLeft += scrollAmount; }
 }
 
+// 3. TOGGLE EXPAND
 function toggleExpand(event, card) {
     event.preventDefault(); event.stopPropagation();
     const activeCard = document.querySelector('.product-card.active');
@@ -33,6 +31,7 @@ function toggleExpand(event, card) {
     card.classList.toggle('active');
 }
 
+// 4. NAV SMOOTH SCROLL
 function smoothScroll(event, targetId) {
     event.preventDefault();
     const targetElement = document.getElementById(targetId);
@@ -42,3 +41,9 @@ function smoothScroll(event, targetId) {
         window.scrollTo({ top: targetPos, behavior: "smooth" });
     }
 }
+
+// Initial update
+window.addEventListener('load', () => {
+    updateArrows('skin-container', 'left-btn-skin', 'right-btn-skin');
+    updateArrows('k-container', 'left-btn-k', 'right-btn-k');
+});
