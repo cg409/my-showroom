@@ -1,4 +1,4 @@
-=function updateArrows(containerId, leftBtnId, rightBtnId) {
+function updateArrows(containerId, leftBtnId, rightBtnId) {
     const container = document.getElementById(containerId);
     const leftBtn = document.getElementById(leftBtnId);
     const rightBtn = document.getElementById(rightBtnId);
