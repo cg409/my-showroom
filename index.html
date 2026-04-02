@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MED MART | Premium Store</title>
+    <title>MED MART | Official Store</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -11,48 +11,41 @@
 
     <header class="main-header">
         <div class="header-container">
-            <div class="logo" onclick="resetSearch()">MED MART</div>
+            <div class="logo" onclick="location.reload()">MED MART</div>
             <div class="search-wrapper">
                 <div class="search-bar">
-                    <input type="text" id="main-search" placeholder="Search product..." autocomplete="off">
-                    <i class="fas fa-times" id="clear-search" onclick="resetSearch()"></i>
+                    <input type="text" id="main-search" placeholder="Search..." autocomplete="off">
+                    <i class="fas fa-times" id="clear-search"></i>
                     <button id="search-trigger"><i class="fas fa-search"></i></button>
                 </div>
                 <div id="search-suggestions"></div>
             </div>
-            <div></div> 
+            <div style="width: 20px;"></div>
         </div>
     </header>
 
     <div class="hero-slider">
         <div class="slides" id="hero-slides">
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?w=1200" alt="Banner 1">
-                <div class="slide-text"><h2>Premium Skin Care</h2><p>Experience the luxury of nature.</p></div>
-            </div>
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200" alt="Banner 2">
-                <div class="slide-text"><h2>K-Beauty Secrets</h2><p>Imported directly from Korea.</p></div>
-            </div>
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1200" alt="Banner 3">
-                <div class="slide-text"><h2>Full Body Glow</h2><p>Nourish your skin everyday.</p></div>
-            </div>
+            <div class="slide"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?w=1200"></div>
+            <div class="slide"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200"></div>
+            <div class="slide"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1200"></div>
         </div>
     </div>
 
     <nav class="beauty-nav">
         <ul>
-            <li><a href="#sc-sec" class="nav-link" data-target="sc-sec">SKIN CARE</a></li>
-            <li><a href="#kb-sec" class="nav-link" data-target="kb-sec">K-BEAUTY</a></li>
-            <li><a href="#bc-sec" class="nav-link" data-target="bc-sec">BODY CARE</a></li>
+            <li><a href="#" class="nav-link active-tab" data-target="sc-sec">SKIN CARE</a></li>
+            <li><a href="#" class="nav-link" data-target="kb-sec">K-BEAUTY</a></li>
+            <li><a href="#" class="nav-link" data-target="bc-sec">BODY CARE</a></li>
+            <li><a href="#" class="nav-link" data-target="hc-sec">HAIR CARE</a></li>
+            <li><a href="#" class="nav-link" data-target="fm-sec">FACE MASKS</a></li>
         </ul>
     </nav>
 
-    <div id="no-results">Product not found. Try another keyword!</div>
+    <div id="no-results" style="display:none; text-align:center; padding:40px; color:#94a3b8;">No products found!</div>
 
     <div class="content-wrapper">
-        <section id="sc-sec" class="category-section" data-cat-name="SKIN CARE">
+        <section id="sc-sec" class="category-section">
             <h2 class="category-title">SKIN CARE</h2>
             <div class="scroll-wrapper">
                 <button class="scroll-btn left" onclick="sideScroll('sc-container', 'left')"><i class="fas fa-chevron-left"></i></button>
@@ -61,7 +54,7 @@
             </div>
         </section>
 
-        <section id="kb-sec" class="category-section" data-cat-name="K-BEAUTY">
+        <section id="kb-sec" class="category-section">
             <h2 class="category-title">K-BEAUTY</h2>
             <div class="scroll-wrapper">
                 <button class="scroll-btn left" onclick="sideScroll('kb-container', 'left')"><i class="fas fa-chevron-left"></i></button>
@@ -70,12 +63,30 @@
             </div>
         </section>
 
-        <section id="bc-sec" class="category-section" data-cat-name="BODY CARE">
+        <section id="bc-sec" class="category-section">
             <h2 class="category-title">BODY CARE</h2>
             <div class="scroll-wrapper">
                 <button class="scroll-btn left" onclick="sideScroll('bc-container', 'left')"><i class="fas fa-chevron-left"></i></button>
                 <div id="bc-container" class="horizontal-scroll-container"></div>
                 <button class="scroll-btn right" onclick="sideScroll('bc-container', 'right')"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section id="hc-sec" class="category-section">
+            <h2 class="category-title">HAIR CARE</h2>
+            <div class="scroll-wrapper">
+                <button class="scroll-btn left" onclick="sideScroll('hc-container', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="hc-container" class="horizontal-scroll-container"></div>
+                <button class="scroll-btn right" onclick="sideScroll('hc-container', 'right')"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section id="fm-sec" class="category-section">
+            <h2 class="category-title">FACE MASKS</h2>
+            <div class="scroll-wrapper">
+                <button class="scroll-btn left" onclick="sideScroll('fm-container', 'left')"><i class="fas fa-chevron-left"></i></button>
+                <div id="fm-container" class="horizontal-scroll-container"></div>
+                <button class="scroll-btn right" onclick="sideScroll('fm-container', 'right')"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
     </div>
