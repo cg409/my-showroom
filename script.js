@@ -1,113 +1,182 @@
-const searchInput = document.getElementById('main-search');
-const clearSearchBtn = document.getElementById('clear-search');
-const suggestionBox = document.getElementById('search-suggestions');
-const sections = document.querySelectorAll('.category-section');
-const cards = document.querySelectorAll('.card-wrapper');
-const noResults = document.getElementById('no-results');
-
-// 1. SEARCH LOGIC WITH CLEAR (X) BUTTON
-searchInput.addEventListener('input', () => {
-    const val = searchInput.value.toLowerCase().trim();
-    
-    // Show/Hide Clear Button
-    clearSearchBtn.style.display = val.length > 0 ? 'inline-block' : 'none';
-
-    suggestionBox.innerHTML = '';
-    if (val.length > 0) {
-        suggestionBox.style.display = 'block';
-        const matches = Array.from(cards)
-            .map(c => c.getAttribute('data-name'))
-            .filter(name => name.toLowerCase().includes(val));
-
-        const uniqueMatches = [...new Set(matches)].slice(0, 5);
-        uniqueMatches.forEach(match => {
-            const div = document.createElement('div');
-            div.className = 'suggestion-item';
-            div.textContent = match;
-            div.onclick = () => {
-                searchInput.value = match;
-                suggestionBox.style.display = 'none';
-                performSearch(match);
-            };
-            suggestionBox.appendChild(div);
-        });
-    } else {
-        suggestionBox.style.display = 'none';
+// 🛒 PRODUCT DATA CENTER - මෙතනට ඔයාට ඕන තරම් Items දාන්න පුළුවන්
+const allProducts = [
+    {
+    section: "sc-1",
+    name: "Centella Cream",
+    short: "Pure herbal hydration.",
+    long: "• Deep soothing effect<br>• Repairs skin barrier",
+    price: "Rs. 4,500",
+    img: "images/1.png" // මෙන්න මේ විදිහට විතරක් දාන්න
+    },
+    {
+        section: "sc-1",
+        name: "Rose Toner",
+        short: "Natural petal extract.",
+        long: "• Tightens pores<br>• Ph balancing",
+        price: "Rs. 2,800",
+        img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400"
+    },
+    {
+        section: "sc-1",
+        name: "Hyaluronic Acid",
+        short: "Intense moisture boost.",
+        long: "• Plumps dry skin<br>• 24h hydration",
+        price: "Rs. 5,200",
+        img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400"
+    },
+    {
+        section: "sc-1",
+        name: "Clay Detox Mask",
+        short: "Pore deep cleaning.",
+        long: "• Oil control<br>• Smooth texture",
+        price: "Rs. 3,400",
+        img: "https://images.unsplash.com/photo-1598454441315-9989b5c2dfbf?w=400"
+    },
+    {
+        section: "sc-1",
+        name: "Night Oil",
+        short: "Overnight repair.",
+        long: "• Rich nutrients<br>• Natural glow",
+        price: "Rs. 7,500",
+        img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=400"
+    },
+    {
+        section: "sc-2", // K-Beauty Section
+        name: "Glow Serum",
+        short: "Glass skin effect.",
+        long: "• Vitamin C rich<br>• Brightens skin",
+        price: "Rs. 6,800",
+        img: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400"
+    },
+    {
+        section: "sc-2",
+        name: "Rice Essence",
+        short: "Traditional whitening.",
+        long: "• Softens texture<br>• Pure rice water",
+        price: "Rs. 4,200",
+        img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"
+    },
+    {
+        section: "sc-2",
+        name: "SPF 50 Milk",
+        short: "Sun shield pro.",
+        long: "• No white cast<br>• Lightweight",
+        price: "Rs. 3,900",
+        img: "https://images.unsplash.com/photo-1622791269389-98ff2a0d7f55?w=400"
+    },
+    {
+        section: "sc-2",
+        name: "Lip Tint",
+        short: "Berry velvet finish.",
+        long: "• Long lasting<br>• Moist lips",
+        price: "Rs. 2,100",
+        img: "https://images.unsplash.com/photo-1631730486572-c045155f6e80?w=400"
+    },
+    {
+        section: "sc-2",
+        name: "Collagen Mask",
+        short: "Firming sheet mask.",
+        long: "• Deep essence<br>• Anti-wrinkle",
+        price: "Rs. 1,500",
+        img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400"
+    },
+ 
+    {
+        section: "sc-3",
+        name: "Collagen Mask",
+        short: "Firming sheet mask.",
+        long: "• Deep essence<br>• Anti-wrinkle",
+        price: "Rs. 1,500",
+        img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400"
     }
+
+
+];
+
+// --- ⚙️ CORE ENGINE ---
+
+// 1. Generate HTML Cards
+function initProducts() {
+    allProducts.forEach(p => {
+        const target = document.getElementById(p.section);
+        if(!target) return;
+        const html = `
+            <div class="card-wrapper" data-name="${p.name}">
+                <div class="product-card" onclick="toggleExpand(event, this)">
+                    <div class="card-image"><img src="${p.img}"></div>
+                    <div class="card-details">
+                        <h3 class="item-name">${p.name}</h3>
+                        <p class="short-desc">${p.short}</p>
+                        <div class="long-desc">${p.long}</div>
+                        <p class="price">${p.price}</p>
+                    </div>
+                </div>
+            </div>`;
+        target.innerHTML += html;
+    });
+}
+
+// 2. Search & Suggestions
+const sInput = document.getElementById('main-search');
+const sClear = document.getElementById('clear-search');
+const sSuggest = document.getElementById('search-suggestions');
+const sections = document.querySelectorAll('.category-section');
+
+sInput.addEventListener('input', () => {
+    const val = sInput.value.toLowerCase().trim();
+    sClear.style.display = val ? 'inline-block' : 'none';
+    sSuggest.innerHTML = '';
+
+    if(val) {
+        sSuggest.style.display = 'block';
+        const matches = allProducts.filter(p => p.name.toLowerCase().includes(val)).slice(0,5);
+        matches.forEach(m => {
+            const d = document.createElement('div');
+            d.className = 'suggestion-item';
+            d.textContent = m.name;
+            d.onclick = () => { sInput.value = m.name; performSearch(m.name); sSuggest.style.display = 'none'; };
+            sSuggest.appendChild(d);
+        });
+    } else { sSuggest.style.display = 'none'; }
 });
 
 function performSearch(query) {
     const q = query.toLowerCase().trim();
-    let foundAny = false;
-
-    sections.forEach(section => {
-        const catName = section.getAttribute('data-cat-name').toLowerCase();
-        const sectionCards = section.querySelectorAll('.card-wrapper');
-        let cardInCatFound = false;
-
-        sectionCards.forEach(card => {
-            const itemName = card.getAttribute('data-name').toLowerCase();
-            if (itemName.includes(q) || catName.includes(q)) {
-                card.style.display = 'block';
-                cardInCatFound = true;
-                foundAny = true;
-            } else {
-                card.style.display = 'none';
-            }
+    let found = false;
+    sections.forEach(sec => {
+        let hasInSec = false;
+        const cat = sec.getAttribute('data-cat-name').toLowerCase();
+        sec.querySelectorAll('.card-wrapper').forEach(card => {
+            const name = card.getAttribute('data-name').toLowerCase();
+            if(name.includes(q) || cat.includes(q)) { card.style.display='block'; hasInSec=found=true; }
+            else card.style.display='none';
         });
-        section.style.display = cardInCatFound ? 'block' : 'none';
+        sec.style.display = hasInSec ? 'block' : 'none';
     });
-
-    noResults.style.display = foundAny ? 'none' : 'block';
+    document.getElementById('no-results').style.display = found ? 'none' : 'block';
     updateAllArrows();
 }
 
 function resetSearch() {
-    searchInput.value = '';
-    clearSearchBtn.style.display = 'none';
-    suggestionBox.style.display = 'none';
-    noResults.style.display = 'none';
-    sections.forEach(s => {
-        s.style.display = 'block';
-        s.querySelectorAll('.card-wrapper').forEach(c => c.style.display = 'block');
-    });
+    sInput.value = ''; sClear.style.display = sSuggest.style.display = 'none';
+    sections.forEach(s => { s.style.display = 'block'; s.querySelectorAll('.card-wrapper').forEach(c => c.style.display='block'); });
+    document.getElementById('no-results').style.display = 'none';
     updateAllArrows();
 }
 
-document.getElementById('search-trigger').onclick = () => performSearch(searchInput.value);
-searchInput.onkeypress = (e) => { if(e.key === 'Enter') performSearch(searchInput.value); };
+sInput.onkeypress = (e) => { if(e.key==='Enter') performSearch(sInput.value); };
+document.getElementById('search-trigger').onclick = () => performSearch(sInput.value);
 
-// 2. SMOOTH TAB SCROLLING
+// 3. Navigation & Scroll
 document.querySelectorAll('.nav-link').forEach(link => {
     link.onclick = (e) => {
         e.preventDefault();
-        const targetId = link.getAttribute('data-target');
-        const targetSection = document.getElementById(targetId);
-        
-        // Remove active class from all tabs
-        document.querySelectorAll('.nav-link').forEach(nl => nl.classList.remove('active-tab'));
-        // Add to current
+        const target = document.getElementById(link.getAttribute('data-target'));
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active-tab'));
         link.classList.add('active-tab');
-
-        if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        target.scrollIntoView({ behavior: 'smooth' });
     };
 });
-
-// 3. CORE UI LOGIC
-function toggleExpand(event, card) {
-    event.stopPropagation();
-    const activeCard = document.querySelector('.product-card.active');
-    if (activeCard && activeCard !== card) activeCard.classList.remove('active');
-    card.classList.toggle('active');
-}
-
-window.onclick = (e) => {
-    const activeCard = document.querySelector('.product-card.active');
-    if (activeCard && !activeCard.contains(e.target)) activeCard.classList.remove('active');
-    if (!e.target.closest('.search-wrapper')) suggestionBox.style.display = 'none';
-};
 
 function sideScroll(id, dir) {
     const el = document.getElementById(id);
@@ -117,13 +186,27 @@ function sideScroll(id, dir) {
 
 function updateAllArrows() {
     sections.forEach(s => {
-        const container = s.querySelector('.horizontal-scroll-container');
-        const l = s.querySelector('.left');
-        const r = s.querySelector('.right');
-        if(!container || !l || !r) return;
-        l.style.display = container.scrollLeft > 5 ? 'flex' : 'none';
-        r.style.display = (container.scrollLeft + container.clientWidth < container.scrollWidth - 10) ? 'flex' : 'none';
+        const c = s.querySelector('.horizontal-scroll-container');
+        const l = s.querySelector('.left'), r = s.querySelector('.right');
+        if(!c || !l || !r) return;
+        l.style.display = c.scrollLeft > 5 ? 'flex' : 'none';
+        r.style.display = (c.scrollLeft + c.clientWidth < c.scrollWidth - 10) ? 'flex' : 'none';
     });
 }
 
-window.onload = updateAllArrows;
+// 4. Card Interaction
+function toggleExpand(e, card) {
+    e.stopPropagation();
+    const active = document.querySelector('.product-card.active');
+    if(active && active !== card) active.classList.remove('active');
+    card.classList.toggle('active');
+}
+
+window.onclick = (e) => {
+    const active = document.querySelector('.product-card.active');
+    if(active && !active.contains(e.target)) active.classList.remove('active');
+    if(!e.target.closest('.search-wrapper')) sSuggest.style.display = 'none';
+};
+
+// Start
+window.onload = () => { initProducts(); updateAllArrows(); };

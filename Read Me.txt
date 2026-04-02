@@ -1,0 +1,30 @@
+item & local image add
+
+{
+    section: "sc-1",
+    name: "Centella Cream",
+    short: "Pure herbal hydration.",
+    long: "• Deep soothing effect<br>• Repairs skin barrier",
+    price: "Rs. 4,500",
+    img: "images/1.png" // මෙන්න මේ විදිහට විතරක් දාන්න
+    },
+
+
+
+
+section add
+
+
+ <section id="body-care-sec" class="category-section" data-cat-name="BODY CARE">
+    <h2 class="category-title">BODY CARE</h2>
+    <div class="scroll-wrapper">
+        <button class="scroll-btn left" onclick="sideScroll('sc-3', 'left')"><i class="fas fa-chevron-left"></i></button>
+        <div id="sc-3" class="horizontal-scroll-container">
+            </div>
+        <button class="scroll-btn right" onclick="sideScroll('sc-3', 'right')"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+
+
+
+
